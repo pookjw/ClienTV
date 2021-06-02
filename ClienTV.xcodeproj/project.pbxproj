@@ -1,0 +1,1150 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20737D03478EEF3D635F5D87 /* Pods_ClienTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09C49D5C60D7ADEA9EFF5CD /* Pods_ClienTV.framework */; };
+		54C28F9C35423FA503A7A990 /* Pods_ClienTVUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C10DB7CFACE362D0B504C0F2 /* Pods_ClienTVUITests.framework */; };
+		6C5F0982B6899327DD0A449B /* Pods_ClienTVTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F3A1928F5ABDE67EC9F9A4 /* Pods_ClienTVTests.framework */; };
+		C1FADA1E811569E3185A5404 /* Pods_ClienTVDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4607051DD2DA822840A13295 /* Pods_ClienTVDomain.framework */; };
+		CA5A9D0BF24F6AF1D9BB2A02 /* Pods_ClienTVDomainTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E9FBD016568F247D1281BB /* Pods_ClienTVDomainTests.framework */; };
+		F3B63090266785DA00654F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B6308F266785DA00654F99 /* AppDelegate.swift */; };
+		F3B63092266785DA00654F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B63091266785DA00654F99 /* ViewController.swift */; };
+		F3B63095266785DA00654F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B63093266785DA00654F99 /* Main.storyboard */; };
+		F3B63097266785DB00654F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B63096266785DB00654F99 /* Assets.xcassets */; };
+		F3B6309A266785DB00654F99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B63098266785DB00654F99 /* LaunchScreen.storyboard */; };
+		F3B630A5266785DB00654F99 /* ClienTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B630A4266785DB00654F99 /* ClienTVTests.swift */; };
+		F3B630B0266785DB00654F99 /* ClienTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B630AF266785DB00654F99 /* ClienTVUITests.swift */; };
+		F3B630CB266785E800654F99 /* ClienTVDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B630C2266785E800654F99 /* ClienTVDomain.framework */; };
+		F3B630D2266785E800654F99 /* ClienTVDomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B630D1266785E800654F99 /* ClienTVDomainTests.swift */; };
+		F3B630D4266785E800654F99 /* ClienTVDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = F3B630C4266785E800654F99 /* ClienTVDomain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3B630D7266785E800654F99 /* ClienTVDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B630C2266785E800654F99 /* ClienTVDomain.framework */; };
+		F3B630D8266785E800654F99 /* ClienTVDomain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3B630C2266785E800654F99 /* ClienTVDomain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F3B630A1266785DB00654F99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3B63084266785DA00654F99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3B6308B266785DA00654F99;
+			remoteInfo = ClienTV;
+		};
+		F3B630AC266785DB00654F99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3B63084266785DA00654F99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3B6308B266785DA00654F99;
+			remoteInfo = ClienTV;
+		};
+		F3B630CC266785E800654F99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3B63084266785DA00654F99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3B630C1266785E800654F99;
+			remoteInfo = ClienTVDomain;
+		};
+		F3B630CE266785E800654F99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3B63084266785DA00654F99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3B6308B266785DA00654F99;
+			remoteInfo = ClienTV;
+		};
+		F3B630D5266785E800654F99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3B63084266785DA00654F99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3B630C1266785E800654F99;
+			remoteInfo = ClienTVDomain;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F3B630DC266785E800654F99 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F3B630D8266785E800654F99 /* ClienTVDomain.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		04DDED9B7B1157DAB2B2ABDF /* Pods-ClienTVTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVTests.release.xcconfig"; path = "Target Support Files/Pods-ClienTVTests/Pods-ClienTVTests.release.xcconfig"; sourceTree = "<group>"; };
+		425610090E159E723B797E59 /* Pods-ClienTVDomainTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVDomainTests.debug.xcconfig"; path = "Target Support Files/Pods-ClienTVDomainTests/Pods-ClienTVDomainTests.debug.xcconfig"; sourceTree = "<group>"; };
+		42D178A1F1E3679E3C576F9A /* Pods-ClienTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.debug.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.debug.xcconfig"; sourceTree = "<group>"; };
+		45F3A1928F5ABDE67EC9F9A4 /* Pods_ClienTVTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4607051DD2DA822840A13295 /* Pods_ClienTVDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B61C34BCE2D4D44FDABF552 /* Pods-ClienTVUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVUITests.debug.xcconfig"; path = "Target Support Files/Pods-ClienTVUITests/Pods-ClienTVUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8A0809FB507E832FFB40DE3F /* Pods-ClienTVDomain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVDomain.debug.xcconfig"; path = "Target Support Files/Pods-ClienTVDomain/Pods-ClienTVDomain.debug.xcconfig"; sourceTree = "<group>"; };
+		A09C49D5C60D7ADEA9EFF5CD /* Pods_ClienTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10DB7CFACE362D0B504C0F2 /* Pods_ClienTVUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C355A3EA8BC90FEEED7E1E71 /* Pods-ClienTVUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVUITests.release.xcconfig"; path = "Target Support Files/Pods-ClienTVUITests/Pods-ClienTVUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E4286A23DAE1C8735CD89AB9 /* Pods-ClienTVDomain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVDomain.release.xcconfig"; path = "Target Support Files/Pods-ClienTVDomain/Pods-ClienTVDomain.release.xcconfig"; sourceTree = "<group>"; };
+		E833231A5792EE851DCD3D86 /* Pods-ClienTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.release.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.release.xcconfig"; sourceTree = "<group>"; };
+		F3B6308C266785DA00654F99 /* ClienTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClienTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B6308F266785DA00654F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3B63091266785DA00654F99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3B63094266785DA00654F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F3B63096266785DB00654F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3B63099266785DB00654F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F3B6309B266785DB00654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B630A0266785DB00654F99 /* ClienTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClienTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B630A4266785DB00654F99 /* ClienTVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienTVTests.swift; sourceTree = "<group>"; };
+		F3B630A6266785DB00654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B630AB266785DB00654F99 /* ClienTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClienTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B630AF266785DB00654F99 /* ClienTVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienTVUITests.swift; sourceTree = "<group>"; };
+		F3B630B1266785DB00654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B630C2266785E800654F99 /* ClienTVDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClienTVDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B630C4266785E800654F99 /* ClienTVDomain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClienTVDomain.h; sourceTree = "<group>"; };
+		F3B630C5266785E800654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B630CA266785E800654F99 /* ClienTVDomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClienTVDomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3B630D1266785E800654F99 /* ClienTVDomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienTVDomainTests.swift; sourceTree = "<group>"; };
+		F3B630D3266785E800654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4E9FBD016568F247D1281BB /* Pods_ClienTVDomainTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVDomainTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5863B94C65F11554CCAE281 /* Pods-ClienTVTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVTests.debug.xcconfig"; path = "Target Support Files/Pods-ClienTVTests/Pods-ClienTVTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FCE9CEF4C694B189F65EB9AA /* Pods-ClienTVDomainTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVDomainTests.release.xcconfig"; path = "Target Support Files/Pods-ClienTVDomainTests/Pods-ClienTVDomainTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F3B63089266785DA00654F99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B630D7266785E800654F99 /* ClienTVDomain.framework in Frameworks */,
+				20737D03478EEF3D635F5D87 /* Pods_ClienTV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B6309D266785DB00654F99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C5F0982B6899327DD0A449B /* Pods_ClienTVTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630A8266785DB00654F99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54C28F9C35423FA503A7A990 /* Pods_ClienTVUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630BF266785E800654F99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1FADA1E811569E3185A5404 /* Pods_ClienTVDomain.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630C7266785E800654F99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B630CB266785E800654F99 /* ClienTVDomain.framework in Frameworks */,
+				CA5A9D0BF24F6AF1D9BB2A02 /* Pods_ClienTVDomainTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		706766DC90F2AE18422AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A09C49D5C60D7ADEA9EFF5CD /* Pods_ClienTV.framework */,
+				4607051DD2DA822840A13295 /* Pods_ClienTVDomain.framework */,
+				F4E9FBD016568F247D1281BB /* Pods_ClienTVDomainTests.framework */,
+				45F3A1928F5ABDE67EC9F9A4 /* Pods_ClienTVTests.framework */,
+				C10DB7CFACE362D0B504C0F2 /* Pods_ClienTVUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F209EA304C43E66602A785E5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42D178A1F1E3679E3C576F9A /* Pods-ClienTV.debug.xcconfig */,
+				E833231A5792EE851DCD3D86 /* Pods-ClienTV.release.xcconfig */,
+				8A0809FB507E832FFB40DE3F /* Pods-ClienTVDomain.debug.xcconfig */,
+				E4286A23DAE1C8735CD89AB9 /* Pods-ClienTVDomain.release.xcconfig */,
+				425610090E159E723B797E59 /* Pods-ClienTVDomainTests.debug.xcconfig */,
+				FCE9CEF4C694B189F65EB9AA /* Pods-ClienTVDomainTests.release.xcconfig */,
+				F5863B94C65F11554CCAE281 /* Pods-ClienTVTests.debug.xcconfig */,
+				04DDED9B7B1157DAB2B2ABDF /* Pods-ClienTVTests.release.xcconfig */,
+				5B61C34BCE2D4D44FDABF552 /* Pods-ClienTVUITests.debug.xcconfig */,
+				C355A3EA8BC90FEEED7E1E71 /* Pods-ClienTVUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F3B63083266785DA00654F99 = {
+			isa = PBXGroup;
+			children = (
+				F3B6308E266785DA00654F99 /* ClienTV */,
+				F3B630A3266785DB00654F99 /* ClienTVTests */,
+				F3B630AE266785DB00654F99 /* ClienTVUITests */,
+				F3B630C3266785E800654F99 /* ClienTVDomain */,
+				F3B630D0266785E800654F99 /* ClienTVDomainTests */,
+				F3B6308D266785DA00654F99 /* Products */,
+				F209EA304C43E66602A785E5 /* Pods */,
+				706766DC90F2AE18422AAC07 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F3B6308D266785DA00654F99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3B6308C266785DA00654F99 /* ClienTV.app */,
+				F3B630A0266785DB00654F99 /* ClienTVTests.xctest */,
+				F3B630AB266785DB00654F99 /* ClienTVUITests.xctest */,
+				F3B630C2266785E800654F99 /* ClienTVDomain.framework */,
+				F3B630CA266785E800654F99 /* ClienTVDomainTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3B6308E266785DA00654F99 /* ClienTV */ = {
+			isa = PBXGroup;
+			children = (
+				F3B6308F266785DA00654F99 /* AppDelegate.swift */,
+				F3B63091266785DA00654F99 /* ViewController.swift */,
+				F3B63093266785DA00654F99 /* Main.storyboard */,
+				F3B63096266785DB00654F99 /* Assets.xcassets */,
+				F3B63098266785DB00654F99 /* LaunchScreen.storyboard */,
+				F3B6309B266785DB00654F99 /* Info.plist */,
+			);
+			path = ClienTV;
+			sourceTree = "<group>";
+		};
+		F3B630A3266785DB00654F99 /* ClienTVTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3B630A4266785DB00654F99 /* ClienTVTests.swift */,
+				F3B630A6266785DB00654F99 /* Info.plist */,
+			);
+			path = ClienTVTests;
+			sourceTree = "<group>";
+		};
+		F3B630AE266785DB00654F99 /* ClienTVUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F3B630AF266785DB00654F99 /* ClienTVUITests.swift */,
+				F3B630B1266785DB00654F99 /* Info.plist */,
+			);
+			path = ClienTVUITests;
+			sourceTree = "<group>";
+		};
+		F3B630C3266785E800654F99 /* ClienTVDomain */ = {
+			isa = PBXGroup;
+			children = (
+				F3B630C4266785E800654F99 /* ClienTVDomain.h */,
+				F3B630C5266785E800654F99 /* Info.plist */,
+			);
+			path = ClienTVDomain;
+			sourceTree = "<group>";
+		};
+		F3B630D0266785E800654F99 /* ClienTVDomainTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3B630D1266785E800654F99 /* ClienTVDomainTests.swift */,
+				F3B630D3266785E800654F99 /* Info.plist */,
+			);
+			path = ClienTVDomainTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F3B630BD266785E800654F99 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B630D4266785E800654F99 /* ClienTVDomain.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F3B6308B266785DA00654F99 /* ClienTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B630B4266785DB00654F99 /* Build configuration list for PBXNativeTarget "ClienTV" */;
+			buildPhases = (
+				3A47D44DEBBDF06B6FC254E1 /* [CP] Check Pods Manifest.lock */,
+				F3B63088266785DA00654F99 /* Sources */,
+				F3B63089266785DA00654F99 /* Frameworks */,
+				F3B6308A266785DA00654F99 /* Resources */,
+				F3B630DC266785E800654F99 /* Embed Frameworks */,
+				EFF32630AF3CA9F0A0DB90CB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3B630D6266785E800654F99 /* PBXTargetDependency */,
+			);
+			name = ClienTV;
+			productName = ClienTV;
+			productReference = F3B6308C266785DA00654F99 /* ClienTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F3B6309F266785DB00654F99 /* ClienTVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B630B7266785DB00654F99 /* Build configuration list for PBXNativeTarget "ClienTVTests" */;
+			buildPhases = (
+				1A61BE615C2CA95B9785E671 /* [CP] Check Pods Manifest.lock */,
+				F3B6309C266785DB00654F99 /* Sources */,
+				F3B6309D266785DB00654F99 /* Frameworks */,
+				F3B6309E266785DB00654F99 /* Resources */,
+				79242BF95C776291AE6D5F9A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3B630A2266785DB00654F99 /* PBXTargetDependency */,
+			);
+			name = ClienTVTests;
+			productName = ClienTVTests;
+			productReference = F3B630A0266785DB00654F99 /* ClienTVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F3B630AA266785DB00654F99 /* ClienTVUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B630BA266785DB00654F99 /* Build configuration list for PBXNativeTarget "ClienTVUITests" */;
+			buildPhases = (
+				6ECDE86C450F139418BCAE31 /* [CP] Check Pods Manifest.lock */,
+				F3B630A7266785DB00654F99 /* Sources */,
+				F3B630A8266785DB00654F99 /* Frameworks */,
+				F3B630A9266785DB00654F99 /* Resources */,
+				3C8569742F3C954516C5C0C3 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3B630AD266785DB00654F99 /* PBXTargetDependency */,
+			);
+			name = ClienTVUITests;
+			productName = ClienTVUITests;
+			productReference = F3B630AB266785DB00654F99 /* ClienTVUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F3B630C1266785E800654F99 /* ClienTVDomain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B630D9266785E800654F99 /* Build configuration list for PBXNativeTarget "ClienTVDomain" */;
+			buildPhases = (
+				911D4C26CBE2539F0297D9B3 /* [CP] Check Pods Manifest.lock */,
+				F3B630BD266785E800654F99 /* Headers */,
+				F3B630BE266785E800654F99 /* Sources */,
+				F3B630BF266785E800654F99 /* Frameworks */,
+				F3B630C0266785E800654F99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClienTVDomain;
+			productName = ClienTVDomain;
+			productReference = F3B630C2266785E800654F99 /* ClienTVDomain.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F3B630C9266785E800654F99 /* ClienTVDomainTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3B630DD266785E800654F99 /* Build configuration list for PBXNativeTarget "ClienTVDomainTests" */;
+			buildPhases = (
+				A786C11849DE585BA4F8D6A0 /* [CP] Check Pods Manifest.lock */,
+				F3B630C6266785E800654F99 /* Sources */,
+				F3B630C7266785E800654F99 /* Frameworks */,
+				F3B630C8266785E800654F99 /* Resources */,
+				E70CD84C14871AB93FCF797F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3B630CD266785E800654F99 /* PBXTargetDependency */,
+				F3B630CF266785E800654F99 /* PBXTargetDependency */,
+			);
+			name = ClienTVDomainTests;
+			productName = ClienTVDomainTests;
+			productReference = F3B630CA266785E800654F99 /* ClienTVDomainTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F3B63084266785DA00654F99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					F3B6308B266785DA00654F99 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					F3B6309F266785DB00654F99 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = F3B6308B266785DA00654F99;
+					};
+					F3B630AA266785DB00654F99 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = F3B6308B266785DA00654F99;
+					};
+					F3B630C1266785E800654F99 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					F3B630C9266785E800654F99 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = F3B6308B266785DA00654F99;
+					};
+				};
+			};
+			buildConfigurationList = F3B63087266785DA00654F99 /* Build configuration list for PBXProject "ClienTV" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3B63083266785DA00654F99;
+			productRefGroup = F3B6308D266785DA00654F99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3B6308B266785DA00654F99 /* ClienTV */,
+				F3B6309F266785DB00654F99 /* ClienTVTests */,
+				F3B630AA266785DB00654F99 /* ClienTVUITests */,
+				F3B630C1266785E800654F99 /* ClienTVDomain */,
+				F3B630C9266785E800654F99 /* ClienTVDomainTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3B6308A266785DA00654F99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B6309A266785DB00654F99 /* LaunchScreen.storyboard in Resources */,
+				F3B63097266785DB00654F99 /* Assets.xcassets in Resources */,
+				F3B63095266785DA00654F99 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B6309E266785DB00654F99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630A9266785DB00654F99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630C0266785E800654F99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630C8266785E800654F99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A61BE615C2CA95B9785E671 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClienTVTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A47D44DEBBDF06B6FC254E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClienTV-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C8569742F3C954516C5C0C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTVUITests/Pods-ClienTVUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTVUITests/Pods-ClienTVUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClienTVUITests/Pods-ClienTVUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6ECDE86C450F139418BCAE31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClienTVUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79242BF95C776291AE6D5F9A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTVTests/Pods-ClienTVTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTVTests/Pods-ClienTVTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClienTVTests/Pods-ClienTVTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		911D4C26CBE2539F0297D9B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClienTVDomain-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A786C11849DE585BA4F8D6A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClienTVDomainTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E70CD84C14871AB93FCF797F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTVDomainTests/Pods-ClienTVDomainTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTVDomainTests/Pods-ClienTVDomainTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClienTVDomainTests/Pods-ClienTVDomainTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFF32630AF3CA9F0A0DB90CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTV/Pods-ClienTV-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClienTV/Pods-ClienTV-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClienTV/Pods-ClienTV-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F3B63088266785DA00654F99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B63092266785DA00654F99 /* ViewController.swift in Sources */,
+				F3B63090266785DA00654F99 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B6309C266785DB00654F99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B630A5266785DB00654F99 /* ClienTVTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630A7266785DB00654F99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B630B0266785DB00654F99 /* ClienTVUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630BE266785E800654F99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3B630C6266785E800654F99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3B630D2266785E800654F99 /* ClienTVDomainTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F3B630A2266785DB00654F99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3B6308B266785DA00654F99 /* ClienTV */;
+			targetProxy = F3B630A1266785DB00654F99 /* PBXContainerItemProxy */;
+		};
+		F3B630AD266785DB00654F99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3B6308B266785DA00654F99 /* ClienTV */;
+			targetProxy = F3B630AC266785DB00654F99 /* PBXContainerItemProxy */;
+		};
+		F3B630CD266785E800654F99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3B630C1266785E800654F99 /* ClienTVDomain */;
+			targetProxy = F3B630CC266785E800654F99 /* PBXContainerItemProxy */;
+		};
+		F3B630CF266785E800654F99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3B6308B266785DA00654F99 /* ClienTV */;
+			targetProxy = F3B630CE266785E800654F99 /* PBXContainerItemProxy */;
+		};
+		F3B630D6266785E800654F99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3B630C1266785E800654F99 /* ClienTVDomain */;
+			targetProxy = F3B630D5266785E800654F99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F3B63093266785DA00654F99 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3B63094266785DA00654F99 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F3B63098266785DB00654F99 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3B63099266785DB00654F99 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F3B630B2266785DB00654F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 14.5;
+			};
+			name = Debug;
+		};
+		F3B630B3266785DB00654F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TVOS_DEPLOYMENT_TARGET = 14.5;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3B630B5266785DB00654F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42D178A1F1E3679E3C576F9A /* Pods-ClienTV.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		F3B630B6266785DB00654F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E833231A5792EE851DCD3D86 /* Pods-ClienTV.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		F3B630B8266785DB00654F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5863B94C65F11554CCAE281 /* Pods-ClienTVTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClienTV.app/ClienTV";
+				TVOS_DEPLOYMENT_TARGET = 14.5;
+			};
+			name = Debug;
+		};
+		F3B630B9266785DB00654F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04DDED9B7B1157DAB2B2ABDF /* Pods-ClienTVTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClienTV.app/ClienTV";
+				TVOS_DEPLOYMENT_TARGET = 14.5;
+			};
+			name = Release;
+		};
+		F3B630BB266785DB00654F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B61C34BCE2D4D44FDABF552 /* Pods-ClienTVUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = ClienTV;
+			};
+			name = Debug;
+		};
+		F3B630BC266785DB00654F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C355A3EA8BC90FEEED7E1E71 /* Pods-ClienTVUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = ClienTV;
+			};
+			name = Release;
+		};
+		F3B630DA266785E800654F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A0809FB507E832FFB40DE3F /* Pods-ClienTVDomain.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ClienTVDomain/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVDomain;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F3B630DB266785E800654F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4286A23DAE1C8735CD89AB9 /* Pods-ClienTVDomain.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ClienTVDomain/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVDomain;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F3B630DE266785E800654F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 425610090E159E723B797E59 /* Pods-ClienTVDomainTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVDomainTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVDomainTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClienTV.app/ClienTV";
+			};
+			name = Debug;
+		};
+		F3B630DF266785E800654F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCE9CEF4C694B189F65EB9AA /* Pods-ClienTVDomainTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVDomainTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTVDomainTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClienTV.app/ClienTV";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F3B63087266785DA00654F99 /* Build configuration list for PBXProject "ClienTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B630B2266785DB00654F99 /* Debug */,
+				F3B630B3266785DB00654F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3B630B4266785DB00654F99 /* Build configuration list for PBXNativeTarget "ClienTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B630B5266785DB00654F99 /* Debug */,
+				F3B630B6266785DB00654F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3B630B7266785DB00654F99 /* Build configuration list for PBXNativeTarget "ClienTVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B630B8266785DB00654F99 /* Debug */,
+				F3B630B9266785DB00654F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3B630BA266785DB00654F99 /* Build configuration list for PBXNativeTarget "ClienTVUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B630BB266785DB00654F99 /* Debug */,
+				F3B630BC266785DB00654F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3B630D9266785E800654F99 /* Build configuration list for PBXNativeTarget "ClienTVDomain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B630DA266785E800654F99 /* Debug */,
+				F3B630DB266785E800654F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3B630DD266785E800654F99 /* Build configuration list for PBXNativeTarget "ClienTVDomainTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3B630DE266785E800654F99 /* Debug */,
+				F3B630DF266785E800654F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F3B63084266785DA00654F99 /* Project object */;
+}
