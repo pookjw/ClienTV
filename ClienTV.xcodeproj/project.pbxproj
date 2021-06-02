@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		CA5A9D0BF24F6AF1D9BB2A02 /* Pods_ClienTVDomainTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E9FBD016568F247D1281BB /* Pods_ClienTVDomainTests.framework */; };
 		F3B63090266785DA00654F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B6308F266785DA00654F99 /* AppDelegate.swift */; };
 		F3B63092266785DA00654F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B63091266785DA00654F99 /* ViewController.swift */; };
-		F3B63095266785DA00654F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B63093266785DA00654F99 /* Main.storyboard */; };
 		F3B63097266785DB00654F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3B63096266785DB00654F99 /* Assets.xcassets */; };
 		F3B6309A266785DB00654F99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3B63098266785DB00654F99 /* LaunchScreen.storyboard */; };
 		F3B630A5266785DB00654F99 /* ClienTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B630A4266785DB00654F99 /* ClienTVTests.swift */; };
@@ -24,6 +23,7 @@
 		F3B630D4266785E800654F99 /* ClienTVDomain.h in Headers */ = {isa = PBXBuildFile; fileRef = F3B630C4266785E800654F99 /* ClienTVDomain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3B630D7266785E800654F99 /* ClienTVDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3B630C2266785E800654F99 /* ClienTVDomain.framework */; };
 		F3B630D8266785E800654F99 /* ClienTVDomain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3B630C2266785E800654F99 /* ClienTVDomain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3B630E526678EC000654F99 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B630E426678EC000654F99 /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,6 @@
 		F3B6308C266785DA00654F99 /* ClienTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClienTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B6308F266785DA00654F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3B63091266785DA00654F99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F3B63094266785DA00654F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3B63096266785DB00654F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3B63099266785DB00654F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3B6309B266785DB00654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		F3B630CA266785E800654F99 /* ClienTVDomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClienTVDomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B630D1266785E800654F99 /* ClienTVDomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienTVDomainTests.swift; sourceTree = "<group>"; };
 		F3B630D3266785E800654F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3B630E426678EC000654F99 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		F4E9FBD016568F247D1281BB /* Pods_ClienTVDomainTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVDomainTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5863B94C65F11554CCAE281 /* Pods-ClienTVTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVTests.debug.xcconfig"; path = "Target Support Files/Pods-ClienTVTests/Pods-ClienTVTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FCE9CEF4C694B189F65EB9AA /* Pods-ClienTVDomainTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVDomainTests.release.xcconfig"; path = "Target Support Files/Pods-ClienTVDomainTests/Pods-ClienTVDomainTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,7 +187,6 @@
 				5B61C34BCE2D4D44FDABF552 /* Pods-ClienTVUITests.debug.xcconfig */,
 				C355A3EA8BC90FEEED7E1E71 /* Pods-ClienTVUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -222,10 +221,10 @@
 			children = (
 				F3B6308F266785DA00654F99 /* AppDelegate.swift */,
 				F3B63091266785DA00654F99 /* ViewController.swift */,
-				F3B63093266785DA00654F99 /* Main.storyboard */,
 				F3B63096266785DB00654F99 /* Assets.xcassets */,
 				F3B63098266785DB00654F99 /* LaunchScreen.storyboard */,
 				F3B6309B266785DB00654F99 /* Info.plist */,
+				F3B630E426678EC000654F99 /* Log.swift */,
 			);
 			path = ClienTV;
 			sourceTree = "<group>";
@@ -439,7 +438,6 @@
 			files = (
 				F3B6309A266785DB00654F99 /* LaunchScreen.storyboard in Resources */,
 				F3B63097266785DB00654F99 /* Assets.xcassets in Resources */,
-				F3B63095266785DA00654F99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +659,7 @@
 			files = (
 				F3B63092266785DA00654F99 /* ViewController.swift in Sources */,
 				F3B63090266785DA00654F99 /* AppDelegate.swift in Sources */,
+				F3B630E526678EC000654F99 /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,14 +725,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F3B63093266785DA00654F99 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F3B63094266785DA00654F99 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F3B63098266785DB00654F99 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
