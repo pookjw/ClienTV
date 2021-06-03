@@ -41,6 +41,10 @@
 		4FF70F76266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F75266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift */; };
 		4FF70F7826692B2200FDC680 /* BoardListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F7726692B2200FDC680 /* BoardListUseCase.swift */; };
 		4FF70F7A26692EBD00FDC680 /* ArticleBaseListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F7926692EBD00FDC680 /* ArticleBaseListUseCase.swift */; };
+		4FF70F7E2669376000FDC680 /* ArticleBaseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F7D2669376000FDC680 /* ArticleBaseListViewModel.swift */; };
+		4FF70F80266938E600FDC680 /* ArticleBaseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F7F266938E600FDC680 /* ArticleBaseListModel.swift */; };
+		4FF70F8226693C5800FDC680 /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F8126693C5800FDC680 /* BoardListViewModel.swift */; };
+		4FF70F8426693C7900FDC680 /* BoardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F8326693C7900FDC680 /* BoardListModel.swift */; };
 		98B29A0F02991F88EA5AAAC6 /* Pods_ClienTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */; };
 		A43050FEE2953D6F28C4F9BD /* Pods_ClienTVAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */; };
 /* End PBXBuildFile section */
@@ -140,6 +144,10 @@
 		4FF70F75266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseListRepositoryImpl.swift; sourceTree = "<group>"; };
 		4FF70F7726692B2200FDC680 /* BoardListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListUseCase.swift; sourceTree = "<group>"; };
 		4FF70F7926692EBD00FDC680 /* ArticleBaseListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseListUseCase.swift; sourceTree = "<group>"; };
+		4FF70F7D2669376000FDC680 /* ArticleBaseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseListViewModel.swift; sourceTree = "<group>"; };
+		4FF70F7F266938E600FDC680 /* ArticleBaseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseListModel.swift; sourceTree = "<group>"; };
+		4FF70F8126693C5800FDC680 /* BoardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewModel.swift; sourceTree = "<group>"; };
+		4FF70F8326693C7900FDC680 /* BoardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListModel.swift; sourceTree = "<group>"; };
 		9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DBEB71F1A6D52B31AE3227 /* Pods-ClienTVAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVAPI.release.xcconfig"; path = "Target Support Files/Pods-ClienTVAPI/Pods-ClienTVAPI.release.xcconfig"; sourceTree = "<group>"; };
 		AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,6 +394,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF70F5D2669068F00FDC680 /* BoardListViewController.swift */,
+				4FF70F8126693C5800FDC680 /* BoardListViewModel.swift */,
+				4FF70F8326693C7900FDC680 /* BoardListModel.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -394,6 +404,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF70F60266906A800FDC680 /* ArticleBaseListViewController.swift */,
+				4FF70F7D2669376000FDC680 /* ArticleBaseListViewModel.swift */,
+				4FF70F7F266938E600FDC680 /* ArticleBaseListModel.swift */,
 			);
 			path = ArticleBase;
 			sourceTree = "<group>";
@@ -740,13 +752,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF70F8426693C7900FDC680 /* BoardListModel.swift in Sources */,
 				4FF70F572669043F00FDC680 /* MainTabBarController.swift in Sources */,
 				4FF70F61266906A800FDC680 /* ArticleBaseListViewController.swift in Sources */,
 				4FF70F682669070E00FDC680 /* ArticleViewController.swift in Sources */,
+				4FF70F80266938E600FDC680 /* ArticleBaseListModel.swift in Sources */,
 				4FF70EE42667C94400FDC680 /* AppDelegate.swift in Sources */,
 				4FF70F6B2669073F00FDC680 /* HomeSplitViewController.swift in Sources */,
+				4FF70F7E2669376000FDC680 /* ArticleBaseListViewModel.swift in Sources */,
 				4FF70F5B266904ED00FDC680 /* Logger+shared.swift in Sources */,
 				4FF70F5E2669068F00FDC680 /* BoardListViewController.swift in Sources */,
+				4FF70F8226693C5800FDC680 /* BoardListViewModel.swift in Sources */,
 				4FF70F65266906C100FDC680 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

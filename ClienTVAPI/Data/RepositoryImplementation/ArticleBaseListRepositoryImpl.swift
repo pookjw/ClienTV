@@ -15,7 +15,7 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
     private var cancallableBag: Set<AnyCancellable> = .init()
     private let api: ArticleBaseListAPI
     
-    init(api: ArticleBaseListAPI) {
+    init(api: ArticleBaseListAPI = ArticleBaseListAPIImpl()) {
         self.api = api
         configureDateFormatter()
     }

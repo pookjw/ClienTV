@@ -7,12 +7,15 @@
 
 import UIKit
 
-class BoardListViewController: UIViewController {
+final class BoardListViewController: UIViewController {
+    private weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        setAttributes()
     }
 
-
+    private func setAttributes() {
+        
+    }
 }

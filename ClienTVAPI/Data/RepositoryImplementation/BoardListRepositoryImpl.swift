@@ -13,7 +13,7 @@ final class BoardListRepositoryImpl: BoardListRepository {
     private let api: BoardListAPI
     private var cancallableBag: Set<AnyCancellable> = .init()
     
-    init(api: BoardListAPI) {
+    init(api: BoardListAPI = BoardListAPIImpl()) {
         self.api = api
     }
     

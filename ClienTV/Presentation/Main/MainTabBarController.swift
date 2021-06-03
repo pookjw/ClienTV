@@ -24,8 +24,6 @@ final class MainTabBarController: UITabBarController {
         self.homeSplitViewController = homeSplitViewController
         self.settingsViewController = settingsViewController
         
-        homeSplitViewController.preferredDisplayMode = .oneBesideSecondary
-        
         homeSplitViewController.tabBarItem = .init(title: "홈",
                                                    image: UIImage(systemName: "house"),
                                                    tag: 0)

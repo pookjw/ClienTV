@@ -16,8 +16,7 @@ public final class BoardListUseCaseImpl: BoardListUseCase {
     private let boardListRepository: BoardListRepository
     
     public init() {
-        let boardListAPI: BoardListAPI = BoardListAPIImpl()
-        self.boardListRepository = BoardListRepositoryImpl(api: boardListAPI)
+        self.boardListRepository = BoardListRepositoryImpl()
     }
     
     public func getAllBoardList() -> Future<[Board], Error> {

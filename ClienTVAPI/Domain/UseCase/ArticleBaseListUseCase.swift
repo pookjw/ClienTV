@@ -16,8 +16,7 @@ public final class ArticleBaseListUseCaseImpl: ArticleBaseListUseCase {
     private let articleBaseListRepository: ArticleBaseListRepository
     
     public init() {
-        let articleBastListAPI: ArticleBaseListAPI = ArticleBaseListAPIImpl()
-        self.articleBaseListRepository = ArticleBaseListRepositoryImpl(api: articleBastListAPI)
+        self.articleBaseListRepository = ArticleBaseListRepositoryImpl()
     }
     
     public func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {

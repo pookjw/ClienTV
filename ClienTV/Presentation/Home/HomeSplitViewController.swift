@@ -7,13 +7,18 @@
 
 import UIKit
 
-class HomeSplitViewController: UISplitViewController {
+final class HomeSplitViewController: UISplitViewController {
     private weak var boardListViewController: BoardListViewController? = nil
     private weak var articleBaseListViewController: ArticleBaseListViewController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setAttributes()
         configureViewControllers()
+    }
+    
+    private func setAttributes() {
+        preferredDisplayMode = .oneBesideSecondary
     }
 
     private func configureViewControllers() {
