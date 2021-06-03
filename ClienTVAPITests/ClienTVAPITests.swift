@@ -13,9 +13,9 @@ import OSLog
 class ClienTVAPITests: XCTestCase {
     private var cancallableBag: Set<AnyCancellable> = .init()
     
-    func testMenuListAPI() {
+    func testBoardListAPI() {
         let semaphore: DispatchSemaphore = .init(value: 0)
-        let api: MenuListAPIImpl = .init()
+        let api: BoardListAPIImpl = .init()
         api.getBoardList()
             .sink { _ in
                 semaphore.signal()
@@ -29,7 +29,7 @@ class ClienTVAPITests: XCTestCase {
     func testArticleBastListAPI() {
         let semaphore: DispatchSemaphore = .init(value: 0)
         let api: ArticleBaseListAPIImpl = .init()
-        api.getArticleBaseList(path: "/service/board/cm_iphonien")
+        api.getArticleBaseList(path: "/service/board/cm_iphonien", page: 0)
             .sink { completion in
                 switch completion {
                 case .failure(let error):

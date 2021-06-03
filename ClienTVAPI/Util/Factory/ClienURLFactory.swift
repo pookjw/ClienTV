@@ -13,13 +13,14 @@ internal final class ClienURLFactory {
         internal static let host: String = "www.clien.net"
     }
     
-    internal static func url(path: String? = nil) -> URL? {
+    internal static func url(path: String? = nil, queryItems: [URLQueryItem] = []) -> URL? {
         var components: URLComponents = .init()
         components.scheme = API.scheme
         components.host = API.host
         if let path: String = path {
             components.path = path
         }
+        components.queryItems = queryItems
         return components.url
     }
 }

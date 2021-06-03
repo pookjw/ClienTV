@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ArticleBaseListAPI {
-    func getArticleBaseList(path: String) -> Future<[ArticleBase], Error>
+    func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error>
 }
 
 enum ArticleBaseListError: Error {

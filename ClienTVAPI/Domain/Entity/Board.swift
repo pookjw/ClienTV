@@ -1,5 +1,5 @@
 //
-//  Menu.swift
+//  Board.swift
 //  ClienTVAPI
 //
 //  Created by Jinwoo Kim on 6/2/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Menu {
+struct Board {
     enum Category: String, CaseIterable {
         case community = "menu-list"
         case somoim = "menu-list somoim"

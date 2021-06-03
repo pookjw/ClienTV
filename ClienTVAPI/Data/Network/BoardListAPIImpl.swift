@@ -1,5 +1,5 @@
 //
-//  MenuListAPIImpl.swift
+//  BoardListAPIImpl.swift
 //  ClienTVAPI
 //
 //  Created by Jinwoo Kim on 6/2/21.
@@ -10,22 +10,22 @@ import Combine
 import SwiftSoup
 import OSLog
 
-final class MenuListAPIImpl: MenuListAPI {
+final class BoardListAPIImpl: BoardListAPI {
     private var cancallableBag: Set<AnyCancellable> = .init()
     
-    func getBoardList() -> Future<[Menu], Error> {
+    func getBoardList() -> Future<[Board], Error> {
         return .init { [weak self] promise in
-            guard let self: MenuListAPIImpl = self else {
-                promise(.failure(MenuListAPIError.nilError))
+            guard let self: BoardListAPIImpl = self else {
+                promise(.failure(BoardListAPIError.nilError))
                 return
             }
             self.configureBoardListPromise(promise)
         }
     }
     
-    private func configureBoardListPromise(_ promise: @escaping (Result<[Menu], Error>) -> Void) {
+    private func configureBoardListPromise(_ promise: @escaping (Result<[Board], Error>) -> Void) {
         guard let url: URL = ClienURLFactory.url() else {
-            promise(.failure(MenuListAPIError.nilError))
+            promise(.failure(BoardListAPIError.nilError))
             return
         }
         
@@ -34,23 +34,23 @@ final class MenuListAPIImpl: MenuListAPI {
             .dataTaskPublisher(for: url)
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
                 guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
-                    throw MenuListAPIError.nilError
+                    throw BoardListAPIError.nilError
                 }
                 return (data, response)
             }
             .tryFilter { (_, response) throws -> Bool in
                 let statusCode: Int = response.statusCode
                 guard 200..<300 ~= statusCode else {
-                    throw MenuListAPIError.responseError(statusCode)
+                    throw BoardListAPIError.responseError(statusCode)
                 }
                 return true
             }
-            .tryMap { [weak self] (data, response) throws -> [Menu] in
-                guard let self: MenuListAPIImpl = self else {
-                    throw MenuListAPIError.nilError
+            .tryMap { [weak self] (data, response) throws -> [Board] in
+                guard let self: BoardListAPIImpl = self else {
+                    throw BoardListAPIError.nilError
                 }
                 
-                let allMenuList: [Menu] = try self.convertAllMenuList(from: data)
+                let allMenuList: [Board] = try self.convertAllMenuList(from: data)
                 return allMenuList
             }
             .sink { completion in
@@ -67,12 +67,12 @@ final class MenuListAPIImpl: MenuListAPI {
             .store(in: &cancallableBag)
     }
     
-    private func convertAllMenuList(from data: Data) throws -> [Menu] {
-        var result: [Menu] = []
+    private func convertAllMenuList(from data: Data) throws -> [Board] {
+        var result: [Board] = []
         
-        try Menu.Category.allCases.forEach { [weak self] category in
-            guard let self: MenuListAPIImpl = self else {
-                throw MenuListAPIError.nilError
+        try Board.Category.allCases.forEach { [weak self] category in
+            guard let self: BoardListAPIImpl = self else {
+                throw BoardListAPIError.nilError
             }
             result += try self.convertMenuList(from: data, category: category)
         }
@@ -80,9 +80,9 @@ final class MenuListAPIImpl: MenuListAPI {
         return result
     }
     
-    private func convertMenuList(from data: Data, category: Menu.Category) throws -> [Menu] {
+    private func convertMenuList(from data: Data, category: Board.Category) throws -> [Board] {
         guard let html: String = String(data: data, encoding: .utf8) else {
-            throw MenuListAPIError.parseError
+            throw BoardListAPIError.parseError
         }
         
         let document: Document = try SwiftSoup.parse(html)
@@ -90,8 +90,8 @@ final class MenuListAPIImpl: MenuListAPI {
         let elements: Elements = try document
             .getElementsByClass(category.rawValue)
         
-        let menuList: [Menu] = try elements
-            .compactMap { element -> Menu? in
+        let menuList: [Board] = try elements
+            .compactMap { element -> Board? in
                 let name: String? = try element
                     .getElementsByClass("menu_over")
                     .first?

@@ -18,13 +18,13 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         configureDateFormatter()
     }
     
-    func getArticleBaseList(path: String) -> Future<[ArticleBase], Error> {
+    func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {
         return .init { [weak self] promise in
             guard let self: ArticleBaseListAPIImpl = self else {
                 promise(.failure(ArticleBaseListError.nilError))
                 return
             }
-            self.configureArticleBaseListPromise(promise, path: path)
+            self.configureArticleBaseListPromise(promise, path: path, page: page)
         }
     }
     
@@ -34,8 +34,10 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
-    private func configureArticleBaseListPromise(_ promise: @escaping (Result<[ArticleBase], Error>) -> Void, path: String) {
-        guard let url: URL = ClienURLFactory.url(path: path) else {
+    private func configureArticleBaseListPromise(_ promise: @escaping (Result<[ArticleBase], Error>) -> Void, path: String, page: Int) {
+        guard let url: URL = ClienURLFactory.url(path: path,
+                                                 queryItems: [.init(name: "po", value: String(page))])
+        else {
             promise(.failure(ArticleBaseListError.nilError))
             return
         }
@@ -58,7 +60,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             }
             .tryMap { [weak self] (data, response) throws -> [ArticleBase] in
                 guard let self: ArticleBaseListAPIImpl = self else {
-                    throw MenuListAPIError.nilError
+                    throw BoardListAPIError.nilError
                 }
                 
                 let articleBaseList: [ArticleBase] = try self.convertArticleBaseList(from: data)
