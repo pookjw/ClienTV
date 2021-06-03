@@ -47,6 +47,19 @@ final class MenuListAPIImpl: MenuListAPI {
         URLSession
             .shared
             .dataTaskPublisher(for: url)
+            .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
+                guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
+                    throw MenuListAPIError.nilError
+                }
+                return (data, response)
+            }
+            .tryFilter { (_, response) throws -> Bool in
+                let statusCode: Int = response.statusCode
+                guard 200..<300 ~= statusCode else {
+                    throw MenuListAPIError.responseError(statusCode)
+                }
+                return true
+            }
             .tryMap { [weak self] (data, response) throws -> [Menu] in
                 guard let self: MenuListAPIImpl = self else {
                     throw MenuListAPIError.nilError
@@ -103,7 +116,7 @@ final class MenuListAPIImpl: MenuListAPI {
                     return nil
                 }
                 
-                return .init(name: name, id: path, category: .community)
+                return .init(name: name, id: path, category: category)
             }
         
         return menuList

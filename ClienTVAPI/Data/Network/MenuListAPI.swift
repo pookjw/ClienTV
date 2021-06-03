@@ -15,4 +15,5 @@ protocol MenuListAPI {
 enum MenuListAPIError: Error {
     case nilError
     case parseError
+    case responseError(Int)
 }
