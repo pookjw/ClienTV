@@ -11,21 +11,6 @@ import SwiftSoup
 import OSLog
 
 final class MenuListAPIImpl: MenuListAPI {
-    private struct API {
-        static let scheme: String = "https"
-        static let host: String = "www.clien.net"
-        static let path: String = "/service"
-        
-        static var finalURL: URL? {
-            var components: URLComponents = .init()
-            components.scheme = scheme
-            components.host = host
-            components.path = path
-            let finalURL: URL? = components.url
-            return finalURL
-        }
-    }
-    
     private var cancallableBag: Set<AnyCancellable> = .init()
     
     func getBoardList() -> Future<[Menu], Error> {
@@ -34,12 +19,12 @@ final class MenuListAPIImpl: MenuListAPI {
                 promise(.failure(MenuListAPIError.nilError))
                 return
             }
-            self.configureGetBoardListPromise(promise)
+            self.configureBoardListPromise(promise)
         }
     }
     
-    private func configureGetBoardListPromise(_ promise: @escaping (Result<[Menu], Error>) -> Void) {
-        guard let url: URL = API.finalURL else {
+    private func configureBoardListPromise(_ promise: @escaping (Result<[Menu], Error>) -> Void) {
+        guard let url: URL = ClienURLFactory.url() else {
             promise(.failure(MenuListAPIError.nilError))
             return
         }
@@ -64,7 +49,9 @@ final class MenuListAPIImpl: MenuListAPI {
                 guard let self: MenuListAPIImpl = self else {
                     throw MenuListAPIError.nilError
                 }
-                return try self.convertAllMenuList(from: data)
+                
+                let allMenuList: [Menu] = try self.convertAllMenuList(from: data)
+                return allMenuList
             }
             .sink { completion in
                 switch completion {
@@ -100,14 +87,13 @@ final class MenuListAPIImpl: MenuListAPI {
         
         let document: Document = try SwiftSoup.parse(html)
         
-        let elements: [Element] = try document.select("a")
-            .filter { try $0.attr("class") == category.rawValue }
+        let elements: Elements = try document
+            .getElementsByClass(category.rawValue)
         
         let menuList: [Menu] = try elements
             .compactMap { element -> Menu? in
                 let name: String? = try element
-                    .select("span")
-                    .filter { try $0.attr("class") == "menu_over" }
+                    .getElementsByClass("menu_over")
                     .first?
                     .ownText()
                 let path: String = try element.attr("href")
@@ -116,7 +102,7 @@ final class MenuListAPIImpl: MenuListAPI {
                     return nil
                 }
                 
-                return .init(name: name, id: path, category: category)
+                return .init(name: name, path: path, category: category)
             }
         
         return menuList

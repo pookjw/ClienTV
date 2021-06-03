@@ -15,6 +15,6 @@ struct Menu {
     }
     
     let name: String
-    let id: String
+    let path: String
     let category: Category
 }

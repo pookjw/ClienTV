@@ -24,6 +24,12 @@
 		4FF70F3D2667CBE900FDC680 /* MenuListAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F3C2667CBE900FDC680 /* MenuListAPIImpl.swift */; };
 		4FF70F3F2667DC5400FDC680 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF70F3E2667DC5400FDC680 /* MapKit.framework */; };
 		4FF70F4526689F0F00FDC680 /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F4426689F0F00FDC680 /* Logger+shared.swift */; };
+		4FF70F472668D35000FDC680 /* ArticleBaseListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F462668D35000FDC680 /* ArticleBaseListAPI.swift */; };
+		4FF70F492668D36500FDC680 /* ArticleBaseListAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F482668D36500FDC680 /* ArticleBaseListAPIImpl.swift */; };
+		4FF70F4B2668D38B00FDC680 /* ArticleBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F4A2668D38B00FDC680 /* ArticleBase.swift */; };
+		4FF70F4D2668D39C00FDC680 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F4C2668D39C00FDC680 /* Article.swift */; };
+		4FF70F502668D6C800FDC680 /* ClienURLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F4F2668D6C800FDC680 /* ClienURLFactory.swift */; };
+		4FF70F522668E03700FDC680 /* String+toInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70F512668E03700FDC680 /* String+toInt.swift */; };
 		98B29A0F02991F88EA5AAAC6 /* Pods_ClienTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */; };
 		A43050FEE2953D6F28C4F9BD /* Pods_ClienTVAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +112,12 @@
 		4FF70F3E2667DC5400FDC680 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4FF70F402667DC6000FDC680 /* ClienTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClienTV.entitlements; sourceTree = "<group>"; };
 		4FF70F4426689F0F00FDC680 /* Logger+shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+shared.swift"; sourceTree = "<group>"; };
+		4FF70F462668D35000FDC680 /* ArticleBaseListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseListAPI.swift; sourceTree = "<group>"; };
+		4FF70F482668D36500FDC680 /* ArticleBaseListAPIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseListAPIImpl.swift; sourceTree = "<group>"; };
+		4FF70F4A2668D38B00FDC680 /* ArticleBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBase.swift; sourceTree = "<group>"; };
+		4FF70F4C2668D39C00FDC680 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		4FF70F4F2668D6C800FDC680 /* ClienURLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClienURLFactory.swift; sourceTree = "<group>"; };
+		4FF70F512668E03700FDC680 /* String+toInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toInt.swift"; sourceTree = "<group>"; };
 		9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTVAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DBEB71F1A6D52B31AE3227 /* Pods-ClienTVAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTVAPI.release.xcconfig"; path = "Target Support Files/Pods-ClienTVAPI/Pods-ClienTVAPI.release.xcconfig"; sourceTree = "<group>"; };
 		AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClienTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +270,8 @@
 			children = (
 				4FF70F372667CA1000FDC680 /* MenuListAPI.swift */,
 				4FF70F3C2667CBE900FDC680 /* MenuListAPIImpl.swift */,
+				4FF70F462668D35000FDC680 /* ArticleBaseListAPI.swift */,
+				4FF70F482668D36500FDC680 /* ArticleBaseListAPIImpl.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -266,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF70F3A2667CA2400FDC680 /* Menu.swift */,
+				4FF70F4A2668D38B00FDC680 /* ArticleBase.swift */,
+				4FF70F4C2668D39C00FDC680 /* Article.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -273,6 +289,7 @@
 		4FF70F4226689EF800FDC680 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				4FF70F4E2668D66A00FDC680 /* Factory */,
 				4FF70F4326689F0000FDC680 /* Extension */,
 			);
 			path = Util;
@@ -282,8 +299,17 @@
 			isa = PBXGroup;
 			children = (
 				4FF70F4426689F0F00FDC680 /* Logger+shared.swift */,
+				4FF70F512668E03700FDC680 /* String+toInt.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		4FF70F4E2668D66A00FDC680 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				4FF70F4F2668D6C800FDC680 /* ClienURLFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 		C14842013798FDB53DE489AC /* Pods */ = {
@@ -603,7 +629,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF70F472668D35000FDC680 /* ArticleBaseListAPI.swift in Sources */,
+				4FF70F522668E03700FDC680 /* String+toInt.swift in Sources */,
 				4FF70F4526689F0F00FDC680 /* Logger+shared.swift in Sources */,
+				4FF70F4B2668D38B00FDC680 /* ArticleBase.swift in Sources */,
+				4FF70F492668D36500FDC680 /* ArticleBaseListAPIImpl.swift in Sources */,
+				4FF70F4D2668D39C00FDC680 /* Article.swift in Sources */,
+				4FF70F502668D6C800FDC680 /* ClienURLFactory.swift in Sources */,
 				4FF70F3B2667CA2400FDC680 /* Menu.swift in Sources */,
 				4FF70F382667CA1000FDC680 /* MenuListAPI.swift in Sources */,
 				4FF70F3D2667CBE900FDC680 /* MenuListAPIImpl.swift in Sources */,
