@@ -9,11 +9,5 @@ import Foundation
 import Combine
 
 protocol ArticleBaseListAPI {
-    func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error>
-}
-
-enum ArticleBaseListError: Error {
-    case nilError
-    case parseError
-    case responseError(Int)
+    func getArticleBaseList(path: String, page: Int) -> URLSession.DataTaskPublisher
 }

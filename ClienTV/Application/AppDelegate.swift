@@ -18,7 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureWindow() {
         let window: UIWindow = .init()
-        let vc: HomeTabBarController = .init()
+        let vc: MainTabBarController = .init()
         self.window = window
         window.rootViewController = vc
         window.makeKeyAndVisible()

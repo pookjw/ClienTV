@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Article {
+public struct Article {
     
 }

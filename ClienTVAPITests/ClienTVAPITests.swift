@@ -15,21 +15,31 @@ class ClienTVAPITests: XCTestCase {
     
     func testBoardListAPI() {
         let semaphore: DispatchSemaphore = .init(value: 0)
-        let api: BoardListAPIImpl = .init()
-        api.getBoardList()
-            .sink { _ in
+        let useCase: BoardListUseCase = BoardListUseCaseImpl()
+        
+        useCase.getAllBoardList()
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
                 semaphore.signal()
-            } receiveValue: { _ in
+            } receiveValue: { boardList in
+                Logger.info(boardList)
                 semaphore.signal()
             }
             .store(in: &self.cancallableBag)
+        
         semaphore.wait()
     }
     
     func testArticleBastListAPI() {
         let semaphore: DispatchSemaphore = .init(value: 0)
-        let api: ArticleBaseListAPIImpl = .init()
-        api.getArticleBaseList(path: "/service/board/cm_iphonien", page: 0)
+        let useCase: ArticleBaseListUseCase = ArticleBaseListUseCaseImpl()
+        
+        useCase.getArticleBaseList(path: "/service/board/cm_iphonien", page: 0)
             .sink { completion in
                 switch completion {
                 case .failure(let error):
@@ -43,6 +53,7 @@ class ClienTVAPITests: XCTestCase {
                 semaphore.signal()
             }
             .store(in: &self.cancallableBag)
+        
         semaphore.wait()
     }
 }

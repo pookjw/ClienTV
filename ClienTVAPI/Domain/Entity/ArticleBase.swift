@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct ArticleBase {
-    let likeCount: Int
-    let category: String?
-    let title: String
-    let commentCount: Int
-    let authorID: String
-    let nickname: String
-    let nicknameImageURL: URL?
-    let hitCount: Int
-    let timestamp: Date
+public struct ArticleBase {
+    public let likeCount: Int
+    public let category: String?
+    public let title: String
+    public let commentCount: Int
+    public let authorID: String
+    public let nickname: String
+    public let nicknameImageURL: URL?
+    public let hitCount: Int
+    public let timestamp: Date
 }

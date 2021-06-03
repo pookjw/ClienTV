@@ -7,13 +7,13 @@
 
 import Foundation
 
-internal final class ClienURLFactory {
+final class ClienURLFactory {
     private struct API {
         internal static let scheme: String = "https"
         internal static let host: String = "www.clien.net"
     }
     
-    internal static func url(path: String? = nil, queryItems: [URLQueryItem] = []) -> URL? {
+    static func url(path: String? = nil, queryItems: [URLQueryItem] = []) -> URL {
         var components: URLComponents = .init()
         components.scheme = API.scheme
         components.host = API.host
@@ -21,6 +21,6 @@ internal final class ClienURLFactory {
             components.path = path
         }
         components.queryItems = queryItems
-        return components.url
+        return components.url!
     }
 }
