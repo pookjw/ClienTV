@@ -8,22 +8,25 @@
 import UIKit
 
 class HomeSplitViewController: UISplitViewController {
+    private weak var boardListViewController: BoardListViewController? = nil
+    private weak var articleBaseListViewController: ArticleBaseListViewController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureViewControllers()
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureViewControllers() {
+        let boardListViewController: BoardListViewController = .init()
+        let articleBaseListViewController: ArticleBaseListViewController = .init()
+        
+        self.boardListViewController = boardListViewController
+        self.articleBaseListViewController = articleBaseListViewController
+        
+        boardListViewController.loadViewIfNeeded()
+        articleBaseListViewController.loadViewIfNeeded()
+        
+        viewControllers = [boardListViewController, articleBaseListViewController]
     }
-    */
 
 }

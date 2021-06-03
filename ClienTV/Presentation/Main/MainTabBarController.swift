@@ -18,6 +18,24 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func configureViewControllers() {
+        let homeSplitViewController: HomeSplitViewController = .init()
+        let settingsViewController: SettingsViewController = .init()
         
+        self.homeSplitViewController = homeSplitViewController
+        self.settingsViewController = settingsViewController
+        
+        homeSplitViewController.preferredDisplayMode = .oneBesideSecondary
+        
+        homeSplitViewController.tabBarItem = .init(title: "홈",
+                                                   image: UIImage(systemName: "house"),
+                                                   tag: 0)
+        settingsViewController.tabBarItem = .init(title: "설정",
+                                                  image: UIImage(systemName: "gearshape"),
+                                                  tag: 1)
+        
+        homeSplitViewController.loadViewIfNeeded()
+        settingsViewController.loadViewIfNeeded()
+        
+        setViewControllers([homeSplitViewController, settingsViewController], animated: false)
     }
 }
