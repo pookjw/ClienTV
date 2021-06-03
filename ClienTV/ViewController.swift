@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import ClienTVAPI
 
 class ViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        Log.verbose("Message")
+        // Do any additional setup after loading the view.
+        
     }
+
+
 }
+
