@@ -69,6 +69,13 @@ final class ArticleBaseContentView: UIView, UIContentView {
             nicknameImageView.kf.cancelDownloadTask()
             nicknameImageView.image = nil
             
+            // UIStackView의 버그때문인지, height가 0으로 되어 버려서 Label들이 싹다 안 보이는 문제가 있다. 따라서 height를 0으로 맞춰주는건 꺼버린다.
+            nicknameImageView.constraints.forEach { constraint in
+                if constraint.secondAttribute == .height {
+                    constraint.isActive = false
+                }
+            }
+            
             nicknameLabel.isHidden = false
         }
         

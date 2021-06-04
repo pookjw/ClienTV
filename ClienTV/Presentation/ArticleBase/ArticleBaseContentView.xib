@@ -30,6 +30,9 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ovJ-hT-4c1">
                                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ovJ-hT-4c1" secondAttribute="height" multiplier="60:16" id="4er-Vk-V1D"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyb-vL-rMv">
                                             <rect key="frame" x="212.5" y="0.0" width="33" height="50"/>
@@ -50,6 +53,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="aPq-hJ-SOT" secondAttribute="height" multiplier="68:5" id="SEI-Ce-LqA"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
