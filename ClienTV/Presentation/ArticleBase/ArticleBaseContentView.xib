@@ -16,39 +16,38 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gq3-Rd-nWt">
                     <rect key="frame" x="20" y="20" width="960" height="160"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="his-h2-11N">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="his-h2-11N">
                             <rect key="frame" x="0.0" y="0.0" width="800" height="160"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzO-Iz-0mU">
-                                    <rect key="frame" x="0.0" y="0.0" width="66" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aPq-hJ-SOT">
-                                    <rect key="frame" x="0.0" y="120" width="613" height="40"/>
+                                    <rect key="frame" x="0.0" y="110" width="650.5" height="50"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ovJ-hT-4c1">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="AbL-z2-fGY"/>
-                                                <constraint firstAttribute="width" priority="999" constant="150" id="U9i-NV-rjl"/>
+                                                <constraint firstAttribute="width" secondItem="ovJ-hT-4c1" secondAttribute="height" multiplier="60:16" id="BqB-Gx-RPh"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyb-vL-rMv">
-                                            <rect key="frame" x="165" y="0.0" width="33" height="40"/>
+                                            <rect key="frame" x="202.5" y="0.0" width="33" height="50"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020.06.09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uke-qW-xgu">
-                                            <rect key="frame" x="213" y="0.0" width="206" height="40"/>
+                                            <rect key="frame" x="250.5" y="0.0" width="206" height="50"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 조회수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZ7-0D-BkV">
-                                            <rect key="frame" x="434" y="0.0" width="179" height="40"/>
+                                            <rect key="frame" x="471.5" y="0.0" width="179" height="50"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
