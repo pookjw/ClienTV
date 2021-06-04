@@ -9,5 +9,11 @@ import Foundation
 import Combine
 
 protocol BoardListAPI {
-    func getBoardList() -> URLSession.DataTaskPublisher
+    func getBoardList(categories: [Board.Category]) -> Future<[Board], Error>
+}
+
+enum BoardListAPIError: Error {
+    case nilError
+    case parseError
+    case responseError(Int)
 }

@@ -41,6 +41,14 @@ final class BoardListViewModel {
     }
     
     func requestBoardListIfNeeded() {
+        let isTestMode: Bool = ProcessInfo.processInfo.isTestMode
+        
+        // Test Mode에서는 데이터를 불러오지 않는다.
+        guard !isTestMode else {
+            Logger.debug("isTestMode == true")
+            return
+        }
+        
         guard isBoardListEmpty else {
             Logger.warning("이미 BoardList가 존재함!")
             return

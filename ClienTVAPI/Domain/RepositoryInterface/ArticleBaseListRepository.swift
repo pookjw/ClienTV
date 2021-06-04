@@ -11,9 +11,3 @@ import Combine
 protocol ArticleBaseListRepository {
     func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error>
 }
-
-enum ArticleBaseListRepositoryError: Error {
-    case nilError
-    case parseError
-    case responseError(Int)
-}
