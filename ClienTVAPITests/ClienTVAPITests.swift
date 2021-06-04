@@ -10,7 +10,7 @@ import Combine
 import OSLog
 @testable import ClienTVAPI
 
-class ClienTVAPITests: XCTestCase {
+final class ClienTVAPITests: XCTestCase {
     private var cancallableBag: Set<AnyCancellable> = .init()
     
     func testBoardListAPI() {

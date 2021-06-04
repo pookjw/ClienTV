@@ -79,8 +79,13 @@ final class BoardListViewController: UIViewController {
     private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BoardListCellItem> {
         return .init { (cell, indexPath, cellItem) in
             var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
-            configuration.text = cellItem.name
-            configuration.secondaryText = cellItem.path
+            
+            switch cellItem.dataType {
+            case .board(let data):
+                configuration.text = data.name
+//                configuration.secondaryText = data.path
+            }
+            
             cell.contentConfiguration = configuration
         }
     }
@@ -93,7 +98,11 @@ final class BoardListViewController: UIViewController {
             }
             
             var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
-            configuration.text = headerItem.title
+            
+            switch headerItem.dataType {
+            case .category(let data):
+                configuration.text = data.title
+            }
             
             headerView.contentConfiguration = configuration
         }
@@ -119,6 +128,8 @@ final class BoardListViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension BoardListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cellItem: BoardListCellItem = viewModel.getCellItem(from: indexPath) else {
@@ -126,9 +137,10 @@ extension BoardListViewController: UICollectionViewDelegate {
             return
         }
         
-        let boardPath: String = cellItem.path
-        delegate?.boardListViewControllerDidTapCell(self, boardPath: boardPath)
-        
-        Logger.debug(cellItem.path)
+        switch cellItem.dataType {
+        case .board(let data):
+            let boardPath: String = data.path
+            delegate?.boardListViewControllerDidTapCell(self, boardPath: boardPath)
+        }
     }
 }

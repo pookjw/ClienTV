@@ -28,7 +28,6 @@ final class BoardListRepositoryImpl: BoardListRepository {
     }
     
     private func configurePromise(_ promise: @escaping ((Result<[Board], Error>) -> Void), categories: [Board.Category]) {
-        
         api.getBoardList()
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
                 guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
@@ -73,8 +72,9 @@ final class BoardListRepositoryImpl: BoardListRepository {
         let document: Document = try SwiftSoup.parse(html)
         
         try categories.forEach { category in
-            let elements: Elements = try document
-                .getElementsByClass(category.rawValue)
+            let elements: [Element] = try document
+                .select("a")
+                .filter { try $0.attr("class") == category.rawValue }
             
             let boardList: [Board] = try elements
                 .compactMap { element -> Board? in

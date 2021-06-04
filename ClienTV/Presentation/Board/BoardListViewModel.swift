@@ -65,24 +65,24 @@ final class BoardListViewModel {
         var snapshot: Snapshot = dataSource.snapshot()
         snapshot.deleteAllItems()
         
-        let communityHeaderItem: BoardListHeaderItem = .init(category: .community)
-        let somoimHeaderItem: BoardListHeaderItem = .init(category: .somoim)
-        let somoimEtcHeaderItem: BoardListHeaderItem = .init(category: .somoimEtc)
+        let communityHeaderItem: BoardListHeaderItem = .init(dataType: .category(data: .init(category: .community)))
+        let somoimHeaderItem: BoardListHeaderItem = .init(dataType: .category(data: .init(category: .somoim)))
+        let somoimEtcHeaderItem: BoardListHeaderItem = .init(dataType: .category(data: .init(category: .somoimEtc)))
         
-        let communityCellItem: [BoardListCellItem] = createCellItems(from: boardList, category: .community)
-        let somoimCellItem: [BoardListCellItem] = createCellItems(from: boardList, category: .somoim)
-        let somoimEtcCellItem: [BoardListCellItem] = createCellItems(from: boardList, category: .somoimEtc)
+        let communityCellItems: [BoardListCellItem] = createCellItems(from: boardList, category: .community)
+        let somoimCellItems: [BoardListCellItem] = createCellItems(from: boardList, category: .somoim)
+        let somoimEtcCellItems: [BoardListCellItem] = createCellItems(from: boardList, category: .somoimEtc)
         
         snapshot.appendSections([communityHeaderItem, somoimHeaderItem, somoimEtcHeaderItem])
-        snapshot.appendItems(communityCellItem, toSection: communityHeaderItem)
-        snapshot.appendItems(somoimCellItem, toSection: somoimHeaderItem)
-        snapshot.appendItems(somoimEtcCellItem, toSection: somoimEtcHeaderItem)
+        snapshot.appendItems(communityCellItems, toSection: communityHeaderItem)
+        snapshot.appendItems(somoimCellItems, toSection: somoimHeaderItem)
+        snapshot.appendItems(somoimEtcCellItems, toSection: somoimEtcHeaderItem)
         
         dataSource.apply(snapshot)
     }
     
     // MARK: - Helper
-    private func createCellItems(from boardList: [Board], category: BoardListHeaderItem.Category) -> [BoardListCellItem] {
+    private func createCellItems(from boardList: [Board], category: BoardListHeaderItem.CategoryData.Category) -> [BoardListCellItem] {
         
         let cellItems: [BoardListCellItem] = boardList
             .filter { board -> Bool in
@@ -98,8 +98,9 @@ final class BoardListViewModel {
                 }
             }
             .map { board -> BoardListCellItem in
-                return .init(name: board.name,
-                             path: board.path)
+                let boardData: BoardListCellItem.BoardData = .init(name: board.name,
+                                                                   path: board.path)
+                return .init(dataType: .board(data: boardData))
             }
         
         return cellItems

@@ -101,8 +101,7 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
     private func convertArticleBase(from element: Element) throws -> ArticleBase {
         let likeCount: Int = try element
             .getElementsByClass("list_symph view_symph")
-            .filter { try $0.attr("data-role") == "list-like-count" }
-            .first?
+            .first(where: { try $0.attr("data-role") == "list-like-count" })?
             .select("span")
             .first()?
             .ownText()
@@ -110,23 +109,20 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
         
         let category: String? = try element
             .getElementsByClass("category fixed")
-            .filter { $0.hasAttr("title") }
-            .first?
+            .first(where: { $0.hasAttr("title") })?
             .ownText()
         
         let title: String = try element
             .getElementsByClass("subject_fixed")
             .filter { try $0.attr("data-role") == "list-title-text" }
-            .filter { $0.hasAttr("title") }
-            .first?
+            .first(where: { $0.hasAttr("title") })?
             .ownText() ?? "(no title)"
         
         let commentCount: Int = try element
             .getElementsByClass("list_reply reply_symph")
             .first?
             .select("span")
-            .filter { try $0.attr("class") == "rSymph05" }
-            .first?
+            .first(where: { try $0.attr("class") == "rSymph05" })?
             .ownText()
             .toInt() ?? 0 // 댓글이 없는 글은 이 값이 없을 수 있음
         
@@ -145,16 +141,14 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
             
             if let imgElement: Element = nicknameElement
                 .children()
-                .filter({ $0.tagName() == "img" })
-                .first
+                .first(where: { $0.tagName() == "img" })
             {
                 nickname = try imgElement.attr("alt")
                 let nicknameImageString: String = try imgElement.attr("src")
                 nicknameImageURL = URL(string: nicknameImageString)
             } else if let srcElement: Element = nicknameElement
                         .children()
-                        .filter({ $0.tagName() == "span" })
-                        .first
+                        .first(where: { $0.tagName() == "span" })
             {
                 nickname = srcElement.ownText()
                 nicknameImageURL = nil

@@ -28,10 +28,17 @@ final class HomeSplitViewController: UISplitViewController {
         self.boardListViewController = boardListViewController
         self.articleBaseListViewController = articleBaseListViewController
         
+        boardListViewController.delegate = self
+        
         boardListViewController.loadViewIfNeeded()
         articleBaseListViewController.loadViewIfNeeded()
         
         viewControllers = [boardListViewController, articleBaseListViewController]
     }
+}
 
+extension HomeSplitViewController: BoardListViewControllerDelegate {
+    func boardListViewControllerDidTapCell(_ viewController: BoardListViewController, boardPath: String) {
+        articleBaseListViewController?.requestArticleBaseList(with: boardPath)
+    }
 }
