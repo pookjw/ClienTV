@@ -41,6 +41,7 @@ final class BoardListViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 100)
         collectionView.delegate = self
     }
     

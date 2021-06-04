@@ -37,6 +37,7 @@ final class ArticleBaseListViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
+        collectionView.contentInset = .init(top: 0, left: 100, bottom: 0, right: 0)
         collectionView.delegate = self
     }
     
@@ -136,8 +137,8 @@ final class ArticleBaseListViewController: UIViewController {
                         self.collectionView?.scrollToItem(at: cacheIndexPath, at: .top, animated: false)
                     }
                 }
-        
-                self.collectionView?.reloadData()
+                
+                self.collectionView?.collectionViewLayout.invalidateLayout()
             })
             .store(in: &cancellableBag)
     }
@@ -152,6 +153,8 @@ final class ArticleBaseListViewController: UIViewController {
 
 extension ArticleBaseListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
         guard let cellItem: ArticleBaseListCellItem = viewModel?.getCellItem(from: indexPath) else {
             Logger.error("cellItem is nil")
             return
