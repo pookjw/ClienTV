@@ -90,9 +90,13 @@ final class ArticleBaseListViewModel {
         }()
         
         let articleBaseListCellItems: [ArticleBaseListCellItem] = createCellItems(from: articleBaseList)
+        let loadMoreCellItem: ArticleBaseListCellItem = .init(dataType: .loadMore)
         
         snapshot.appendItems(articleBaseListCellItems, toSection: articleBaseListHeaderItem)
-        dataSource.apply(snapshot)
+        snapshot.deleteItems([loadMoreCellItem])
+        snapshot.appendItems([loadMoreCellItem], toSection: articleBaseListHeaderItem)
+        
+        dataSource.apply(snapshot, animatingDifferences: false, completion: nil)
     }
     
     // MARK: - Helper

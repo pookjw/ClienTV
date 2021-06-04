@@ -14,16 +14,11 @@ struct ArticleBaseListHeaderItem: Equatable, Hashable {
     
     enum DataType: Equatable, Hashable {
         case articleBaseList
-        case loadMoreSeparator
         
         static func ==(lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
             case (.articleBaseList, .articleBaseList):
                 return true
-            case (.loadMoreSeparator, .loadMoreSeparator):
-                return true
-            default:
-                return false
             }
         }
     }
@@ -43,11 +38,16 @@ struct ArticleBaseListCellItem: Equatable, Hashable {
     
     enum DataType: Equatable, Hashable {
         case articleBase(data: ArticleBaseData)
+        case loadMore
         
         static func ==(lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
             case let (.articleBase(lhsData), .articleBase(rhsData)):
                 return lhsData == rhsData
+            case (.loadMore, .loadMore):
+                return true
+            default:
+                return false
             }
         }
     }

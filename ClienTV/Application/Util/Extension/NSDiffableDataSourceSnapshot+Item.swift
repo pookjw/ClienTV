@@ -22,7 +22,7 @@ extension NSDiffableDataSourceSnapshot {
         
         let itemIdentifiers: [ItemIdentifierType] = itemIdentifiers(inSection: headerItem)
         
-        guard itemIdentifiers.count > indexPath.count else {
+        guard itemIdentifiers.count > indexPath.row else {
             return nil
         }
         

@@ -24,6 +24,7 @@ final class ArticleBaseListViewController: UIViewController {
     
     func requestArticleBaseList(with boardPath: String) {
         Logger.debug("ArticleBaseListViewController: \(boardPath)")
+        collectionView?.scrollToTop(animated: true)
         viewModel?.requestFirstArticleBaseList(boardPath: boardPath)
     }
     
@@ -41,7 +42,10 @@ final class ArticleBaseListViewController: UIViewController {
     
     private func getSectionProvider() -> UICollectionViewCompositionalLayoutSectionProvider {
         return { (section: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let configuration: UICollectionLayoutListConfiguration = .init(appearance: .grouped)
+            var configuration: UICollectionLayoutListConfiguration = .init(appearance: .grouped)
+            
+            configuration.headerMode = .supplementary
+            
             return .list(using: configuration, layoutEnvironment: layoutEnvironment)
         }
     }
@@ -56,6 +60,19 @@ final class ArticleBaseListViewController: UIViewController {
             return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
         }
         
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
+            guard let self = self else {
+                return nil
+            }
+            
+            switch elementKind {
+            case UICollectionView.elementKindSectionHeader:
+                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderCellRegisteration(), for: indexPath)
+            default:
+                return nil
+            }
+        }
+        
         return dataSource
     }
     
@@ -66,9 +83,29 @@ final class ArticleBaseListViewController: UIViewController {
             switch cellItem.dataType {
             case let .articleBase(data):
                 configuration.text = data.title
+            case .loadMore:
+                configuration.text = "더 불러오기..."
+                configuration.textProperties.alignment = .center
+                configuration.textProperties.font = .preferredFont(forTextStyle: .body)
             }
             
             cell.contentConfiguration = configuration
+        }
+    }
+    
+    private func getHeaderCellRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
+        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
+            
+            guard let self = self,
+                let headerItem: ArticleBaseListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
+                return
+            }
+            
+            switch headerItem.dataType {
+            case .articleBaseList:
+                headerView.frame = .zero
+                return
+            }
         }
     }
     
@@ -91,5 +128,17 @@ final class ArticleBaseListViewController: UIViewController {
 // MARK: - UICollectionViewDelegate
 
 extension ArticleBaseListViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cellItem: ArticleBaseListCellItem = viewModel?.getCellItem(from: indexPath) else {
+            Logger.error("cellItem is nil")
+            return
+        }
+        
+        switch cellItem.dataType {
+        case let .articleBase(data):
+            break
+        case .loadMore:
+            viewModel?.requestNextArticleBaseList()
+        }
+    }
 }
