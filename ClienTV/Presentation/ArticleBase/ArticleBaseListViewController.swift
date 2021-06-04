@@ -143,6 +143,12 @@ final class ArticleBaseListViewController: UIViewController {
             .store(in: &cancellableBag)
     }
     
+    private func presentArticleViewController(articlePath: String) {
+        let articleViewController: ArticleViewController = .init()
+        articleViewController.loadViewIfNeeded()
+        present(articleViewController, animated: true, completion: nil)
+    }
+    
     private func requestNextArticleBaseList(from indexPath: IndexPath) {
         viewModel.cacheIndexPath = indexPath
         viewModel.requestNextArticleBaseList()
@@ -163,6 +169,7 @@ extension ArticleBaseListViewController: UICollectionViewDelegate {
         switch cellItem.dataType {
         case let .articleBase(data):
             Logger.info(data.path)
+            presentArticleViewController(articlePath: data.path)
             break
         case .loadMore:
             requestNextArticleBaseList(from: indexPath)
