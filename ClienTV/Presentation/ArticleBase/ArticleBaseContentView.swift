@@ -21,7 +21,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
     var articleBaseContentConfiguration: ArticleBaseContentConfiguration!
     var configuration: UIContentConfiguration {
         get {
-            return articleBaseContentConfiguration!
+            return articleBaseContentConfiguration
         }
         set {
         }
