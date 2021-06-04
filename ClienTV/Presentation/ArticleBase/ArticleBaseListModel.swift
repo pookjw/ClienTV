@@ -66,7 +66,8 @@ extension ArticleBaseListCellItem {
                 lhs.nickname == rhs.nickname &&
                 lhs.nicknameImageURL == rhs.nicknameImageURL &&
                 lhs.hitCount == rhs.hitCount &&
-                lhs.timestamp == rhs.timestamp
+                lhs.timestamp == rhs.timestamp &&
+                lhs.path == rhs.path
         }
         
         let likeCount: Int
@@ -77,5 +78,6 @@ extension ArticleBaseListCellItem {
         let nicknameImageURL: URL?
         let hitCount: Int
         let timestamp: Date
+        let path: String
     }
 }

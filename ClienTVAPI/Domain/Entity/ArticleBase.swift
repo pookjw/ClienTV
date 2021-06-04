@@ -17,4 +17,5 @@ public struct ArticleBase {
     public let nicknameImageURL: URL?
     public let hitCount: Int
     public let timestamp: Date
+    public let path: String
 }

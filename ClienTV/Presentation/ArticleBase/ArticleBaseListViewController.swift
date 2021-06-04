@@ -162,6 +162,7 @@ extension ArticleBaseListViewController: UICollectionViewDelegate {
         
         switch cellItem.dataType {
         case let .articleBase(data):
+            Logger.info(data.path)
             break
         case .loadMore:
             requestNextArticleBaseList(from: indexPath)

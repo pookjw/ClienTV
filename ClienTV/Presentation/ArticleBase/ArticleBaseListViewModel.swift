@@ -120,7 +120,8 @@ final class ArticleBaseListViewModel {
                                                                                      nickname: articleBase.nickname,
                                                                                      nicknameImageURL: articleBase.nicknameImageURL,
                                                                                      hitCount: articleBase.hitCount,
-                                                                                     timestamp: articleBase.timestamp)
+                                                                                     timestamp: articleBase.timestamp,
+                                                                                     path: articleBase.path)
                 let cellItem: ArticleBaseListCellItem = .init(dataType: .articleBase(data: articleBaseData))
                 
                 // 중복 제거

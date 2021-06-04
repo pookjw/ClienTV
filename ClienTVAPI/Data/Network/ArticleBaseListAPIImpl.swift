@@ -169,6 +169,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             .ownText()
             .toInt() ?? 0
         
+        //
         
         let timestamp: Date
         
@@ -182,6 +183,11 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             timestamp = Date(timeIntervalSince1970: 0)
         }
         
+        //
+        
+        let path: String = try element
+            .attr("data-board-sn")
+        
         return .init(likeCount: likeCount,
                      category: category,
                      title: title,
@@ -190,7 +196,8 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
                      nickname: nickname,
                      nicknameImageURL: nicknameImageURL,
                      hitCount: hitCount,
-                     timestamp: timestamp)
+                     timestamp: timestamp,
+                     path: path)
     }
     
     private func configureDateFormatter() {
