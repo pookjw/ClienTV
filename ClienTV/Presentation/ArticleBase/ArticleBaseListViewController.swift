@@ -24,7 +24,6 @@ final class ArticleBaseListViewController: UIViewController {
     
     func requestArticleBaseList(with boardPath: String) {
         Logger.debug("ArticleBaseListViewController: \(boardPath)")
-        collectionView?.scrollToTop(animated: true)
         viewModel?.requestFirstArticleBaseList(boardPath: boardPath)
     }
     

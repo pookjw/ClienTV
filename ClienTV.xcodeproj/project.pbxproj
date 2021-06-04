@@ -53,7 +53,6 @@
 		A43050FEE2953D6F28C4F9BD /* Pods_ClienTVAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */; };
 		F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */; };
 		F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */; };
-		F3D318E4266A252900B579E6 /* UICollectionView+scrollToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D318E3266A252900B579E6 /* UICollectionView+scrollToTop.swift */; };
 		F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */; };
 		F3D318E8266A2A0C00B579E6 /* ArticleBaseContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */; };
 /* End PBXBuildFile section */
@@ -169,7 +168,6 @@
 		E5A8A0B3752122A1B3738CE9 /* Pods-ClienTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.release.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.release.xcconfig"; sourceTree = "<group>"; };
 		F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+Item.swift"; sourceTree = "<group>"; };
 		F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
-		F3D318E3266A252900B579E6 /* UICollectionView+scrollToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+scrollToTop.swift"; sourceTree = "<group>"; };
 		F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseContentConfiguration.swift; sourceTree = "<group>"; };
 		F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleBaseContentView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -415,7 +413,6 @@
 				4FF70F5A266904ED00FDC680 /* Logger+shared.swift */,
 				F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */,
 				F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */,
-				F3D318E3266A252900B579E6 /* UICollectionView+scrollToTop.swift */,
 				4F55A1D2266A621200429B3E /* UIView+loadFromNib.swift */,
 				4F55A1DA266A9AA100429B3E /* ProcessInfo+isTestMode.swift */,
 			);
@@ -800,7 +797,6 @@
 				4FF70F6B2669073F00FDC680 /* HomeSplitViewController.swift in Sources */,
 				4FF70F7E2669376000FDC680 /* ArticleBaseListViewModel.swift in Sources */,
 				4FF70F5B266904ED00FDC680 /* Logger+shared.swift in Sources */,
-				F3D318E4266A252900B579E6 /* UICollectionView+scrollToTop.swift in Sources */,
 				F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */,
 				4FF70F5E2669068F00FDC680 /* BoardListViewController.swift in Sources */,
 				F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */,
