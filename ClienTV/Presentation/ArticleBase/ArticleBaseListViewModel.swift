@@ -15,6 +15,8 @@ final class ArticleBaseListViewModel {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<ArticleBaseListHeaderItem, ArticleBaseListCellItem>
     
     let errorEvent: PassthroughSubject<Error, Never> = .init()
+    let updateCompletionEvent: PassthroughSubject<Bool, Never> = .init()
+    var cacheIndexPath: IndexPath? = nil
     private let dataSource: DataSource
     private let useCase: ArticleBaseListUseCase
     private var boardPath: String?
@@ -89,20 +91,23 @@ final class ArticleBaseListViewModel {
             }
         }()
         
-        let articleBaseListCellItems: [ArticleBaseListCellItem] = createCellItems(from: articleBaseList)
+        let oldArticleBaseListCellItems: [ArticleBaseListCellItem] = snapshot.itemIdentifiers(inSection: articleBaseListHeaderItem)
+        let articleBaseListCellItems: [ArticleBaseListCellItem] = createCellItems(from: articleBaseList, oldCellItems: oldArticleBaseListCellItems)
         let loadMoreCellItem: ArticleBaseListCellItem = .init(dataType: .loadMore)
         
         snapshot.appendItems(articleBaseListCellItems, toSection: articleBaseListHeaderItem)
         snapshot.deleteItems([loadMoreCellItem])
         snapshot.appendItems([loadMoreCellItem], toSection: articleBaseListHeaderItem)
         
-        dataSource.apply(snapshot, animatingDifferences: false, completion: nil)
+        dataSource.apply(snapshot, animatingDifferences: false) { [weak self] in
+            self?.updateCompletionEvent.send(reset)
+        }
     }
     
     // MARK: - Helper
-    private func createCellItems(from articleBaseList: [ArticleBase]) -> [ArticleBaseListCellItem] {
+    private func createCellItems(from articleBaseList: [ArticleBase], oldCellItems: [ArticleBaseListCellItem]) -> [ArticleBaseListCellItem] {
         let cellItems: [ArticleBaseListCellItem] = articleBaseList
-            .map { articleBase in
+            .compactMap { articleBase -> ArticleBaseListCellItem?  in
                 let articleBaseData: ArticleBaseListCellItem.ArticleBaseData = .init(likeCount: articleBase.likeCount,
                                                                                      category: articleBase.category,
                                                                                      title: articleBase.title,
@@ -112,6 +117,12 @@ final class ArticleBaseListViewModel {
                                                                                      hitCount: articleBase.hitCount,
                                                                                      timestamp: articleBase.timestamp)
                 let cellItem: ArticleBaseListCellItem = .init(dataType: .articleBase(data: articleBaseData))
+                
+                // 중복 제거
+                guard !oldCellItems.contains(cellItem) else {
+                    return nil
+                }
+                
                 return cellItem
             }
         

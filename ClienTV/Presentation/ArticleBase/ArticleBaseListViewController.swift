@@ -78,18 +78,17 @@ final class ArticleBaseListViewController: UIViewController {
     
     private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, ArticleBaseListCellItem> {
         return .init { (cell, indexPath, cellItem) in
-            var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
-            
             switch cellItem.dataType {
             case let .articleBase(data):
-                configuration.text = data.title
+                let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data)
+                cell.contentConfiguration = configuration
             case .loadMore:
+                var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = "더 불러오기..."
                 configuration.textProperties.alignment = .center
                 configuration.textProperties.font = .preferredFont(forTextStyle: .body)
+                cell.contentConfiguration = configuration
             }
-            
-            cell.contentConfiguration = configuration
         }
     }
     
@@ -122,6 +121,27 @@ final class ArticleBaseListViewController: UIViewController {
                 self?.showErrorAlert(error)
             }
             .store(in: &cancellableBag)
+        
+        viewModel
+            .updateCompletionEvent
+            .receive(on: OperationQueue.main)
+            .sink(receiveValue: { [weak self] reset in
+                if reset {
+                    self?.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                } else {
+                    if let cacheIndexPath: IndexPath = self?.viewModel?.cacheIndexPath {
+                        self?.collectionView?.scrollToItem(at: cacheIndexPath, at: .top, animated: false)
+                    }
+                }
+        
+                self?.collectionView?.reloadData()
+            })
+            .store(in: &cancellableBag)
+    }
+    
+    private func requestNextArticleBaseList(from indexPath: IndexPath) {
+        viewModel.cacheIndexPath = indexPath
+        viewModel.requestNextArticleBaseList()
     }
 }
 
@@ -138,7 +158,7 @@ extension ArticleBaseListViewController: UICollectionViewDelegate {
         case let .articleBase(data):
             break
         case .loadMore:
-            viewModel?.requestNextArticleBaseList()
+            requestNextArticleBaseList(from: indexPath)
         }
     }
 }

@@ -13,7 +13,9 @@ struct ArticleBaseContentConfiguration: UIContentConfiguration {
     let articleBaseData: ArticleBaseListCellItem.ArticleBaseData
     
     func makeContentView() -> UIView & UIContentView {
-        return _ArticleBaseContentView(configuration: self)
+        let contentView: ArticleBaseContentView = .loadFromNib()
+        contentView.configure(articleBaseContentConfiguration: self)
+        return contentView
     }
     
     func updated(for state: UIConfigurationState) -> ArticleBaseContentConfiguration {
@@ -21,17 +23,3 @@ struct ArticleBaseContentConfiguration: UIContentConfiguration {
     }
 }
 
-fileprivate final class _ArticleBaseContentView: UIView, UIContentView {
-    var configuration: UIContentConfiguration
-    
-    init(configuration: UIContentConfiguration) {
-        self.configuration = configuration
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-}

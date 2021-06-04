@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F55A1D1266A5F2A00429B3E /* ArticleBaseContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F55A1D0266A5F2A00429B3E /* ArticleBaseContentView.swift */; };
+		4F55A1D3266A621200429B3E /* UIView+loadFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F55A1D2266A621200429B3E /* UIView+loadFromNib.swift */; };
 		4FF70EE42667C94400FDC680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF70EE32667C94400FDC680 /* AppDelegate.swift */; };
 		4FF70EEB2667C94500FDC680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF70EEA2667C94500FDC680 /* Assets.xcassets */; };
 		4FF70EEE2667C94500FDC680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF70EEC2667C94500FDC680 /* LaunchScreen.storyboard */; };
@@ -107,6 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F55A1D0266A5F2A00429B3E /* ArticleBaseContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseContentView.swift; sourceTree = "<group>"; };
+		4F55A1D2266A621200429B3E /* UIView+loadFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+loadFromNib.swift"; sourceTree = "<group>"; };
 		4FF70EE02667C94400FDC680 /* ClienTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClienTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF70EE32667C94400FDC680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FF70EEA2667C94500FDC680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */,
 				F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */,
 				F3D318E3266A252900B579E6 /* UICollectionView+scrollToTop.swift */,
+				4F55A1D2266A621200429B3E /* UIView+loadFromNib.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				4FF70F7F266938E600FDC680 /* ArticleBaseListModel.swift */,
 				F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */,
 				F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */,
+				4F55A1D0266A5F2A00429B3E /* ArticleBaseContentView.swift */,
 			);
 			path = ArticleBase;
 			sourceTree = "<group>";
@@ -768,6 +774,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F55A1D3266A621200429B3E /* UIView+loadFromNib.swift in Sources */,
 				F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */,
 				4FF70F8426693C7900FDC680 /* BoardListModel.swift in Sources */,
 				4FF70F572669043F00FDC680 /* MainTabBarController.swift in Sources */,
@@ -782,6 +789,7 @@
 				F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */,
 				4FF70F5E2669068F00FDC680 /* BoardListViewController.swift in Sources */,
 				F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */,
+				4F55A1D1266A5F2A00429B3E /* ArticleBaseContentView.swift in Sources */,
 				4FF70F8226693C5800FDC680 /* BoardListViewModel.swift in Sources */,
 				4FF70F65266906C100FDC680 /* SettingsViewController.swift in Sources */,
 			);
