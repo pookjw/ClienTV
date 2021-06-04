@@ -48,6 +48,7 @@
 		98B29A0F02991F88EA5AAAC6 /* Pods_ClienTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */; };
 		A43050FEE2953D6F28C4F9BD /* Pods_ClienTVAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */; };
 		F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */; };
+		F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		B81A571045B420005C88AEB5 /* Pods-ClienTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.debug.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.debug.xcconfig"; sourceTree = "<group>"; };
 		E5A8A0B3752122A1B3738CE9 /* Pods-ClienTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.release.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.release.xcconfig"; sourceTree = "<group>"; };
 		F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+Item.swift"; sourceTree = "<group>"; };
+		F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +391,7 @@
 			children = (
 				4FF70F5A266904ED00FDC680 /* Logger+shared.swift */,
 				F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */,
+				F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */,
 				4FF70F8426693C7900FDC680 /* BoardListModel.swift in Sources */,
 				4FF70F572669043F00FDC680 /* MainTabBarController.swift in Sources */,
 				4FF70F61266906A800FDC680 /* ArticleBaseListViewController.swift in Sources */,

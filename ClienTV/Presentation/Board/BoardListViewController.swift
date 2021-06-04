@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import SnapKit
+import Combine
 import OSLog
+import SnapKit
 
 protocol BoardListViewControllerDelegate: AnyObject {
     func boardListViewControllerDidTapCell(_ viewController: BoardListViewController, boardPath: String)
@@ -17,11 +18,18 @@ final class BoardListViewController: UIViewController {
     weak var delegate: BoardListViewControllerDelegate? = nil
     private weak var collectionView: UICollectionView!
     private var viewModel: BoardListViewModel!
+    private var cancellableBag: Set<AnyCancellable> = .init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
+        bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestBoardListIfNeeded()
     }
     
     private func configureCollectionView() {
@@ -94,13 +102,27 @@ final class BoardListViewController: UIViewController {
     private func configureViewModel() {
         let viewModel: BoardListViewModel = .init(dataSource: makeDataSource())
         self.viewModel = viewModel
-        viewModel.requestBoardList()
+    }
+    
+    private func bind() {
+        viewModel
+            .errorEvent
+            .receive(on: OperationQueue.main)
+            .sink { [weak self] error in
+                self?.showErrorAlert(error)
+            }
+            .store(in: &cancellableBag)
+    }
+    
+    private func requestBoardListIfNeeded() {
+        viewModel?.requestBoardListIfNeeded()
     }
 }
 
 extension BoardListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cellItem: BoardListCellItem = viewModel.getCellItem(from: indexPath) else {
+            Logger.error("cellItem is nil")
             return
         }
         

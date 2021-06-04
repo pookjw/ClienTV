@@ -9,8 +9,8 @@ import Foundation
 
 final class ClienURLFactory {
     private struct API {
-        internal static let scheme: String = "https"
-        internal static let host: String = "www.clien.net"
+        static let scheme: String = "https"
+        static let host: String = "www.clien.net"
     }
     
     static func url(path: String? = nil, queryItems: [URLQueryItem] = []) -> URL {

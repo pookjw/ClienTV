@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import OSLog
 import ClienTVAPI
 
 final class BoardListViewModel {
@@ -16,6 +17,11 @@ final class BoardListViewModel {
     let errorEvent: PassthroughSubject<Error, Never> = .init()
     private let dataSource: DataSource
     private let useCase: BoardListUseCase
+    private var isBoardListEmpty: Bool {
+        let snapshot: Snapshot = dataSource.snapshot()
+        let isBoardListEmpty: Bool = snapshot.numberOfItems == 0
+        return isBoardListEmpty
+    }
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource,
@@ -34,7 +40,12 @@ final class BoardListViewModel {
         return snapshot.getCellItem(from: indexPath)
     }
     
-    func requestBoardList() {
+    func requestBoardListIfNeeded() {
+        guard isBoardListEmpty else {
+            Logger.warning("이미 BoardList가 존재함!")
+            return
+        }
+        
         useCase
             .getAllBoardList()
             .sink { [weak self] completion in
