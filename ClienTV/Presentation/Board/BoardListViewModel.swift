@@ -24,6 +24,16 @@ final class BoardListViewModel {
         self.useCase = useCase
     }
     
+    func getHeaderItem(from indexPath: IndexPath) -> BoardListHeaderItem? {
+        let snapshot: Snapshot = dataSource.snapshot()
+        return snapshot.getHeaderItem(from: indexPath)
+    }
+    
+    func getCellItem(from indexPath: IndexPath) -> BoardListCellItem? {
+        let snapshot: Snapshot = dataSource.snapshot()
+        return snapshot.getCellItem(from: indexPath)
+    }
+    
     func requestBoardList() {
         useCase
             .getAllBoardList()

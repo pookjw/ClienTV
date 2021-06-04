@@ -19,7 +19,7 @@ final class BoardListRepositoryImpl: BoardListRepository {
     
     func getBoardList(categories: [Board.Category]) -> Future<[Board], Error> {
         return .init { [weak self] promise in
-            guard let self: BoardListRepositoryImpl = self else {
+            guard let self = self else {
                 promise(.failure(BoardListRepositoryError.nilError))
                 return
             }
@@ -44,7 +44,7 @@ final class BoardListRepositoryImpl: BoardListRepository {
                 return true
             }
             .tryMap { [weak self] (data, response) throws -> [Board] in
-                guard let self: BoardListRepositoryImpl = self else {
+                guard let self = self else {
                     throw BoardListRepositoryError.nilError
                 }
                 

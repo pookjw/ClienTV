@@ -28,7 +28,7 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
     
     func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {
         return .init { [weak self] promise in
-            guard let self: ArticleBaseListRepositoryImpl = self else {
+            guard let self = self else {
                 promise(.failure(ArticleBaseListRepositoryError.nilError))
                 return
             }
@@ -52,7 +52,7 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
                 return true
             }
             .tryMap { [weak self] (data, response) throws -> [ArticleBase] in
-                guard let self: ArticleBaseListRepositoryImpl = self else {
+                guard let self = self else {
                     throw ArticleBaseListRepositoryError.nilError
                 }
                 
@@ -88,7 +88,7 @@ final class ArticleBaseListRepositoryImpl: ArticleBaseListRepository {
         
         let result: [ArticleBase] = try elements
             .map { [weak self] element -> ArticleBase in
-                guard let self: ArticleBaseListRepositoryImpl = self else {
+                guard let self = self else {
                     throw ArticleBaseListRepositoryError.nilError
                 }
                 let articleBase: ArticleBase = try self.convertArticleBase(from: element)
