@@ -17,6 +17,11 @@ final class ArticleBaseListViewModel {
     let errorEvent: PassthroughSubject<Error, Never> = .init()
     let updateCompletionEvent: PassthroughSubject<Bool, Never> = .init()
     var cacheIndexPath: IndexPath? = nil
+    var isItemEmpty: Bool {
+        let snapshot: Snapshot = dataSource.snapshot()
+        let isItemEmpty: Bool = snapshot.numberOfItems == 0
+        return isItemEmpty
+    }
     private let dataSource: DataSource
     private let useCase: ArticleBaseListUseCase
     private var boardPath: String?

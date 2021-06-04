@@ -126,15 +126,18 @@ final class ArticleBaseListViewController: UIViewController {
             .updateCompletionEvent
             .receive(on: OperationQueue.main)
             .sink(receiveValue: { [weak self] reset in
+                guard let self = self else { return }
+                guard !self.viewModel.isItemEmpty else { return }
+                
                 if reset {
-                    self?.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                    self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                 } else {
-                    if let cacheIndexPath: IndexPath = self?.viewModel?.cacheIndexPath {
-                        self?.collectionView?.scrollToItem(at: cacheIndexPath, at: .top, animated: false)
+                    if let cacheIndexPath: IndexPath = self.viewModel.cacheIndexPath {
+                        self.collectionView?.scrollToItem(at: cacheIndexPath, at: .top, animated: false)
                     }
                 }
         
-                self?.collectionView?.reloadData()
+                self.collectionView?.reloadData()
             })
             .store(in: &cancellableBag)
     }
