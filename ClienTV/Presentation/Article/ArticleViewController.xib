@@ -94,6 +94,9 @@
                     <rect key="frame" x="110" y="904" width="484.5" height="86"/>
                     <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                     <state key="normal" title="40개의 댓글 보기"/>
+                    <connections>
+                        <action selector="pressedCommentListButton:" destination="-1" eventType="primaryActionTriggered" id="ZDE-uS-Ni4"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Pmt-tb-8Ig"/>

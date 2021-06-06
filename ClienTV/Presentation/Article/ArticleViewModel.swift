@@ -21,6 +21,9 @@ final class ArticleViewModel {
     }
     
     func requestArticle(boardPath: String, articlePath: String) -> Future<Article, Error> {
+        self.boardPath = boardPath
+        self.articlePath = articlePath
+        
         return .init { [weak self] promise in
             guard let self = self else {
                 return

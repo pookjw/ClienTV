@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import OSLog
 import Kingfisher
 import ClienTVAPI
 
@@ -56,6 +57,7 @@ final class ArticleViewController: UIViewController {
         hitCountLabel.text = nil
         likeCountLabel.text = nil
         bodyTextView.text = nil
+        commentListButton.isEnabled = false
         commentListButton.setTitle(nil, for: .normal)
     }
     
@@ -121,6 +123,30 @@ final class ArticleViewController: UIViewController {
             bodyTextView.attributedText = attributedString.copy() as? NSAttributedString
         }
         
-        commentListButton.setTitle(String("\(articleBase.commentCount)개의 댓글 보기"), for: .normal)
+        if articleBase.commentCount > 0 {
+            commentListButton.isEnabled = true
+            commentListButton.setTitle(String("\(articleBase.commentCount)개의 댓글 보기"), for: .normal)
+        } else {
+            commentListButton.isEnabled = false
+            commentListButton.setTitle("댓글 없음", for: .normal)
+        }
+    }
+    
+    private func presentCommentListViewController() {
+        guard let boardPath: String = viewModel.boardPath,
+              let articlePath: String = viewModel.articlePath else {
+            Logger.error("boardPath 또는 articlePath이 nil")
+            return
+        }
+        
+        let commentListViewController: CommentListViewController = .init()
+        commentListViewController.loadViewIfNeeded()
+        commentListViewController.requestCommentList(boardPath: boardPath, articlePath: articlePath)
+        present(commentListViewController, animated: true, completion: nil)
+    }
+    
+    // MARK: - IBActions
+    @IBAction func pressedCommentListButton(_ sender: UIButton) {
+        presentCommentListViewController()
     }
 }
