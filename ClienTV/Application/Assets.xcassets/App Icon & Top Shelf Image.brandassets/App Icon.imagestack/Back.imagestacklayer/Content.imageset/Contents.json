@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "template-2.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
+      "filename" : "template-3.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
