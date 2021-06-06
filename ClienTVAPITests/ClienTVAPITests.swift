@@ -13,7 +13,7 @@ import OSLog
 final class ClienTVAPITests: XCTestCase {
     private var cancallableBag: Set<AnyCancellable> = .init()
     
-    func testBoardListAPI() {
+    func testBoardListUseCase() {
         let semaphore: DispatchSemaphore = .init(value: 0)
         let useCase: BoardListUseCase = BoardListUseCaseImpl()
         
@@ -35,7 +35,7 @@ final class ClienTVAPITests: XCTestCase {
         semaphore.wait()
     }
     
-    func testArticleBastListAPI() {
+    func testArticleBastListUseCase() {
         let semaphore: DispatchSemaphore = .init(value: 0)
         let useCase: ArticleBaseListUseCase = ArticleBaseListUseCaseImpl()
         
@@ -50,6 +50,28 @@ final class ClienTVAPITests: XCTestCase {
                 semaphore.signal()
             } receiveValue: { articleBaseList in
                 Logger.info(articleBaseList)
+                semaphore.signal()
+            }
+            .store(in: &self.cancallableBag)
+        
+        semaphore.wait()
+    }
+    
+    func testArticleUseCase() {
+        let semaphore: DispatchSemaphore = .init(value: 0)
+        let useCase: ArticleUseCase = ArticleUseCaseImpl()
+        
+        useCase.getArticle(path: "/service/board/cm_iphonien/16203705")
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
+                semaphore.signal()
+            } receiveValue: { article in
+                Logger.info(article)
                 semaphore.signal()
             }
             .store(in: &self.cancallableBag)

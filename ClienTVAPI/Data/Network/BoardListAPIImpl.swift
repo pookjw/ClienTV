@@ -32,7 +32,8 @@ final class BoardListAPIImpl: BoardListAPI {
     private func configurePromise(_ promise: @escaping ((Result<[Board], Error>) -> Void), categories: [Board.Category]) {
         
         let url: URL = ClienURLFactory.url()
-        return URLSession
+        
+        URLSession
             .shared
             .dataTaskPublisher(for: url)
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in

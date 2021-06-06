@@ -9,5 +9,11 @@ import Foundation
 import Combine
 
 protocol ArticleAPI {
-//    fu
+    func getArticle(path: String) -> Future<Article, Error>
+}
+
+enum ArticleAPIError: Error {
+    case nilError
+    case parseError
+    case responseError(Int)
 }

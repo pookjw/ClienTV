@@ -1,8 +1,8 @@
 //
-//  ArticleBaseListAPIImpl.swift
+//  ArticleAPIImpl.swift
 //  ClienTVAPI
 //
-//  Created by Jinwoo Kim on 6/3/21.
+//  Created by Jinwoo Kim on 6/6/21.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import Combine
 import OSLog
 import SwiftSoup
 
-final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
+final class ArticleAPIImpl: ArticleAPI {
     private let dateFormatter: DateFormatter = .init()
     private var cancallableBag: Set<AnyCancellable> = .init()
     
@@ -18,43 +18,41 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         configureDateFormatter()
     }
     
-    func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {
+    func getArticle(path: String) -> Future<Article, Error> {
         return .init { [weak self] promise in
             guard let self = self else {
-                promise(.failure(ArticleBaseListAPIError.nilError))
+                promise(.failure(ArticleAPIError.nilError))
                 return
             }
-            self.configurePromise(promise, path: path, page: page)
+            self.configurePromise(promise, path: path)
         }
     }
-    
-    private func configurePromise(_ promise: @escaping (Result<[ArticleBase], Error>) -> Void, path: String, page: Int) {
-        let url: URL = ClienURLFactory.url(path: path,
-                                           queryItems: [.init(name: "po", value: String(page))])
+    private func configurePromise(_ promise: @escaping (Result<Article, Error>) -> Void, path: String) {
+        let url: URL = ClienURLFactory.url(path: path)
         
         URLSession
             .shared
             .dataTaskPublisher(for: url)
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
                 guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
-                    throw ArticleBaseListAPIError.nilError
+                    throw ArticleAPIError.nilError
                 }
                 return (data, response)
             }
             .tryFilter { (_, response) throws -> Bool in
                 let statusCode: Int = response.statusCode
                 guard 200..<300 ~= statusCode else {
-                    throw ArticleBaseListAPIError.responseError(statusCode)
+                    throw ArticleAPIError.responseError(statusCode)
                 }
                 return true
             }
-            .tryMap { [weak self] (data, response) throws -> [ArticleBase] in
+            .tryMap { [weak self] (data, response) throws -> Article in
                 guard let self = self else {
-                    throw ArticleBaseListAPIError.nilError
+                    throw ArticleAPIError.nilError
                 }
                 
-                let articleBaseList: [ArticleBase] = try self.convertArticleBaseList(from: data)
-                return articleBaseList
+                let article: Article = try self.convertArticle(from: data, path: path)
+                return article
             }
             .sink { completion in
                 switch completion {
@@ -63,65 +61,64 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
                 case .finished:
                     break
                 }
-            } receiveValue: { articleBaseList in
-                promise(.success(articleBaseList))
+            } receiveValue: { article in
+                promise(.success(article))
             }
             .store(in: &cancallableBag)
     }
     
-    private func convertArticleBaseList(from data: Data) throws -> [ArticleBase] {
+    private func convertArticle(from data: Data, path: String) throws -> Article {
         guard let html: String = String(data: data, encoding: .utf8) else {
             throw ArticleBaseListAPIError.parseError
         }
         
         let document: Document = try SwiftSoup.parse(html)
-        guard let elements: [Element] = try document
-                .getElementsByClass("list_content")
-                .first?
-                .getElementsByTag("div")
-                .filter({ try $0.attr("class").contains("list_item symph_row") }) else {
+        guard let element: Element = try document
+            .getElementsByClass("content_view")
+                .first() else {
             throw ArticleBaseListAPIError.parseError
         }
         
-        let result: [ArticleBase] = try elements
-            .map { [weak self] element -> ArticleBase in
-                guard let self = self else {
-                    throw ArticleBaseListAPIError.nilError
-                }
-                let articleBase: ArticleBase = try self.convertArticleBase(from: element)
-                return articleBase
-            }
+        //
         
-        return result
-    }
-    
-    private func convertArticleBase(from element: Element) throws -> ArticleBase {
         let likeCount: Int = try element
-            .getElementsByClass("list_symph view_symph")
-            .first(where: { try $0.attr("data-role") == "list-like-count" })?
+            .getElementsByClass("post_symph view_symph")
             .select("span")
             .first()?
             .ownText()
             .toInt() ?? 0
         
         let category: String? = try element
-            .getElementsByClass("category fixed")
-            .first(where: { $0.hasAttr("title") })?
+            .getElementsByClass("post_category")
+            .first()?
             .ownText()
         
+        /*
+         <h3 class="post_subject" data-role="cut-string">
+            <span class="post_category">잡담</span>
+            <span>현직 미래에셋페이 서포터즈 활동중입니다</span>
+         </h3>
+         */
         let title: String = try element
-            .getElementsByClass("subject_fixed")
-            .filter { try $0.attr("data-role") == "list-title-text" }
-            .first(where: { $0.hasAttr("title") })?
-            .ownText() ?? "(no title)"
-        
-        let commentCount: Int = try element
-            .getElementsByClass("list_reply reply_symph")
-            .first?
+            .getElementsByClass("post_subject")
             .select("span")
-            .first(where: { try $0.attr("class") == "rSymph05" })?
+            .filter { try $0.className() != "post_category" }
+            .first?
+            .ownText() ?? ""
+        
+        /*
+         <a class="post_reply" href="#comment-head">
+            <span>7</span>
+            <span class="fa fa-angle-down"></span>
+         </a>
+         */
+        let commentCount: Int = try element
+            .getElementsByClass("post_reply")
+            .select("span")
+            .filter { try $0.className() != "fa fa-angle-down" }
+            .first?
             .ownText()
-            .toInt() ?? 0 // 댓글이 없는 글은 이 값이 없을 수 있음
+            .toInt() ?? 0
         
         //
         
@@ -158,21 +155,21 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             nicknameImageURL = nil
         }
         
-        //
-        
         let hitCount: Int = try element
-            .getElementsByClass("hit")
+            .getElementsByClass("view_count")
+            .first()?
+            .select("strong")
             .first()?
             .ownText()
+            .filter { $0 != "," } // 1,182 -> 1182
             .toInt() ?? 0
-        
-        //
         
         let timestamp: Date
         
         if let timestampString: String = try element
-            .getElementsByClass("timestamp")
+            .getElementsByClass("fa fa-clock-o")
             .first()?
+            .parent()?
             .ownText()
         {
             timestamp = dateFormatter.date(from: timestampString) ?? Date(timeIntervalSince1970: 0)
@@ -180,20 +177,25 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             timestamp = Date(timeIntervalSince1970: 0)
         }
         
-        //
+        let path: String = path
         
-        let path: String = try element
-            .attr("data-board-sn")
+        let bodyHTML: String = try element
+            .getElementsByClass("post_article")
+            .first()?
+            .ownText() ?? ""
         
-        return .init(likeCount: likeCount,
-                     category: category,
-                     title: title,
-                     commentCount: commentCount,
-                     nickname: nickname,
-                     nicknameImageURL: nicknameImageURL,
-                     hitCount: hitCount,
-                     timestamp: timestamp,
-                     path: path)
+        let articleBase: ArticleBase = .init(likeCount: likeCount,
+                                             category: category,
+                                             title: title,
+                                             commentCount: commentCount,
+                                             nickname: nickname,
+                                             nicknameImageURL: nicknameImageURL,
+                                             hitCount: hitCount,
+                                             timestamp: timestamp,
+                                             path: path)
+        
+        return .init(base: articleBase,
+                     bodyHTML: bodyHTML)
     }
     
     private func configureDateFormatter() {

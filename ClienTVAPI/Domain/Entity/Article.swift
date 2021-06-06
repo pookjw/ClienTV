@@ -8,5 +8,6 @@
 import Foundation
 
 public struct Article {
-    
+    public let base: ArticleBase
+    public let bodyHTML: String
 }

@@ -12,7 +12,6 @@ public struct ArticleBase {
     public let category: String?
     public let title: String
     public let commentCount: Int
-    public let authorID: String
     public let nickname: String
     public let nicknameImageURL: URL?
     public let hitCount: Int
