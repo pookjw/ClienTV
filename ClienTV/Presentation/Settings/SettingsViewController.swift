@@ -11,6 +11,11 @@ import SnapKit
 final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = nil
+        
+        let label: UILabel = .init()
+        label.text = "구현 예정!"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        label.snp.makeConstraints { $0.center.equalToSuperview() }
     }
 }

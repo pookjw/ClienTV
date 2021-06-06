@@ -34,7 +34,6 @@ final class MainTabBarController: UITabBarController {
         homeSplitViewController.loadViewIfNeeded()
         settingsViewController.loadViewIfNeeded()
         
-//        setViewControllers([homeSplitViewController, settingsViewController], animated: false)
-        setViewControllers([homeSplitViewController], animated: false)
+        setViewControllers([homeSplitViewController, settingsViewController], animated: false)
     }
 }
