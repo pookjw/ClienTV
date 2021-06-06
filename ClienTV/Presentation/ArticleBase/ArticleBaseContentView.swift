@@ -10,6 +10,7 @@ import OSLog
 import Kingfisher
 
 final class ArticleBaseContentView: UIView, UIContentView {
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nicknameImageView: UIImageView!
     @IBOutlet weak var nicknameLabel: UILabel!
@@ -55,6 +56,16 @@ final class ArticleBaseContentView: UIView, UIContentView {
         
         let articleBaseData: ArticleBaseListCellItem.ArticleBaseData = articleBaseContentConfiguration.articleBaseData
         
+        //
+        
+        if let category: String = articleBaseData.category {
+            categoryLabel.isHidden = false
+            categoryLabel.text = category
+        } else {
+            categoryLabel.isHidden = true
+            categoryLabel.text = nil
+        }
+        
         titleLabel.text = articleBaseData.title
         
         if let nicknameImageURL: URL = articleBaseData.nicknameImageURL {
@@ -80,7 +91,6 @@ final class ArticleBaseContentView: UIView, UIContentView {
         }
         
         nicknameLabel.text = articleBaseData.nickname
-//        print("hi!!! \(dateFormatter?.string(from: articleBaseData.timestamp))")
         timestampLabel.text = dateFormatter?.string(from: articleBaseData.timestamp)
         hitCountLabel.text = String("\(articleBaseData.hitCount) 조회수")
         commentCountLabel.text = String(articleBaseData.commentCount)

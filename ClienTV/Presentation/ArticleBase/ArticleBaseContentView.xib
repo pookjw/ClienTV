@@ -19,12 +19,29 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="his-h2-11N">
                             <rect key="frame" x="0.0" y="0.0" width="800" height="160"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzO-Iz-0mU">
-                                    <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ps1-jS-dEf">
+                                    <rect key="frame" x="0.0" y="0.0" width="152" height="100"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-gk-Mi9">
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
+                                            <color key="backgroundColor" systemColor="secondaryLabelColor"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzO-Iz-0mU">
+                                            <rect key="frame" x="86" y="0.0" width="66" height="100"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="aPq-hJ-SOT">
                                     <rect key="frame" x="0.0" y="110" width="680.5" height="50"/>
                                     <subviews>
@@ -33,6 +50,11 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ovJ-hT-4c1" secondAttribute="height" multiplier="60:16" id="4er-Vk-V1D"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyb-vL-rMv">
                                             <rect key="frame" x="212.5" y="0.0" width="33" height="50"/>
@@ -114,6 +136,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="categoryLabel" destination="XEU-gk-Mi9" id="GUd-wn-8mn"/>
                 <outlet property="commentCountLabel" destination="cCA-eq-GgI" id="prq-bj-igC"/>
                 <outlet property="hitCountLabel" destination="LZ7-0D-BkV" id="vnl-cP-ExS"/>
                 <outlet property="likeCountLabel" destination="JLt-cv-NQ1" id="Ebu-0J-lQX"/>
@@ -128,6 +151,9 @@
     <resources>
         <image name="bubble.left.fill" catalog="system" width="128" height="111"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
