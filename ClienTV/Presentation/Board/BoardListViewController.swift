@@ -115,17 +115,21 @@ final class BoardListViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel
-            .errorEvent
-            .receive(on: OperationQueue.main)
-            .sink { [weak self] error in
-                self?.showErrorAlert(error)
-            }
-            .store(in: &cancellableBag)
+        
     }
     
     private func requestBoardListIfNeeded() {
         viewModel?.requestBoardListIfNeeded()
+            .receive(on: OperationQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.showErrorAlert(error)
+                case .finished:
+                    break
+                }
+            }, receiveValue: {})
+            .store(in: &cancellableBag)
     }
 }
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="18122" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleViewController" customModule="ClienTV" customModuleProvider="target">
+            <connections>
+                <outlet property="bodyTextView" destination="wFN-sH-CgX" id="0S0-Uc-GTV"/>
+                <outlet property="categoryLabel" destination="uTq-DT-YPa" id="LbN-Dm-WmH"/>
+                <outlet property="commentListButton" destination="0Qq-pV-21D" id="n2j-gk-YaQ"/>
+                <outlet property="hitCountLabel" destination="nCZ-M5-gaU" id="Sbn-4T-Kyb"/>
+                <outlet property="likeCountLabel" destination="PWj-G4-0qR" id="75F-I8-Ok3"/>
+                <outlet property="nicknameImageView" destination="yyd-ed-kM1" id="AVe-iG-JKx"/>
+                <outlet property="nicknameLabel" destination="qh5-H9-kQF" id="w8D-j5-9o3"/>
+                <outlet property="timestampLabel" destination="jTk-LZ-VWP" id="Scv-4p-RYF"/>
+                <outlet property="titleLabel" destination="pAy-wA-6XL" id="tXb-QQ-C6g"/>
+                <outlet property="view" destination="iN0-l3-epB" id="sbf-Vq-jCO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="top" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yWC-cE-xZa">
+                    <rect key="frame" x="110" y="90" width="484.5" height="400.5"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="질문" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTq-DT-YPa">
+                            <rect key="frame" x="209.5" y="0.0" width="66" height="46"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <integer key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAy-wA-6XL">
+                            <rect key="frame" x="209.5" y="56" width="66" height="46"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yyd-ed-kM1">
+                            <rect key="frame" x="121" y="112" width="242.5" height="64.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="yyd-ed-kM1" secondAttribute="height" multiplier="60:16" priority="999" id="SRI-6S-H7P"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh5-H9-kQF">
+                            <rect key="frame" x="226" y="186.5" width="33" height="46"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020.06.09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTk-LZ-VWP">
+                            <rect key="frame" x="139.5" y="242.5" width="206" height="46"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 조회수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCZ-M5-gaU">
+                            <rect key="frame" x="153" y="298.5" width="179" height="46"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 공감수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWj-G4-0qR">
+                            <rect key="frame" x="177" y="354.5" width="131" height="46"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="yyd-ed-kM1" firstAttribute="width" secondItem="yWC-cE-xZa" secondAttribute="width" multiplier="0.5" id="eNH-E8-gTL"/>
+                    </constraints>
+                </stackView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFN-sH-CgX">
+                    <rect key="frame" x="624.5" y="90" width="1185.5" height="900"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-pV-21D">
+                    <rect key="frame" x="110" y="904" width="484.5" height="86"/>
+                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                    <state key="normal" title="40개의 댓글 보기"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Pmt-tb-8Ig"/>
+            <constraints>
+                <constraint firstItem="Pmt-tb-8Ig" firstAttribute="trailing" secondItem="wFN-sH-CgX" secondAttribute="trailing" constant="30" id="0TC-WW-ORx"/>
+                <constraint firstItem="wFN-sH-CgX" firstAttribute="leading" secondItem="yWC-cE-xZa" secondAttribute="trailing" constant="30" id="JiQ-GL-UbJ"/>
+                <constraint firstItem="yWC-cE-xZa" firstAttribute="leading" secondItem="Pmt-tb-8Ig" secondAttribute="leading" constant="30" id="TQl-4n-u50"/>
+                <constraint firstItem="Pmt-tb-8Ig" firstAttribute="bottom" secondItem="wFN-sH-CgX" secondAttribute="bottom" constant="30" id="Vj5-py-sCu"/>
+                <constraint firstItem="Pmt-tb-8Ig" firstAttribute="bottom" secondItem="0Qq-pV-21D" secondAttribute="bottom" constant="30" id="WSv-56-X4x"/>
+                <constraint firstItem="yWC-cE-xZa" firstAttribute="width" secondItem="wFN-sH-CgX" secondAttribute="height" multiplier="3.5:6.5" id="oFg-Q3-zFL"/>
+                <constraint firstItem="yWC-cE-xZa" firstAttribute="top" secondItem="Pmt-tb-8Ig" secondAttribute="top" constant="30" id="pqr-ve-XEc"/>
+                <constraint firstItem="wFN-sH-CgX" firstAttribute="leading" secondItem="0Qq-pV-21D" secondAttribute="trailing" constant="30" id="uxH-QS-d4e"/>
+                <constraint firstItem="0Qq-pV-21D" firstAttribute="leading" secondItem="Pmt-tb-8Ig" secondAttribute="leading" constant="30" id="xJh-dO-KWI"/>
+                <constraint firstItem="wFN-sH-CgX" firstAttribute="top" secondItem="Pmt-tb-8Ig" secondAttribute="top" constant="30" id="ztd-kK-jxZ"/>
+            </constraints>
+            <point key="canvasLocation" x="-125" y="4"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

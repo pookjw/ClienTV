@@ -28,14 +28,20 @@ final class ArticleBaseContentView: UIView, UIContentView {
         }
     }
     
-    private var dateFormatter: DateFormatter? = nil
+    private var dateFormatter: DateFormatter?
+    
+    static func initFromConfiguration(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) -> ArticleBaseContentView {
+        let contentView: ArticleBaseContentView = .loadFromNib()
+        contentView.configure(articleBaseContentConfiguration: articleBaseContentConfiguration)
+        return contentView
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureDateFormatter()
     }
     
-    func configure(articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
+    private func configure(articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
         self.articleBaseContentConfiguration = articleBaseContentConfiguration
         configureViews()
     }
@@ -73,7 +79,6 @@ final class ArticleBaseContentView: UIView, UIContentView {
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
             nicknameImageView.kf.setImage(with: nicknameImageURL)
-            
             nicknameLabel.isHidden = true
         } else {
             nicknameImageView.isHidden = true

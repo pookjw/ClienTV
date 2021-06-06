@@ -19,12 +19,12 @@ final class ArticleBaseListViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
-        bind()
     }
     
     func requestArticleBaseList(with boardPath: String) {
         Logger.debug("ArticleBaseListViewController: \(boardPath)")
-        viewModel?.requestFirstArticleBaseList(boardPath: boardPath)
+        let future: Future<Bool, Error> = viewModel.requestFirstArticleBaseList(boardPath: boardPath)
+        handleRequestCompletion(future)
     }
     
     private func configureCollectionView() {
@@ -113,19 +113,35 @@ final class ArticleBaseListViewController: UIViewController {
         self.viewModel = viewModel
     }
     
-    private func bind() {
-        viewModel
-            .errorEvent
-            .receive(on: OperationQueue.main)
-            .sink { [weak self] error in
-                self?.showErrorAlert(error)
-            }
-            .store(in: &cancellableBag)
+    private func presentArticleViewController(articlePath: String) {
+        guard let boardPath: String = viewModel.boardPath else {
+            Logger.error("viewModel.boardPath이 존재하지 않음!")
+            return
+        }
         
-        viewModel
-            .updateCompletionEvent
+        let articleViewController: ArticleViewController = .loadFromNib()
+        articleViewController.loadViewIfNeeded()
+        articleViewController.requestArticle(boardPath: boardPath, articlePath: articlePath)
+        present(articleViewController, animated: true, completion: nil)
+    }
+    
+    private func requestNextArticleBaseList(from indexPath: IndexPath) {
+        viewModel.cacheIndexPath = indexPath
+        let future: Future<Bool, Error> = viewModel.requestNextArticleBaseList()
+        handleRequestCompletion(future)
+    }
+    
+    private func handleRequestCompletion(_ future: Future<Bool, Error>) {
+        future
             .receive(on: OperationQueue.main)
-            .sink(receiveValue: { [weak self] reset in
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.showErrorAlert(error)
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] reset in
                 guard let self = self else { return }
                 guard !self.viewModel.isItemEmpty else { return }
                 
@@ -138,19 +154,8 @@ final class ArticleBaseListViewController: UIViewController {
                 }
                 
                 self.collectionView?.collectionViewLayout.invalidateLayout()
-            })
+            }
             .store(in: &cancellableBag)
-    }
-    
-    private func presentArticleViewController(articlePath: String) {
-        let articleViewController: ArticleViewController = .init()
-        articleViewController.loadViewIfNeeded()
-        present(articleViewController, animated: true, completion: nil)
-    }
-    
-    private func requestNextArticleBaseList(from indexPath: IndexPath) {
-        viewModel.cacheIndexPath = indexPath
-        viewModel.requestNextArticleBaseList()
     }
 }
 
@@ -169,7 +174,6 @@ extension ArticleBaseListViewController: UICollectionViewDelegate {
         case let .articleBase(data):
             Logger.info(data.path)
             presentArticleViewController(articlePath: data.path)
-            break
         case .loadMore:
             requestNextArticleBaseList(from: indexPath)
         }

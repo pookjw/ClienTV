@@ -182,7 +182,7 @@ final class ArticleAPIImpl: ArticleAPI {
         let bodyHTML: String = try element
             .getElementsByClass("post_article")
             .first()?
-            .ownText() ?? ""
+            .html() ?? ""
         
         let articleBase: ArticleBase = .init(likeCount: likeCount,
                                              category: category,

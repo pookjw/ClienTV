@@ -14,17 +14,15 @@ final class ArticleBaseListViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<ArticleBaseListHeaderItem, ArticleBaseListCellItem>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<ArticleBaseListHeaderItem, ArticleBaseListCellItem>
     
-    let errorEvent: PassthroughSubject<Error, Never> = .init()
-    let updateCompletionEvent: PassthroughSubject<Bool, Never> = .init()
     var cacheIndexPath: IndexPath? = nil
     var isItemEmpty: Bool {
         let snapshot: Snapshot = dataSource.snapshot()
         let isItemEmpty: Bool = snapshot.numberOfItems == 0
         return isItemEmpty
     }
+    private(set) var boardPath: String?
     private let dataSource: DataSource
     private let useCase: ArticleBaseListUseCase
-    private var boardPath: String?
     private var currentBoardPage: Int = 0
     private var cancellableBag: Set<AnyCancellable> = .init()
     
@@ -44,36 +42,43 @@ final class ArticleBaseListViewModel {
         return snapshot.getCellItem(from: indexPath)
     }
     
-    func requestFirstArticleBaseList(boardPath: String) {
+    func requestFirstArticleBaseList(boardPath: String) -> Future<Bool, Error>  {
         self.boardPath = boardPath
         currentBoardPage = 0
-        requestArticleBaseList(shouldResetSnapshot: true)
+        return requestArticleBaseList(shouldResetSnapshot: true)
     }
     
-    func requestNextArticleBaseList() {
+    func requestNextArticleBaseList() -> Future<Bool, Error>  {
         currentBoardPage += 1
-        requestArticleBaseList(shouldResetSnapshot: false)
+        return requestArticleBaseList(shouldResetSnapshot: false)
     }
     
-    private func requestArticleBaseList(shouldResetSnapshot: Bool) {
-        guard let boardPath: String = boardPath else {
-            Logger.error("boardPath is nil!")
-            return
-        }
-        
-        useCase
-            .getArticleBaseList(path: boardPath, page: currentBoardPage)
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.errorEvent.send(error)
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] articleBaseList in
-                self?.updateArticleBaseList(articleBaseList, reset: shouldResetSnapshot)
+    private func requestArticleBaseList(shouldResetSnapshot: Bool) -> Future<Bool, Error> {
+        return .init { [weak self] promise in
+            guard let self = self else {
+                return
             }
-            .store(in: &cancellableBag)
+            
+            guard let boardPath: String = self.boardPath else {
+                Logger.error("boardPath is nil!")
+                return
+            }
+            
+            self.useCase
+                .getArticleBaseList(path: boardPath, page: self.currentBoardPage)
+                .sink { completion in
+                    switch completion {
+                    case .failure(let error):
+                        promise(.failure(error))
+                    case .finished:
+                        break
+                    }
+                } receiveValue: { [weak self] articleBaseList in
+                    self?.updateArticleBaseList(articleBaseList, reset: shouldResetSnapshot)
+                    promise(.success(shouldResetSnapshot))
+                }
+                .store(in: &self.cancellableBag)
+        }
     }
     
     private func updateArticleBaseList(_ articleBaseList: [ArticleBase], reset: Bool) {
@@ -104,9 +109,7 @@ final class ArticleBaseListViewModel {
         snapshot.deleteItems([loadMoreCellItem])
         snapshot.appendItems([loadMoreCellItem], toSection: articleBaseListHeaderItem)
         
-        dataSource.apply(snapshot, animatingDifferences: false) { [weak self] in
-            self?.updateCompletionEvent.send(reset)
-        }
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     // MARK: - Helper

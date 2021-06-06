@@ -13,8 +13,7 @@ struct ArticleBaseContentConfiguration: UIContentConfiguration {
     let articleBaseData: ArticleBaseListCellItem.ArticleBaseData
     
     func makeContentView() -> UIView & UIContentView {
-        let contentView: ArticleBaseContentView = .loadFromNib()
-        contentView.configure(articleBaseContentConfiguration: self)
+        let contentView: ArticleBaseContentView = .initFromConfiguration(self)
         return contentView
     }
     

@@ -14,7 +14,6 @@ final class BoardListViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<BoardListHeaderItem, BoardListCellItem>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<BoardListHeaderItem, BoardListCellItem>
     
-    let errorEvent: PassthroughSubject<Error, Never> = .init()
     private let dataSource: DataSource
     private let useCase: BoardListUseCase
     private var isBoardListEmpty: Bool {
@@ -40,33 +39,40 @@ final class BoardListViewModel {
         return snapshot.getCellItem(from: indexPath)
     }
     
-    func requestBoardListIfNeeded() {
-        let isTestMode: Bool = ProcessInfo.processInfo.isTestMode
-        
-        // Test Mode에서는 데이터를 불러오지 않는다.
-        guard !isTestMode else {
-            Logger.debug("isTestMode == true")
-            return
-        }
-        
-        guard isBoardListEmpty else {
-            Logger.warning("이미 BoardList가 존재함!")
-            return
-        }
-        
-        useCase
-            .getAllBoardList()
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.errorEvent.send(error)
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] boardList in
-                self?.updateBoardList(boardList)
+    func requestBoardListIfNeeded() -> Future<Void, Error> {
+        return .init { [weak self] promise in
+            guard let self = self else {
+                return
             }
-            .store(in: &cancellableBag)
+            
+            let isTestMode: Bool = ProcessInfo.processInfo.isTestMode
+            
+            // Test Mode에서는 데이터를 불러오지 않는다.
+            guard !isTestMode else {
+                Logger.debug("isTestMode == true")
+                return
+            }
+            
+            guard self.isBoardListEmpty else {
+                Logger.warning("이미 BoardList가 존재함!")
+                return
+            }
+            
+            self.useCase
+                .getAllBoardList()
+                .sink { completion in
+                    switch completion {
+                    case .failure(let error):
+                        promise(.failure(error))
+                    case .finished:
+                        break
+                    }
+                } receiveValue: { [weak self] boardList in
+                    self?.updateBoardList(boardList)
+                    promise(.success(()))
+                }
+                .store(in: &self.cancellableBag)
+        }
     }
     
     private func updateBoardList(_ boardList: [Board]) {
