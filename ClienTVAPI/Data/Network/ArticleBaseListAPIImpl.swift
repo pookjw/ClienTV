@@ -109,11 +109,23 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             .first(where: { $0.hasAttr("title") })?
             .ownText()
         
-        let title: String = try element
-            .getElementsByClass("subject_fixed")
-            .filter { try $0.attr("data-role") == "list-title-text" }
-            .first(where: { $0.hasAttr("title") })?
-            .ownText() ?? "(no title)"
+        let title: String = try {
+            let normalTitle: String? = try element
+                .getElementsByClass("subject_fixed")
+                .filter { try $0.attr("data-role") == "list-title-text" }
+                .first(where: { $0.hasAttr("title") })?
+                .ownText()
+            
+            // 알뜰구매 게시판
+            let jirumTitle: String? = try element
+                .getElementsByClass("list_subject")
+                .filter { try $0.attr("data-role") == "cut-string" }
+                .filter { $0.hasAttr("title") }
+                .first?
+                .attr("title")
+            
+            return normalTitle ?? jirumTitle ?? "(no title)"
+        }()
         
         let commentCount: Int = try element
             .getElementsByClass("list_reply reply_symph")
