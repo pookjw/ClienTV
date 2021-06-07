@@ -171,10 +171,14 @@ final class CommentListAPIImpl: CommentListAPI {
         
         let timestamp: Date
         
+        print(try element.getElementsByClass("timestamp").first()?.ownText())
+        
         if let timestampString: String = try element
             .getElementsByClass("timestamp")
             .first()?
             .ownText()
+            .components(separatedBy: " / 수정일:")
+            .first
         {
             timestamp = dateFormatter.date(from: timestampString) ?? Date(timeIntervalSince1970: 0)
         } else {
