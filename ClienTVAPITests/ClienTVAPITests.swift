@@ -57,6 +57,28 @@ final class ClienTVAPITests: XCTestCase {
         semaphore.wait()
     }
     
+    func testArticleBastListUseCaseJirum() {
+        let semaphore: DispatchSemaphore = .init(value: 0)
+        let useCase: ArticleBaseListUseCase = ArticleBaseListUseCaseImpl()
+        
+        useCase.getArticleBaseList(path: "/service/board/jirum", page: 0)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
+                semaphore.signal()
+            } receiveValue: { articleBaseList in
+                Logger.info(articleBaseList)
+                semaphore.signal()
+            }
+            .store(in: &self.cancallableBag)
+        
+        semaphore.wait()
+    }
+    
     func testArticleUseCase() {
         let semaphore: DispatchSemaphore = .init(value: 0)
         let useCase: ArticleUseCase = ArticleUseCaseImpl()
