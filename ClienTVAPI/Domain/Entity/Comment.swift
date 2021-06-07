@@ -14,6 +14,7 @@ public struct Comment {
     public let nickname: String
     public let nicknameImageURL: URL?
     public let timestamp: Date
-    public let imageURL: URL?
+    public let likeCount: Int
+    public let bodyImageURL: URL?
     public let bodyHTML: String
 }

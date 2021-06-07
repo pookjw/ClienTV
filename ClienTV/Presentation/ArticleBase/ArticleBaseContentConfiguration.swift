@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
 struct ArticleBaseContentConfiguration: UIContentConfiguration {
     let articleBaseData: ArticleBaseListCellItem.ArticleBaseData

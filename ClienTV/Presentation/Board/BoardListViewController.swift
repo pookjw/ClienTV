@@ -24,7 +24,6 @@ final class BoardListViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
-        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,24 +97,18 @@ final class BoardListViewController: UIViewController {
                 return
             }
             
-            var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
-            
             switch headerItem.dataType {
             case .category(let data):
+                var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
                 configuration.text = data.title
+                headerView.contentConfiguration = configuration
             }
-            
-            headerView.contentConfiguration = configuration
         }
     }
     
     private func configureViewModel() {
         let viewModel: BoardListViewModel = .init(dataSource: makeDataSource())
         self.viewModel = viewModel
-    }
-    
-    private func bind() {
-        
     }
     
     private func requestBoardListIfNeeded() {

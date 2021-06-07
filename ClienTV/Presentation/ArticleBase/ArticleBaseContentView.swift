@@ -32,17 +32,19 @@ final class ArticleBaseContentView: UIView, UIContentView {
     
     static func initFromConfiguration(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) -> ArticleBaseContentView {
         let contentView: ArticleBaseContentView = .loadFromNib()
-        contentView.configure(articleBaseContentConfiguration: articleBaseContentConfiguration)
+        contentView.configure(articleBaseContentConfiguration)
         return contentView
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureDateFormatter()
+        clearContents()
     }
     
-    private func configure(articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
+    private func configure(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
         self.articleBaseContentConfiguration = articleBaseContentConfiguration
+        clearContents()
         configureViews()
     }
     
@@ -52,6 +54,17 @@ final class ArticleBaseContentView: UIView, UIContentView {
         
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    }
+    
+    private func clearContents() {
+        categoryLabel.text = nil
+        titleLabel.text = nil
+        nicknameImageView.image = nil
+        nicknameLabel.text = nil
+        timestampLabel.text = nil
+        hitCountLabel.text = nil
+        commentCountLabel.text = nil
+        likeCountLabel.text = nil
     }
     
     private func configureViews() {
@@ -86,11 +99,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
             nicknameImageView.image = nil
             
             // UIStackView의 버그때문인지, height가 0으로 되어 버려서 Label들이 싹다 안 보이는 문제가 있다. 따라서 height를 0으로 맞춰주는건 꺼버린다.
-            nicknameImageView.constraints.forEach { constraint in
-                if constraint.secondAttribute == .height {
-                    constraint.isActive = false
-                }
-            }
+            nicknameImageView.removeHeightConstraint()
             
             nicknameLabel.isHidden = false
         }

@@ -14,6 +14,7 @@ final class ArticleBaseListViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<ArticleBaseListHeaderItem, ArticleBaseListCellItem>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<ArticleBaseListHeaderItem, ArticleBaseListCellItem>
     
+    /// 다음 페이지 불러올 때, 현재 위치를 잡아주기 위함
     var cacheIndexPath: IndexPath? = nil
     var isItemEmpty: Bool {
         let snapshot: Snapshot = dataSource.snapshot()

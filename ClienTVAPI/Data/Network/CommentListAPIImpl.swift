@@ -183,6 +183,17 @@ final class CommentListAPIImpl: CommentListAPI {
         
         //
         
+        let likeCount: Int = try element
+            .getElementsByClass("comment_symph")
+            .first()?
+            .select("strong")
+            .filter { try $0.attr("id").contains("setLikeCount") }
+            .first?
+            .ownText()
+            .toInt() ?? 0
+        
+        //
+        
         let imageURL: URL?
         
         if let imageURLString: String = try element
@@ -207,7 +218,8 @@ final class CommentListAPIImpl: CommentListAPI {
                                      nickname: nickname,
                                      nicknameImageURL: nicknameImageURL,
                                      timestamp: timestamp,
-                                     imageURL: imageURL,
+                                     likeCount: likeCount,
+                                     bodyImageURL: imageURL,
                                      bodyHTML: bodyHTML)
         
         return comment
