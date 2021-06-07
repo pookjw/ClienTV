@@ -95,9 +95,8 @@ final class CommentContentView: UIView, UIContentView {
             nicknameImageView.isHidden = false
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
-            nicknameImageView.kf.setImage(with: nicknameImageURL) { _ in
-                self.nicknameImageView.setNeedsLayout()
-                self.layoutIfNeeded()
+            nicknameImageView.kf.setImage(with: nicknameImageURL) { [weak self] _ in
+                self?.invalidateLayout()
             }
             nicknameLabel.isHidden = true
         } else {
@@ -128,7 +127,7 @@ final class CommentContentView: UIView, UIContentView {
             bodyImageView.image = nil
             bodyImageView.kf.indicatorType = .activity
             bodyImageView.kf.setImage(with: bodyImageURL) { [weak self] _ in
-                self?.getCollectionView()?.collectionViewLayout.invalidateLayout()
+                self?.invalidateLayout()
             }
         } else {
             bodyImageView.isHidden = true
@@ -160,5 +159,9 @@ final class CommentContentView: UIView, UIContentView {
             return nil
         }
         return collectionView
+    }
+    
+    private func invalidateLayout() {
+        getCollectionView()?.collectionViewLayout.invalidateLayout()
     }
 }

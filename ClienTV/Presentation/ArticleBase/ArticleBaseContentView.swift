@@ -91,7 +91,9 @@ final class ArticleBaseContentView: UIView, UIContentView {
             nicknameImageView.isHidden = false
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
-            nicknameImageView.kf.setImage(with: nicknameImageURL)
+            nicknameImageView.kf.setImage(with: nicknameImageURL) { [weak self] _ in
+                self?.invalidateLayout()
+            }
             nicknameLabel.isHidden = true
         } else {
             nicknameImageView.isHidden = true
@@ -109,5 +111,16 @@ final class ArticleBaseContentView: UIView, UIContentView {
         hitCountLabel.text = String("\(articleBaseData.hitCount) 조회수")
         commentCountLabel.text = String(articleBaseData.commentCount)
         likeCountLabel.text = String(articleBaseData.likeCount)
+    }
+    
+    private func getCollectionView() -> UICollectionView? {
+        guard let collectionView: UICollectionView = superview?.superview as? UICollectionView else {
+            return nil
+        }
+        return collectionView
+    }
+    
+    private func invalidateLayout() {
+        getCollectionView()?.collectionViewLayout.invalidateLayout()
     }
 }
