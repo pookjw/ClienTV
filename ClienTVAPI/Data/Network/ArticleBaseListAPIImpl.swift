@@ -77,7 +77,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         let document: Document = try SwiftSoup.parse(html)
         guard let elements: [Element] = try document
                 .getElementsByClass("list_content")
-                .first?
+                .first()?
                 .getElementsByTag("div")
                 .filter({ try $0.attr("class").contains("list_item symph_row") }) else {
             throw ArticleBaseListAPIError.parseError

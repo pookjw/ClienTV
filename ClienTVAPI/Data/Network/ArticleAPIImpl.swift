@@ -27,6 +27,7 @@ final class ArticleAPIImpl: ArticleAPI {
             self.configurePromise(promise, path: path)
         }
     }
+    
     private func configurePromise(_ promise: @escaping (Result<Article, Error>) -> Void, path: String) {
         let url: URL = ClienURLFactory.url(path: path)
         
@@ -74,7 +75,7 @@ final class ArticleAPIImpl: ArticleAPI {
         
         let document: Document = try SwiftSoup.parse(html)
         guard let element: Element = try document
-            .getElementsByClass("content_view")
+                .getElementsByClass("content_view")
                 .first() else {
             throw ArticleBaseListAPIError.parseError
         }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F015A0C266DE8BB003A7E52 /* CommentListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A0B266DE8BB003A7E52 /* CommentListAPI.swift */; };
+		4F015A0E266DE93C003A7E52 /* CommentListAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A0D266DE93C003A7E52 /* CommentListAPIImpl.swift */; };
+		4F015A10266E5668003A7E52 /* CommentListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A0F266E5668003A7E52 /* CommentListRepository.swift */; };
+		4F015A12266E568D003A7E52 /* CommentListRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A11266E568D003A7E52 /* CommentListRepositoryImpl.swift */; };
+		4F015A14266E56C6003A7E52 /* CommentListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A13266E56C6003A7E52 /* CommentListUseCase.swift */; };
 		4F1C88BB266CB40A004AC01C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BA266CB40A004AC01C /* Comment.swift */; };
 		4F1C88BD266CB4B0004AC01C /* ArticleAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */; };
 		4F1C88BF266CBEBC004AC01C /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */; };
@@ -120,6 +125,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F015A0B266DE8BB003A7E52 /* CommentListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListAPI.swift; sourceTree = "<group>"; };
+		4F015A0D266DE93C003A7E52 /* CommentListAPIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListAPIImpl.swift; sourceTree = "<group>"; };
+		4F015A0F266E5668003A7E52 /* CommentListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListRepository.swift; sourceTree = "<group>"; };
+		4F015A11266E568D003A7E52 /* CommentListRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListRepositoryImpl.swift; sourceTree = "<group>"; };
+		4F015A13266E56C6003A7E52 /* CommentListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListUseCase.swift; sourceTree = "<group>"; };
 		4F1C88BA266CB40A004AC01C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAPIImpl.swift; sourceTree = "<group>"; };
 		4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
@@ -420,6 +430,8 @@
 				4FF70F482668D36500FDC680 /* ArticleBaseListAPIImpl.swift */,
 				4F55A1DC266A9D0100429B3E /* ArticleAPI.swift */,
 				4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */,
+				4F015A0B266DE8BB003A7E52 /* CommentListAPI.swift */,
+				4F015A0D266DE93C003A7E52 /* CommentListAPIImpl.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -571,6 +583,7 @@
 				4FF70F6F266925EA00FDC680 /* BoardListRepository.swift */,
 				4FF70F732669289900FDC680 /* ArticleBaseListRepository.swift */,
 				4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */,
+				4F015A0F266E5668003A7E52 /* CommentListRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -581,6 +594,7 @@
 				4FF70F7726692B2200FDC680 /* BoardListUseCase.swift */,
 				4FF70F7926692EBD00FDC680 /* ArticleBaseListUseCase.swift */,
 				4F1C88C2266CBF0E004AC01C /* ArticleUseCase.swift */,
+				4F015A13266E56C6003A7E52 /* CommentListUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -591,6 +605,7 @@
 				4FF70F712669261700FDC680 /* BoardListRepositoryImpl.swift */,
 				4FF70F75266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift */,
 				4F1C88C0266CBEDE004AC01C /* ArticleRepositoryImpl.swift */,
+				4F015A11266E568D003A7E52 /* CommentListRepositoryImpl.swift */,
 			);
 			path = RepositoryImplementation;
 			sourceTree = "<group>";
@@ -936,19 +951,24 @@
 				4FF70F472668D35000FDC680 /* ArticleBaseListAPI.swift in Sources */,
 				4FF70F522668E03700FDC680 /* String+toInt.swift in Sources */,
 				4F1C88BD266CB4B0004AC01C /* ArticleAPIImpl.swift in Sources */,
+				4F015A10266E5668003A7E52 /* CommentListRepository.swift in Sources */,
 				4FF70F4526689F0F00FDC680 /* Logger+shared.swift in Sources */,
 				4FF70F4B2668D38B00FDC680 /* ArticleBase.swift in Sources */,
+				4F015A0C266DE8BB003A7E52 /* CommentListAPI.swift in Sources */,
 				4FF70F492668D36500FDC680 /* ArticleBaseListAPIImpl.swift in Sources */,
 				4FF70F4D2668D39C00FDC680 /* Article.swift in Sources */,
 				4FF70F502668D6C800FDC680 /* ClienURLFactory.swift in Sources */,
 				4F1C88BB266CB40A004AC01C /* Comment.swift in Sources */,
+				4F015A12266E568D003A7E52 /* CommentListRepositoryImpl.swift in Sources */,
 				4FF70F3B2667CA2400FDC680 /* Board.swift in Sources */,
 				4F55A1DD266A9D0100429B3E /* ArticleAPI.swift in Sources */,
 				4FF70F382667CA1000FDC680 /* BoardListAPI.swift in Sources */,
 				4FF70F7826692B2200FDC680 /* BoardListUseCase.swift in Sources */,
+				4F015A0E266DE93C003A7E52 /* CommentListAPIImpl.swift in Sources */,
 				4FF70F76266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift in Sources */,
 				4F1C88C1266CBEDE004AC01C /* ArticleRepositoryImpl.swift in Sources */,
 				4F1C88BF266CBEBC004AC01C /* ArticleRepository.swift in Sources */,
+				4F015A14266E56C6003A7E52 /* CommentListUseCase.swift in Sources */,
 				4F1C88C3266CBF0E004AC01C /* ArticleUseCase.swift in Sources */,
 				4FF70F7A26692EBD00FDC680 /* ArticleBaseListUseCase.swift in Sources */,
 				4FF70F3D2667CBE900FDC680 /* BoardListAPIImpl.swift in Sources */,
