@@ -133,7 +133,9 @@ final class CommentContentView: UIView, UIContentView {
         
         //
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
             if let attributedString: NSMutableAttributedString = commentData.bodyHTML.convertToAttributedStringFromHTML()?.mutableCopy() as? NSMutableAttributedString {
                 let totalRange: NSRange = NSMakeRange(0, attributedString.length)
                 attributedString.removeAttribute(NSAttributedString.Key.foregroundColor, range: totalRange)
