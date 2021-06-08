@@ -41,6 +41,8 @@ final class BoardListViewController: UIViewController {
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 100)
+        collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: UICollectionViewListCell.identifier)
+        collectionView.register(UICollectionViewListCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier)
         collectionView.delegate = self
     }
     
@@ -57,44 +59,43 @@ final class BoardListViewController: UIViewController {
             fatalError("collectionView is not configured!")
         }
         
-        let dataSource: BoardListViewModel.DataSource = .init(collectionView: collectionView) { [weak self] (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
-            guard let self = self else { return nil }
-            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
-        }
-        
-        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
-            guard let self = self else { return nil }
+        let dataSource: BoardListViewModel.DataSource = .init(collectionView: collectionView) { (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
+//            guard let self = self else { return nil }
+            //            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
             
-            switch elementKind {
-            case UICollectionView.elementKindSectionHeader:
-                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderItemRegisteration(), for: indexPath)
-            default:
+            guard let cell: UICollectionViewListCell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
             }
-        }
-        
-        return dataSource
-    }
-    
-    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BoardListCellItem> {
-        return .init { (cell, indexPath, cellItem) in
+            
             var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
             
             switch cellItem.dataType {
             case .board(let data):
                 configuration.text = data.name
-//                configuration.secondaryText = data.path
+                configuration.secondaryText = data.path
             }
             
             cell.contentConfiguration = configuration
-        }
-    }
-    
-    private func getHeaderItemRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
-        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
             
-            guard let headerItem: BoardListHeaderItem = self?.viewModel?.getHeaderItem(from: indexPath) else {
-                return
+            return cell
+        }
+        
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
+            guard let self = self else { return nil }
+            
+//            switch elementKind {
+//            case UICollectionView.elementKindSectionHeader:
+//                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderItemRegisteration(), for: indexPath)
+//            default:
+//                return nil
+//            }
+            
+            guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
+                return nil
+            }
+            
+            guard let headerItem: BoardListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
+                return nil
             }
             
             switch headerItem.dataType {
@@ -103,8 +104,42 @@ final class BoardListViewController: UIViewController {
                 configuration.text = data.title
                 headerView.contentConfiguration = configuration
             }
+            
+            return headerView
         }
+        
+        return dataSource
     }
+    
+//    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BoardListCellItem> {
+//        return .init { (cell, indexPath, cellItem) in
+//            var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
+//
+//            switch cellItem.dataType {
+//            case .board(let data):
+//                configuration.text = data.name
+////                configuration.secondaryText = data.path
+//            }
+//
+//            cell.contentConfiguration = configuration
+//        }
+//    }
+//
+//    private func getHeaderItemRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
+//        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
+//
+//            guard let headerItem: BoardListHeaderItem = self?.viewModel?.getHeaderItem(from: indexPath) else {
+//                return
+//            }
+//
+//            switch headerItem.dataType {
+//            case .category(let data):
+//                var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
+//                configuration.text = data.title
+//                headerView.contentConfiguration = configuration
+//            }
+//        }
+//    }
     
     private func configureViewModel() {
         let viewModel: BoardListViewModel = .init(dataSource: makeDataSource())

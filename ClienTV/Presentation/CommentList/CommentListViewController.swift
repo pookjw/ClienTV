@@ -35,6 +35,9 @@ final class CommentListViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: UICollectionViewListCell.identifier)
+        collectionView.register(UICollectionViewListCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier)
         collectionView.delegate = self
     }
     
@@ -53,43 +56,42 @@ final class CommentListViewController: UIViewController {
             fatalError("collectionView is not configured!")
         }
         
-        let dataSource: CommentListViewModel.DataSource = .init(collectionView: collectionView) { [weak self] (collectionView, IndexPath, cellItem) -> UICollectionViewCell? in
-            guard let self = self else { return nil }
-            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: IndexPath, item: cellItem)
-        }
-        
-        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
-            guard let self = self else {
+        let dataSource: CommentListViewModel.DataSource = .init(collectionView: collectionView) { (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
+//            guard let self = self else { return nil }
+//            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
+            
+            guard let cell: UICollectionViewListCell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
             }
             
-            switch elementKind {
-            case UICollectionView.elementKindSectionHeader:
-                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderCellRegisteration(), for: indexPath)
-            default:
-                return nil
-            }
-        }
-        
-        return dataSource
-    }
-    
-    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, CommentListCellItem> {
-        return .init { (cell, indexPath, cellItem) in
             switch cellItem.dataType {
             case .comment(let data):
                 let configuration: CommentConentConfiguration = .init(commentData: data)
                 cell.contentConfiguration = configuration
             }
+            
+            return cell
         }
-    }
-    
-    private func getHeaderCellRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
-        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
+        
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
+//            guard let self = self else {
+//                return nil
+//            }
+//
+//            switch elementKind {
+//            case UICollectionView.elementKindSectionHeader:
+//                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderCellRegisteration(), for: indexPath)
+//            default:
+//                return nil
+//            }
+            
+            guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
+                return nil
+            }
             
             guard let self = self,
                   let headerItem: CommentListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
-                return
+                return nil
             }
             
             switch headerItem.dataType {
@@ -99,8 +101,40 @@ final class CommentListViewController: UIViewController {
                 configuration.textProperties.font = .preferredFont(forTextStyle: .headline)
                 headerView.contentConfiguration = configuration
             }
+            
+            return headerView
         }
+        
+        return dataSource
     }
+    
+//    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, CommentListCellItem> {
+//        return .init { (cell, indexPath, cellItem) in
+//            switch cellItem.dataType {
+//            case .comment(let data):
+//                let configuration: CommentConentConfiguration = .init(commentData: data)
+//                cell.contentConfiguration = configuration
+//            }
+//        }
+//    }
+    
+//    private func getHeaderCellRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
+//        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
+//            
+//            guard let self = self,
+//                  let headerItem: CommentListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
+//                return
+//            }
+//            
+//            switch headerItem.dataType {
+//            case .commentCount(let data):
+//                var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
+//                configuration.text = data.title
+//                configuration.textProperties.font = .preferredFont(forTextStyle: .headline)
+//                headerView.contentConfiguration = configuration
+//            }
+//        }
+//    }
     
     private func configureViewModel() {
         let viewModel: CommentListViewModel = .init(dataSource: makeDataSource())

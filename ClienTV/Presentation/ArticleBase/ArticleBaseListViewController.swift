@@ -37,6 +37,8 @@ final class ArticleBaseListViewController: UIViewController {
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         collectionView.contentInset = .init(top: 0, left: 100, bottom: 0, right: 0)
+        collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: UICollectionViewListCell.identifier)
+        collectionView.register(UICollectionViewListCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier)
         collectionView.delegate = self
     }
     
@@ -55,29 +57,14 @@ final class ArticleBaseListViewController: UIViewController {
             fatalError("collectionView is not configured!")
         }
         
-        let dataSource: ArticleBaseListViewModel.DataSource = .init(collectionView: collectionView) { [weak self] (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
-            guard let self = self else { return nil }
-            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
-        }
-        
-        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
-            guard let self = self else {
+        let dataSource: ArticleBaseListViewModel.DataSource = .init(collectionView: collectionView) { (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
+//            guard let self = self else { return nil }
+//            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
+            
+            guard let cell: UICollectionViewListCell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
             }
             
-            switch elementKind {
-            case UICollectionView.elementKindSectionHeader:
-                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderCellRegisteration(), for: indexPath)
-            default:
-                return nil
-            }
-        }
-        
-        return dataSource
-    }
-    
-    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, ArticleBaseListCellItem> {
-        return .init { (cell, indexPath, cellItem) in
             switch cellItem.dataType {
             case let .articleBase(data):
                 let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data)
@@ -89,24 +76,73 @@ final class ArticleBaseListViewController: UIViewController {
                 configuration.textProperties.font = .preferredFont(forTextStyle: .body)
                 cell.contentConfiguration = configuration
             }
+            
+            return cell
         }
-    }
-    
-    private func getHeaderCellRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
-        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
+        
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
+//            guard let self = self else {
+//                return nil
+//            }
+//
+//            switch elementKind {
+//            case UICollectionView.elementKindSectionHeader:
+//                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderCellRegisteration(), for: indexPath)
+//            default:
+//                return nil
+//            }
+            
+            guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
+                return nil
+            }
             
             guard let self = self,
                 let headerItem: ArticleBaseListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
-                return
+                return nil
             }
             
             switch headerItem.dataType {
             case .articleBaseList:
                 headerView.frame = .zero
-                return
             }
+            
+            return headerView
         }
+        
+        return dataSource
     }
+    
+//    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, ArticleBaseListCellItem> {
+//        return .init { (cell, indexPath, cellItem) in
+//            switch cellItem.dataType {
+//            case let .articleBase(data):
+//                let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data)
+//                cell.contentConfiguration = configuration
+//            case .loadMore:
+//                var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
+//                configuration.text = "더 불러오기..."
+//                configuration.textProperties.alignment = .center
+//                configuration.textProperties.font = .preferredFont(forTextStyle: .body)
+//                cell.contentConfiguration = configuration
+//            }
+//        }
+//    }
+    
+//    private func getHeaderCellRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
+//        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
+//
+//            guard let self = self,
+//                let headerItem: ArticleBaseListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
+//                return
+//            }
+//
+//            switch headerItem.dataType {
+//            case .articleBaseList:
+//                headerView.frame = .zero
+//                return
+//            }
+//        }
+//    }
     
     private func configureViewModel() {
         let viewModel: ArticleBaseListViewModel = .init(dataSource: makeDataSource())
