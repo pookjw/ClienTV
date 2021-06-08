@@ -150,7 +150,7 @@ final class CommentContentView: UIView, UIContentView {
             bodyLabel.attributedText = attributedString.copy() as? NSAttributedString
             
             // attributedText의 경우 Label에 frame 크기가 정의되기 까지 시간이 걸리므로, 직접 바로 정의해준다.
-            bodyLabelHeightLayout.constant = rect.height
+            bodyLabelHeightLayout.constant = ceil(rect.height)
         }
     }
     

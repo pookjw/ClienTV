@@ -171,8 +171,6 @@ final class CommentListAPIImpl: CommentListAPI {
         
         let timestamp: Date
         
-        print(try element.getElementsByClass("timestamp").first()?.ownText())
-        
         if let timestampString: String = try element
             .getElementsByClass("timestamp")
             .first()?
