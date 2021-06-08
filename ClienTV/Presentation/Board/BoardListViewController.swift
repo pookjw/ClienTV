@@ -72,7 +72,7 @@ final class BoardListViewController: UIViewController {
             switch cellItem.dataType {
             case .board(let data):
                 configuration.text = data.name
-                configuration.secondaryText = data.path
+//                configuration.secondaryText = data.path
             }
             
             cell.contentConfiguration = configuration

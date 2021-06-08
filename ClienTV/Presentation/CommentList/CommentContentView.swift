@@ -122,6 +122,7 @@ final class CommentContentView: UIView, UIContentView {
             bodyImageView.image = nil
             bodyImageView.kf.indicatorType = .activity
             bodyImageView.kf.setImage(with: bodyImageURL) { [weak self] _ in
+                self?.layoutSubviews()
                 self?.invalidateLayout()
             }
         } else {
