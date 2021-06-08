@@ -172,11 +172,23 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         
         //
         
-        let hitCount: Int = try element
-            .getElementsByClass("hit")
-            .first()?
-            .ownText()
-            .toInt() ?? 0
+        let hitCount: Int = try {
+            let normalHitCount: Int? = try element
+                .getElementsByClass("hit")
+                .first()?
+                .ownText()
+                .toInt()
+            
+            let literalHitCount: Float = (try element
+                .getElementsByClass("hit")
+                .first()?
+                .ownText()
+                .components(separatedBy: " ")
+                .first?
+                .toFloat() ?? 0) * 1000
+            
+            return normalHitCount ?? Int(literalHitCount)
+        }()
         
         //
         
