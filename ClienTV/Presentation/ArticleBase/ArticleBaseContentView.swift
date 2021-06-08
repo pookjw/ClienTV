@@ -31,19 +31,13 @@ final class ArticleBaseContentView: UIView, UIContentView {
     private var articleBaseContentConfiguration: ArticleBaseContentConfiguration!
     private var dateFormatter: DateFormatter?
     
-    static func initFromConfiguration(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) -> ArticleBaseContentView {
-        let contentView: ArticleBaseContentView = .loadFromNib()
-        contentView.configure(articleBaseContentConfiguration)
-        return contentView
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureDateFormatter()
         clearContents()
     }
     
-    private func configure(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
+    func update(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
         self.articleBaseContentConfiguration = articleBaseContentConfiguration
         clearContents()
         configureViews()

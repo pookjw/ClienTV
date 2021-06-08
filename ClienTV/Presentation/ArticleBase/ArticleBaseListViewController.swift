@@ -68,7 +68,17 @@ final class ArticleBaseListViewController: UIViewController {
             switch cellItem.dataType {
             case let .articleBase(data):
                 let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data)
-                cell.contentConfiguration = configuration
+                
+                if let contentView: ArticleBaseContentView = cell.contentView as? ArticleBaseContentView,
+                   cell.contentConfiguration is ArticleBaseContentConfiguration {
+                    
+                    // Reuse
+                    cell.contentConfiguration = configuration
+                    contentView.update(configuration)
+                    
+                } else {
+                    cell.contentConfiguration = configuration
+                }
             case .loadMore:
                 var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = "더 불러오기..."

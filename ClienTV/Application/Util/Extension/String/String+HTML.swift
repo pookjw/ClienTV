@@ -12,7 +12,7 @@ extension String {
         var attributedText: NSAttributedString?
         let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [.documentType: NSAttributedString.DocumentType.html,
                                                                            .characterEncoding: String.Encoding.utf8.rawValue]
-        if let data = data(using: .unicode, allowLossyConversion: true),
+        if let data = data(using: .utf8),
            let attrStr = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
             attributedText = attrStr
             

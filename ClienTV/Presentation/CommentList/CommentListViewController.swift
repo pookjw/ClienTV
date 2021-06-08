@@ -66,8 +66,18 @@ final class CommentListViewController: UIViewController {
             
             switch cellItem.dataType {
             case .comment(let data):
-                let configuration: CommentConentConfiguration = .init(commentData: data)
-                cell.contentConfiguration = configuration
+                let configuration: CommentContentConfiguration = .init(commentData: data)
+                
+                if let contentView: CommentContentView = cell.contentView as? CommentContentView,
+                   cell.contentConfiguration is CommentContentConfiguration {
+                    
+                    // Reuse
+                    cell.contentConfiguration = configuration
+                    contentView.update(configuration)
+                    
+                } else {
+                    cell.contentConfiguration = configuration
+                }
             }
             
             return cell

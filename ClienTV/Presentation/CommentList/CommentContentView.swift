@@ -24,18 +24,12 @@ final class CommentContentView: UIView, UIContentView {
             return commentContentConfiguration
         }
         set {
-            commentContentConfiguration = newValue as? CommentConentConfiguration
+            commentContentConfiguration = newValue as? CommentContentConfiguration
         }
     }
     
-    private var commentContentConfiguration: CommentConentConfiguration!
+    private var commentContentConfiguration: CommentContentConfiguration!
     private var dateFormatter: DateFormatter?
-    
-    static func initFromConfiguration(_ commentContentConfiguration: CommentConentConfiguration) -> CommentContentView {
-        let commentView: CommentContentView = .loadFromNib()
-        commentView.configure(commentContentConfiguration: commentContentConfiguration)
-        return commentView
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,7 +37,7 @@ final class CommentContentView: UIView, UIContentView {
         clearContents()
     }
     
-    private func configure(commentContentConfiguration: CommentConentConfiguration) {
+    func update(_ commentContentConfiguration: CommentContentConfiguration) {
         self.commentContentConfiguration = commentContentConfiguration
         clearContents()
         configureViews()
@@ -69,7 +63,7 @@ final class CommentContentView: UIView, UIContentView {
     }
     
     private func configureViews() {
-        guard let commentContentConfiguration: CommentConentConfiguration = configuration as? CommentConentConfiguration else {
+        guard let commentContentConfiguration: CommentContentConfiguration = configuration as? CommentContentConfiguration else {
             Logger.error("configuration is not a type of CommentConentConfiguration")
             return
         }

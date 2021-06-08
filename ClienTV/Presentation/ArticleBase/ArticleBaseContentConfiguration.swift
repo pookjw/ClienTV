@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import SnapKit
 
 struct ArticleBaseContentConfiguration: UIContentConfiguration {
     let articleBaseData: ArticleBaseListCellItem.ArticleBaseData
     
     func makeContentView() -> UIView & UIContentView {
-        let contentView: ArticleBaseContentView = .initFromConfiguration(self)
+        let contentView: ArticleBaseContentView = .loadFromNib()
+        contentView.update(self)
         return contentView
     }
     
