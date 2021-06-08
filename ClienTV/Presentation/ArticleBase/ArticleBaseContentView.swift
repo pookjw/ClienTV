@@ -19,7 +19,6 @@ final class ArticleBaseContentView: UIView, UIContentView {
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
     
-    var articleBaseContentConfiguration: ArticleBaseContentConfiguration!
     var configuration: UIContentConfiguration {
         get {
             return articleBaseContentConfiguration
@@ -29,6 +28,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
         }
     }
     
+    private var articleBaseContentConfiguration: ArticleBaseContentConfiguration!
     private var dateFormatter: DateFormatter?
     
     static func initFromConfiguration(_ articleBaseContentConfiguration: ArticleBaseContentConfiguration) -> ArticleBaseContentView {

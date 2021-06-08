@@ -19,7 +19,6 @@ final class CommentContentView: UIView, UIContentView {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var bodyLabelHeightLayout: NSLayoutConstraint!
     
-    var commentContentConfiguration: CommentConentConfiguration!
     var configuration: UIContentConfiguration {
         get {
             return commentContentConfiguration
@@ -29,6 +28,7 @@ final class CommentContentView: UIView, UIContentView {
         }
     }
     
+    private var commentContentConfiguration: CommentConentConfiguration!
     private var dateFormatter: DateFormatter?
     
     static func initFromConfiguration(_ commentContentConfiguration: CommentConentConfiguration) -> CommentContentView {
