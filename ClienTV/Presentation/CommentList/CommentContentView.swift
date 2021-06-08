@@ -25,6 +25,7 @@ final class CommentContentView: UIView, UIContentView {
             return commentContentConfiguration
         }
         set {
+            commentContentConfiguration = newValue as? CommentConentConfiguration
         }
     }
     

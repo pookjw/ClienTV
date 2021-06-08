@@ -25,6 +25,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
             return articleBaseContentConfiguration
         }
         set {
+            articleBaseContentConfiguration = newValue as? ArticleBaseContentConfiguration
         }
     }
     
