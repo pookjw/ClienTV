@@ -133,19 +133,21 @@ final class CommentContentView: UIView, UIContentView {
         
         //
         
-        if let attributedString: NSMutableAttributedString = commentData.bodyHTML.convertToAttributedStringFromHTML()?.mutableCopy() as? NSMutableAttributedString {
-            let totalRange: NSRange = NSMakeRange(0, attributedString.length)
-            attributedString.removeAttribute(NSAttributedString.Key.foregroundColor, range: totalRange)
-            attributedString.removeAttribute(NSAttributedString.Key.font, range: totalRange)
-            attributedString.addAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)], range: totalRange)
-            
-            let rect: CGRect = attributedString.boundingRect(with: .init(width: frame.width, height: .greatestFiniteMagnitude),
-                                                              options: .usesLineFragmentOrigin,
-                                                              context: nil)
-            bodyLabel.attributedText = attributedString.copy() as? NSAttributedString
-            
-            // attributedText의 경우 Label에 frame 크기가 정의되기 까지 시간이 걸리므로, 직접 바로 정의해준다.
-            bodyLabelHeightLayout.constant = ceil(rect.height)
+        DispatchQueue.main.async {
+            if let attributedString: NSMutableAttributedString = commentData.bodyHTML.convertToAttributedStringFromHTML()?.mutableCopy() as? NSMutableAttributedString {
+                let totalRange: NSRange = NSMakeRange(0, attributedString.length)
+                attributedString.removeAttribute(NSAttributedString.Key.foregroundColor, range: totalRange)
+                attributedString.removeAttribute(NSAttributedString.Key.font, range: totalRange)
+                attributedString.addAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)], range: totalRange)
+                
+                let rect: CGRect = attributedString.boundingRect(with: .init(width: self.frame.width, height: .greatestFiniteMagnitude),
+                                                                  options: .usesLineFragmentOrigin,
+                                                                  context: nil)
+                self.bodyLabel.attributedText = attributedString.copy() as? NSAttributedString
+                
+                // attributedText의 경우 Label에 frame 크기가 정의되기 까지 시간이 걸리므로, 직접 바로 정의해준다.
+                self.bodyLabelHeightLayout.constant = ceil(rect.height)
+            }
         }
     }
     
