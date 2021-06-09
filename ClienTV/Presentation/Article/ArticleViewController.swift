@@ -22,7 +22,7 @@ final class ArticleViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var commentListButton: UIButton!
     
-    private var dateFormatter: GlobalDateFormatter = .init()
+    private var dateFormatter: ClienDateFormatter = .init()
     private var viewModel: ArticleViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     

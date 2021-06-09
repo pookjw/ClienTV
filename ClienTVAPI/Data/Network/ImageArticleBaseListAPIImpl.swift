@@ -11,7 +11,7 @@ import OSLog
 import SwiftSoup
 
 final class ImageArticleBaseListAPIImpl: ImageArticleBaseListAPI {
-    private let dateFormatter: DateFormatter = .init()
+    private let dateFormatter: ClienDateFormatter = .init()
     private var cancallableBag: Set<AnyCancellable> = .init()
 
     func getImageArticleBaseList(page: Int) -> Future<[ImageArticleBase], Error> {
@@ -127,5 +127,104 @@ final class ImageArticleBaseListAPIImpl: ImageArticleBaseListAPI {
             .filter { $0.hasAttr("title") }
             .first?
             .attr("title") ?? ""
+        
+        //
+        
+        let previewBody: String = try element
+            .getElementsByClass("card_preview")
+            .first()?
+            .getElementsByTag("span")
+            .first()?
+            .ownText() ?? ""
+        
+        //
+        
+        let timestamp: Date
+        
+        if let timestampString: String = try element
+            .getElementsByClass("timestamp")
+            .first()?
+            .ownText()
+        {
+            timestamp = dateFormatter.date(from: timestampString) ?? Date(timeIntervalSince1970: 0)
+        } else {
+            Logger.warning("no timestamp")
+            timestamp = Date(timeIntervalSince1970: 0)
+        }
+        
+        //
+        
+        let commentCount: Int = try element
+            .getElementsByClass("list_reply reply_symph")
+            .first()?
+            .select("span")
+            .first(where: { try $0.attr("class") == "rSymph05" })?
+            .ownText()
+            .toInt() ?? 0 // 댓글이 없는 글은 이 값이 없을 수 있음
+        
+        //
+        
+        let likeCount: Int = try element
+            .getElementsByClass("list_symph view_symph")
+            .first(where: { try $0.attr("data-role") == "list-like-count" })?
+            .select("span")
+            .first()?
+            .ownText()
+            .toInt() ?? 0
+        
+        //
+        
+        let nickname: String
+        let nicknameImageURL: URL?
+        
+        if let nicknameElement: Element = try element
+            .getElementsByClass("nickname")
+            .first()
+        {
+            
+            if let imgElement: Element = nicknameElement
+                .children()
+                .first(where: { $0.tagName() == "img" })
+            {
+                nickname = try imgElement.attr("alt")
+                let nicknameImageString: String = try imgElement.attr("src")
+                nicknameImageURL = URL(string: nicknameImageString)
+            } else if let srcElement: Element = nicknameElement
+                        .children()
+                        .first(where: { $0.tagName() == "span" })
+            {
+                nickname = srcElement.ownText()
+                nicknameImageURL = nil
+            } else {
+                Logger.warning("no nickname (1)")
+                nickname = "(no nickname)"
+                nicknameImageURL = nil
+            }
+            
+        } else {
+            Logger.warning("no nickname (2)")
+            nickname = "(no nickname)"
+            nicknameImageURL = nil
+        }
+        
+        //
+        
+        let path: String = try element
+            .getElementsByClass("card_subject")
+            .first()?
+            .attr("href") ?? ""
+        
+        //
+        
+        return .init(previewImageURL: previewImageURL,
+                     category: category,
+                     title: title,
+                     previewBody: previewBody,
+                     timestamp: timestamp,
+                     likeCount: likeCount,
+                     commentCount: commentCount,
+                     nickname: nickname,
+                     nicknameImageURL: nicknameImageURL,
+                     path: path)
     }
 }

@@ -30,7 +30,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
     }
     
     private var articleBaseContentConfiguration: ArticleBaseContentConfiguration!
-    private var dateFormatter: GlobalDateFormatter = .init()
+    private var dateFormatter: ClienDateFormatter = .init()
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -30,7 +30,7 @@ final class CommentContentView: UIView, UIContentView {
     }
     
     private var commentContentConfiguration: CommentContentConfiguration!
-    private var dateFormatter: GlobalDateFormatter = .init()
+    private var dateFormatter: ClienDateFormatter = .init()
     
     override func awakeFromNib() {
         super.awakeFromNib()

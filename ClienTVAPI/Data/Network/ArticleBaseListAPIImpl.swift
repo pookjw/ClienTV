@@ -11,7 +11,7 @@ import OSLog
 import SwiftSoup
 
 final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
-    private let dateFormatter: GlobalDateFormatter = .init()
+    private let dateFormatter: ClienDateFormatter = .init()
     private var cancallableBag: Set<AnyCancellable> = .init()
     
     func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {

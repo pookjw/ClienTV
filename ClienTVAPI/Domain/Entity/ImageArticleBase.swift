@@ -13,8 +13,9 @@ public struct ImageArticleBase {
     public let title: String
     public let previewBody: String
     public let timestamp: Date
+    public let likeCount: Int
     public let commentCount: Int
-    public let hitCount: Int
     public let nickname: String
     public let nicknameImageURL: URL?
+    public let path: String
 }

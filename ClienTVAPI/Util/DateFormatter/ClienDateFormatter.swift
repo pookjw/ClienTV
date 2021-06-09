@@ -1,5 +1,5 @@
 //
-//  GlobalDateFormatter.swift
+//  ClienDateFormatter.swift
 //  ClienTV
 //
 //  Created by Jinwoo Kim on 6/9/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class GlobalDateFormatter: DateFormatter {
+public final class ClienDateFormatter: DateFormatter {
     override public init() {
         super.init()
         setAttributes()
