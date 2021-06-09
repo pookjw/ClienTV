@@ -44,9 +44,7 @@ final class ArticleBaseListViewController: UIViewController {
     
     private func getSectionProvider() -> UICollectionViewCompositionalLayoutSectionProvider {
         return { (section: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            var configuration: UICollectionLayoutListConfiguration = .init(appearance: .grouped)
-            
-            configuration.headerMode = .supplementary
+            let configuration: UICollectionLayoutListConfiguration = .init(appearance: .grouped)
             
             return .list(using: configuration, layoutEnvironment: layoutEnvironment)
         }
@@ -59,8 +57,6 @@ final class ArticleBaseListViewController: UIViewController {
         
         let dataSource: ArticleBaseListViewModel.DataSource = .init(collectionView: collectionView, cellProvider: getCellProvider())
         
-        dataSource.supplementaryViewProvider = getSupplementaryViewProvider()
-        
         return dataSource
     }
     
@@ -72,7 +68,7 @@ final class ArticleBaseListViewController: UIViewController {
             }
             
             switch cellItem.dataType {
-            case let .articleBase(data):
+            case .articleBase(let data):
                 let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data)
                 
                 if let contentView: ArticleBaseContentView = cell.contentView as? ArticleBaseContentView,
@@ -94,27 +90,6 @@ final class ArticleBaseListViewController: UIViewController {
             }
             
             return cell
-        }
-    }
-    
-    private func getSupplementaryViewProvider() -> ArticleBaseListViewModel.DataSource.SupplementaryViewProvider {
-        return { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
-            
-            guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
-                return nil
-            }
-            
-            guard let self = self,
-                let headerItem: ArticleBaseListHeaderItem = self.viewModel?.getHeaderItem(from: indexPath) else {
-                return nil
-            }
-            
-            switch headerItem.dataType {
-            case .articleBaseList:
-                headerView.frame = .zero
-            }
-            
-            return headerView
         }
     }
     
@@ -153,7 +128,6 @@ final class ArticleBaseListViewController: UIViewController {
                 }
             } receiveValue: { [weak self] reset in
                 guard let self = self else { return }
-                guard !self.viewModel.isItemEmpty else { return }
                 
                 if reset {
                     self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)

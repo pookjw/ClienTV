@@ -1,25 +1,23 @@
 //
-//  ArticleBaseListModel.swift
+//  ImageArticleBaseListModel.swift
 //  ClienTV
 //
-//  Created by Jinwoo Kim on 6/4/21.
+//  Created by Jinwoo Kim on 6/10/21.
 //
 
 import Foundation
 
-// MARK: - ArticleBaseListHeaderItem
-
-struct ArticleBaseListHeaderItem: Equatable, Hashable {
-    static func ==(lhs: ArticleBaseListHeaderItem, rhs: ArticleBaseListHeaderItem) -> Bool {
+struct ImageArticleBaseListHeaderItem: Equatable, Hashable {
+    static func ==(lhs: ImageArticleBaseListHeaderItem, rhs: ImageArticleBaseListHeaderItem) -> Bool {
         return lhs.dataType == rhs.dataType
     }
     
     enum DataType: Equatable, Hashable {
-        case articleBaseList
+        case imageArticleBaseList
         
         static func ==(lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
-            case (.articleBaseList, .articleBaseList):
+            case (.imageArticleBaseList, .imageArticleBaseList):
                 return true
             }
         }
@@ -28,23 +26,23 @@ struct ArticleBaseListHeaderItem: Equatable, Hashable {
     let dataType: DataType
 }
 
-extension ArticleBaseListHeaderItem {
+extension ImageArticleBaseListHeaderItem {
 }
 
 // MARK: - ArticleBaseListCellItem
 
-struct ArticleBaseListCellItem: Equatable, Hashable {
-    static func ==(lhs: ArticleBaseListCellItem, rhs: ArticleBaseListCellItem) -> Bool {
+struct ImageArticleBaseListCellItem: Equatable, Hashable {
+    static func ==(lhs: ImageArticleBaseListCellItem, rhs: ImageArticleBaseListCellItem) -> Bool {
         return lhs.dataType == rhs.dataType
     }
     
     enum DataType: Equatable, Hashable {
-        case articleBase(data: ArticleBaseData)
+        case imageArticleBase(data: ImageArticleBaseData)
         case loadMore
         
         static func ==(lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
-            case let (.articleBase(lhsData), .articleBase(rhsData)):
+            case let (.imageArticleBase(lhsData), .imageArticleBase(rhsData)):
                 return lhsData == rhsData
             case (.loadMore, .loadMore):
                 return true
@@ -57,29 +55,30 @@ struct ArticleBaseListCellItem: Equatable, Hashable {
     let dataType: DataType
 }
 
-extension ArticleBaseListCellItem {
-    struct ArticleBaseData: Equatable, Hashable {
-        static func ==(lhs: ArticleBaseData, rhs: ArticleBaseData) -> Bool {
-            return lhs.likeCount == rhs.likeCount &&
+extension ImageArticleBaseListCellItem {
+    struct ImageArticleBaseData: Equatable, Hashable {
+        static func ==(lhs: ImageArticleBaseData, rhs: ImageArticleBaseData) -> Bool {
+            return lhs.previewImageURL == rhs.previewImageURL &&
                 lhs.category == rhs.category &&
-                lhs.likeCount == rhs.likeCount &&
                 lhs.title == rhs.title &&
+                lhs.previewBody == rhs.previewBody &&
+                lhs.timestamp == rhs.timestamp &&
+                lhs.likeCount == rhs.likeCount &&
                 lhs.commentCount == rhs.commentCount &&
                 lhs.nickname == rhs.nickname &&
                 lhs.nicknameImageURL == rhs.nicknameImageURL &&
-                lhs.hitCount == rhs.hitCount &&
-                lhs.timestamp == rhs.timestamp &&
                 lhs.path == rhs.path
         }
         
-        let likeCount: Int
-        let category: String?
+        let previewImageURL: URL?
+        let category: String
         let title: String
+        let previewBody: String
+        let timestamp: Date
+        let likeCount: Int
         let commentCount: Int
         let nickname: String
         let nicknameImageURL: URL?
-        let hitCount: Int
-        let timestamp: Date
         let path: String
     }
 }

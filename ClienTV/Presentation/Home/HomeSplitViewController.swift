@@ -8,8 +8,13 @@
 import UIKit
 
 final class HomeSplitViewController: UISplitViewController {
-    private weak var boardListViewController: BoardListViewController? = nil
-    private weak var articleBaseListViewController: ArticleBaseListViewController? = nil
+    private struct Const {
+        static let imageBoardPath: String = "/service/board/image"
+    }
+    
+    private weak var boardListViewController: BoardListViewController!
+    private var articleBaseListViewController: ArticleBaseListViewController!
+    private var imageArticleBaseListViewController: ImageArticleBaseListViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +29,35 @@ final class HomeSplitViewController: UISplitViewController {
     private func configureViewControllers() {
         let boardListViewController: BoardListViewController = .init()
         let articleBaseListViewController: ArticleBaseListViewController = .init()
+        let imageArticleBaseListViewController: ImageArticleBaseListViewController = .init()
         
         self.boardListViewController = boardListViewController
         self.articleBaseListViewController = articleBaseListViewController
+        self.imageArticleBaseListViewController = imageArticleBaseListViewController
         
         boardListViewController.delegate = self
         
         boardListViewController.loadViewIfNeeded()
         articleBaseListViewController.loadViewIfNeeded()
+        imageArticleBaseListViewController.loadViewIfNeeded()
         
         viewControllers = [boardListViewController, articleBaseListViewController]
+    }
+    
+    private func handleBoardPathEvent(_ boardPath: String) {
+        switch boardPath {
+        case Const.imageBoardPath:
+            viewControllers = [boardListViewController, imageArticleBaseListViewController]
+            imageArticleBaseListViewController.requestImageArticleBaseList()
+        default:
+            viewControllers = [boardListViewController, articleBaseListViewController]
+            articleBaseListViewController.requestArticleBaseList(with: boardPath)
+        }
     }
 }
 
 extension HomeSplitViewController: BoardListViewControllerDelegate {
     func boardListViewControllerDidTapCell(_ viewController: BoardListViewController, boardPath: String) {
-        articleBaseListViewController?.requestArticleBaseList(with: boardPath)
+        handleBoardPathEvent(boardPath)
     }
 }

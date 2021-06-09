@@ -16,11 +16,6 @@ final class ArticleBaseListViewModel {
     
     /// 다음 페이지 불러올 때, 현재 위치를 잡아주기 위함
     var cacheIndexPath: IndexPath? = nil
-    var isItemEmpty: Bool {
-        let snapshot: Snapshot = dataSource.snapshot()
-        let isItemEmpty: Bool = snapshot.numberOfItems == 0
-        return isItemEmpty
-    }
     private(set) var boardPath: String?
     private let dataSource: DataSource
     private let useCase: ArticleBaseListUseCase
@@ -33,23 +28,18 @@ final class ArticleBaseListViewModel {
         self.useCase = useCase
     }
     
-    func getHeaderItem(from indexPath: IndexPath) -> ArticleBaseListHeaderItem? {
-        let snapshot: Snapshot = dataSource.snapshot()
-        return snapshot.getHeaderItem(from: indexPath)
-    }
-    
     func getCellItem(from indexPath: IndexPath) -> ArticleBaseListCellItem? {
         let snapshot: Snapshot = dataSource.snapshot()
         return snapshot.getCellItem(from: indexPath)
     }
     
-    func requestFirstArticleBaseList(boardPath: String) -> Future<Bool, Error>  {
+    func requestFirstArticleBaseList(boardPath: String) -> Future<Bool, Error> {
         self.boardPath = boardPath
         currentBoardPage = 0
         return requestArticleBaseList(shouldResetSnapshot: true)
     }
     
-    func requestNextArticleBaseList() -> Future<Bool, Error>  {
+    func requestNextArticleBaseList() -> Future<Bool, Error> {
         currentBoardPage += 1
         return requestArticleBaseList(shouldResetSnapshot: false)
     }
@@ -89,26 +79,26 @@ final class ArticleBaseListViewModel {
             snapshot.deleteAllItems()
         }
         
-        let articleBaseListHeaderItem: ArticleBaseListHeaderItem = {
-            if let articleBaseListHeaderItem: ArticleBaseListHeaderItem = snapshot
+        let headerItem: ArticleBaseListHeaderItem = {
+            if let headerItem: ArticleBaseListHeaderItem = snapshot
                 .sectionIdentifiers
                 .first(where: { $0.dataType == .articleBaseList })
             {
-                return articleBaseListHeaderItem
+                return headerItem
             } else {
-                let articleBaseListHeaderItem: ArticleBaseListHeaderItem = .init(dataType: .articleBaseList)
-                snapshot.appendSections([articleBaseListHeaderItem])
-                return articleBaseListHeaderItem
+                let headerItem: ArticleBaseListHeaderItem = .init(dataType: .articleBaseList)
+                snapshot.appendSections([headerItem])
+                return headerItem
             }
         }()
         
-        let oldArticleBaseListCellItems: [ArticleBaseListCellItem] = snapshot.itemIdentifiers(inSection: articleBaseListHeaderItem)
-        let articleBaseListCellItems: [ArticleBaseListCellItem] = createCellItems(from: articleBaseList, oldCellItems: oldArticleBaseListCellItems)
+        let oldCellItems: [ArticleBaseListCellItem] = snapshot.itemIdentifiers(inSection: headerItem)
+        let newCellItems: [ArticleBaseListCellItem] = createCellItems(from: articleBaseList, oldCellItems: oldCellItems)
         let loadMoreCellItem: ArticleBaseListCellItem = .init(dataType: .loadMore)
         
-        snapshot.appendItems(articleBaseListCellItems, toSection: articleBaseListHeaderItem)
+        snapshot.appendItems(newCellItems, toSection: headerItem)
         snapshot.deleteItems([loadMoreCellItem])
-        snapshot.appendItems([loadMoreCellItem], toSection: articleBaseListHeaderItem)
+        snapshot.appendItems([loadMoreCellItem], toSection: headerItem)
         
         dataSource.apply(snapshot, animatingDifferences: false)
     }
@@ -116,7 +106,7 @@ final class ArticleBaseListViewModel {
     // MARK: - Helper
     private func createCellItems(from articleBaseList: [ArticleBase], oldCellItems: [ArticleBaseListCellItem]) -> [ArticleBaseListCellItem] {
         let cellItems: [ArticleBaseListCellItem] = articleBaseList
-            .compactMap { articleBase -> ArticleBaseListCellItem?  in
+            .compactMap { articleBase -> ArticleBaseListCellItem? in
                 let articleBaseData: ArticleBaseListCellItem.ArticleBaseData = .init(likeCount: articleBase.likeCount,
                                                                                      category: articleBase.category,
                                                                                      title: articleBase.title,

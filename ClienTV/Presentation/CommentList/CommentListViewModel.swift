@@ -14,11 +14,6 @@ final class CommentListViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<CommentListHeaderItem, CommentListCellItem>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<CommentListHeaderItem, CommentListCellItem>
     
-    var isItemEmpty: Bool {
-        let snapshot: Snapshot = dataSource.snapshot()
-        let isItemEmpty: Bool = snapshot.numberOfItems == 0
-        return isItemEmpty
-    }
     private(set) var boardPath: String?
     private(set) var articlePath: String?
     private let dataSource: DataSource
