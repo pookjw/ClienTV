@@ -11,12 +11,8 @@ import OSLog
 import SwiftSoup
 
 final class CommentListAPIImpl: CommentListAPI {
-    private let dateFormatter: DateFormatter = .init()
+    private let dateFormatter: GlobalDateFormatter = .init()
     private var cancallableBag: Set<AnyCancellable> = .init()
-    
-    init() {
-        configureDateFormatter()
-    }
     
     func getCommentList(path: String) -> Future<[Comment], Error> {
         return .init { [weak self] promise in
@@ -225,11 +221,5 @@ final class CommentListAPIImpl: CommentListAPI {
                                      bodyHTML: bodyHTML)
         
         return comment
-    }
-    
-    private func configureDateFormatter() {
-        // TimeZone offset 제거
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
 }

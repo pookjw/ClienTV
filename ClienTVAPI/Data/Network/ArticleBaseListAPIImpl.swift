@@ -11,12 +11,8 @@ import OSLog
 import SwiftSoup
 
 final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
-    private let dateFormatter: DateFormatter = .init()
+    private let dateFormatter: GlobalDateFormatter = .init()
     private var cancallableBag: Set<AnyCancellable> = .init()
-    
-    init() {
-        configureDateFormatter()
-    }
     
     func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {
         return .init { [weak self] promise in
@@ -75,6 +71,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         }
         
         let document: Document = try SwiftSoup.parse(html)
+        
         guard let elements: [Element] = try document
                 .getElementsByClass("list_content")
                 .first()?
@@ -129,7 +126,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
         
         let commentCount: Int = try element
             .getElementsByClass("list_reply reply_symph")
-            .first?
+            .first()?
             .select("span")
             .first(where: { try $0.attr("class") == "rSymph05" })?
             .ownText()
@@ -218,11 +215,5 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
                      hitCount: hitCount,
                      timestamp: timestamp,
                      path: path)
-    }
-    
-    private func configureDateFormatter() {
-        // TimeZone offset 제거
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
 }

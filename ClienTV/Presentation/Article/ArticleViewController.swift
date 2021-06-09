@@ -22,7 +22,7 @@ final class ArticleViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var commentListButton: UIButton!
     
-    private var dateFormatter: DateFormatter?
+    private var dateFormatter: GlobalDateFormatter = .init()
     private var viewModel: ArticleViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
@@ -30,7 +30,6 @@ final class ArticleViewController: UIViewController {
         super.viewDidLoad()
         setAttributes()
         clearContents()
-        configureDateFormatter()
         configureViewModel()
     }
     
@@ -59,14 +58,6 @@ final class ArticleViewController: UIViewController {
         bodyTextView.text = nil
         commentListButton.isEnabled = false
         commentListButton.setTitle(nil, for: .normal)
-    }
-    
-    private func configureDateFormatter() {
-        let dateFormatter: DateFormatter = .init()
-        self.dateFormatter = dateFormatter
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
     private func configureViewModel() {
@@ -111,7 +102,7 @@ final class ArticleViewController: UIViewController {
         
         nicknameLabel.text = articleBase.nickname
         
-        timestampLabel.text = dateFormatter?.string(from: articleBase.timestamp)
+        timestampLabel.text = dateFormatter.string(from: articleBase.timestamp)
         hitCountLabel.text = String("\(articleBase.hitCount) 조회수")
         likeCountLabel.text = String("\(articleBase.likeCount) 공감수")
         

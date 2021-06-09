@@ -8,6 +8,7 @@
 import UIKit
 import OSLog
 import Kingfisher
+import ClienTVAPI
 
 final class CommentContentView: UIView, UIContentView {
     @IBOutlet weak var replyImageView: UIImageView!
@@ -29,11 +30,10 @@ final class CommentContentView: UIView, UIContentView {
     }
     
     private var commentContentConfiguration: CommentContentConfiguration!
-    private var dateFormatter: DateFormatter?
+    private var dateFormatter: GlobalDateFormatter = .init()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureDateFormatter()
         clearContents()
     }
     
@@ -41,14 +41,6 @@ final class CommentContentView: UIView, UIContentView {
         self.commentContentConfiguration = commentContentConfiguration
         clearContents()
         configureViews()
-    }
-    
-    private func configureDateFormatter() {
-        let dateFormatter: DateFormatter = .init()
-        self.dateFormatter = dateFormatter
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
     private func clearContents() {
@@ -109,7 +101,7 @@ final class CommentContentView: UIView, UIContentView {
         
         //
         
-        timestampLabel.text = dateFormatter?.string(from: commentData.timestamp)
+        timestampLabel.text = dateFormatter.string(from: commentData.timestamp)
         
         //
         

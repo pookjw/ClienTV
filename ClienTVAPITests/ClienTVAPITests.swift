@@ -122,4 +122,26 @@ final class ClienTVAPITests: XCTestCase {
         
         semaphore.wait()
     }
+    
+    func testImageArticleBaseListAPI() {
+        let semaphore: DispatchSemaphore = .init(value: 0)
+        let api: ImageArticleBaseListAPI = ImageArticleBaseListAPIImpl()
+        
+        api.getImageArticleBaseList(page: 0)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
+                case .finished:
+                    break
+                }
+                semaphore.signal()
+            } receiveValue: { ImageArticleBase in
+                Logger.info(ImageArticleBase)
+                semaphore.signal()
+            }
+            .store(in: &self.cancallableBag)
+        
+        semaphore.wait()
+    }
 }

@@ -8,6 +8,7 @@
 import UIKit
 import OSLog
 import Kingfisher
+import ClienTVAPI
 
 final class ArticleBaseContentView: UIView, UIContentView {
     @IBOutlet weak var categoryLabel: UILabel!
@@ -29,11 +30,10 @@ final class ArticleBaseContentView: UIView, UIContentView {
     }
     
     private var articleBaseContentConfiguration: ArticleBaseContentConfiguration!
-    private var dateFormatter: DateFormatter?
+    private var dateFormatter: GlobalDateFormatter = .init()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureDateFormatter()
         clearContents()
     }
     
@@ -41,14 +41,6 @@ final class ArticleBaseContentView: UIView, UIContentView {
         self.articleBaseContentConfiguration = articleBaseContentConfiguration
         clearContents()
         configureViews()
-    }
-    
-    private func configureDateFormatter() {
-        let dateFormatter: DateFormatter = .init()
-        self.dateFormatter = dateFormatter
-        
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
     private func clearContents() {
@@ -102,7 +94,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
         }
         
         nicknameLabel.text = articleBaseData.nickname
-        timestampLabel.text = dateFormatter?.string(from: articleBaseData.timestamp)
+        timestampLabel.text = dateFormatter.string(from: articleBaseData.timestamp)
         hitCountLabel.text = String("\(articleBaseData.hitCount) 조회수")
         commentCountLabel.text = String(articleBaseData.commentCount)
         likeCountLabel.text = String(articleBaseData.likeCount)
