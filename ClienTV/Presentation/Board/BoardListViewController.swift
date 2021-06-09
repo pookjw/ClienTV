@@ -19,7 +19,7 @@ final class BoardListViewController: UIViewController {
     private weak var collectionView: UICollectionView!
     private var viewModel: BoardListViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -59,10 +59,15 @@ final class BoardListViewController: UIViewController {
             fatalError("collectionView is not configured!")
         }
         
-        let dataSource: BoardListViewModel.DataSource = .init(collectionView: collectionView) { (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
-//            guard let self = self else { return nil }
-            //            return collectionView.dequeueConfiguredReusableCell(using: self.getCellItemRegisteration(), for: indexPath, item: cellItem)
-            
+        let dataSource: BoardListViewModel.DataSource = .init(collectionView: collectionView, cellProvider: getCellProvider())
+        
+        dataSource.supplementaryViewProvider = getSupplementaryViewProvider()
+        
+        return dataSource
+    }
+    
+    private func getCellProvider() -> BoardListViewModel.DataSource.CellProvider {
+        return { (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
             guard let cell: UICollectionViewListCell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
             }
@@ -72,23 +77,17 @@ final class BoardListViewController: UIViewController {
             switch cellItem.dataType {
             case .board(let data):
                 configuration.text = data.name
-//                configuration.secondaryText = data.path
             }
             
             cell.contentConfiguration = configuration
             
             return cell
         }
-        
-        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
+    }
+    
+    private func getSupplementaryViewProvider() -> BoardListViewModel.DataSource.SupplementaryViewProvider {
+        return { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
             guard let self = self else { return nil }
-            
-//            switch elementKind {
-//            case UICollectionView.elementKindSectionHeader:
-//                return self.collectionView?.dequeueConfiguredReusableSupplementary(using: self.getHeaderItemRegisteration(), for: indexPath)
-//            default:
-//                return nil
-//            }
             
             guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
@@ -107,39 +106,7 @@ final class BoardListViewController: UIViewController {
             
             return headerView
         }
-        
-        return dataSource
     }
-    
-//    private func getCellItemRegisteration() -> UICollectionView.CellRegistration<UICollectionViewListCell, BoardListCellItem> {
-//        return .init { (cell, indexPath, cellItem) in
-//            var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
-//
-//            switch cellItem.dataType {
-//            case .board(let data):
-//                configuration.text = data.name
-////                configuration.secondaryText = data.path
-//            }
-//
-//            cell.contentConfiguration = configuration
-//        }
-//    }
-//
-//    private func getHeaderItemRegisteration() -> UICollectionView.SupplementaryRegistration<UICollectionViewListCell> {
-//        return .init(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] (headerView, elementKind, indexPath) in
-//
-//            guard let headerItem: BoardListHeaderItem = self?.viewModel?.getHeaderItem(from: indexPath) else {
-//                return
-//            }
-//
-//            switch headerItem.dataType {
-//            case .category(let data):
-//                var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
-//                configuration.text = data.title
-//                headerView.contentConfiguration = configuration
-//            }
-//        }
-//    }
     
     private func configureViewModel() {
         let viewModel: BoardListViewModel = .init(dataSource: makeDataSource())
