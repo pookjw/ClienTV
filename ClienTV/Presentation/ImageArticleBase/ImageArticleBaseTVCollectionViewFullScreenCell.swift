@@ -9,6 +9,12 @@ import TVUIKit
 import Kingfisher
 
 final class ImageArticleBaseTVCollectionViewFullScreenCell: TVCollectionViewFullScreenCell {
-    @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var previewImageView: UIImageView!
+    
+    func configure(_ data: ImageArticleBaseListCellItem.ImageArticleBaseData) {
+        previewImageView.image = nil
+        previewImageView.kf.indicatorType = .activity
+        previewImageView.kf.setImage(with: data.previewImageURL)
+    }
 }

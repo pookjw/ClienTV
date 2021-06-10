@@ -210,9 +210,7 @@ final class ImageArticleBaseListAPIImpl: ImageArticleBaseListAPI {
         //
         
         let path: String = try element
-            .getElementsByClass("card_subject")
-            .first()?
-            .attr("href") ?? ""
+            .attr("data-board-sn")
         
         //
         

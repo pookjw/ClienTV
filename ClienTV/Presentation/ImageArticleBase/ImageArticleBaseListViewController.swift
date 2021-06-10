@@ -11,6 +11,10 @@ import OSLog
 import SnapKit
 
 final class ImageArticleBaseListViewController: UIViewController {
+    private struct Const {
+        static let imageBoardPath: String = "/service/board/image"
+    }
+    
     private weak var collectionView: UICollectionView!
     private var viewModel: ImageArticleBaseListViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
@@ -59,7 +63,7 @@ final class ImageArticleBaseListViewController: UIViewController {
                     return nil
                 }
                 
-                cell.titleLabel.text = data.title
+                cell.configure(data)
                 
                 return cell
             case .loadMore:
@@ -98,10 +102,33 @@ final class ImageArticleBaseListViewController: UIViewController {
             }
             .store(in: &cancellableBag)
     }
+    
+    private func presentArticleViewController(articlePath: String) {
+        let articleViewController: ArticleViewController = .loadFromNib()
+        articleViewController.loadViewIfNeeded()
+        articleViewController.requestArticle(boardPath: Const.imageBoardPath, articlePath: articlePath)
+        present(articleViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - TVCollectionViewDelegateFullScreenLayout
 
 extension ImageArticleBaseListViewController: TVCollectionViewDelegateFullScreenLayout {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        guard let cellItem: ImageArticleBaseListCellItem = viewModel?.getCellItem(from: indexPath) else {
+            Logger.error("cellItem is nil")
+            return
+        }
+        
+        switch cellItem.dataType {
+        case let .imageArticleBase(data):
+            Logger.info(data.path)
+            presentArticleViewController(articlePath: data.path)
+        case .loadMore:
+//            requestNextArticleBaseList(from: indexPath)
+        break
+        }
+    }
 }

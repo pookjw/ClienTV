@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="18122" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="appleTV" appearance="light"/>
     <dependencies>
-        <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,20 +16,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="1200" height="800"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWh-ou-NXJ">
-                        <rect key="frame" x="554" y="377" width="92" height="46"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-kq-kRD">
+                        <rect key="frame" x="0.0" y="0.0" width="1200" height="800"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="oWh-ou-NXJ" firstAttribute="centerX" secondItem="Ci9-YR-Iil" secondAttribute="centerX" id="WPu-tU-8kx"/>
-                    <constraint firstItem="oWh-ou-NXJ" firstAttribute="centerY" secondItem="Ci9-YR-Iil" secondAttribute="centerY" id="YCc-1C-eNG"/>
+                    <constraint firstAttribute="bottom" secondItem="CeP-kq-kRD" secondAttribute="bottom" id="5Xj-CC-AgN"/>
+                    <constraint firstAttribute="trailing" secondItem="CeP-kq-kRD" secondAttribute="trailing" id="ehN-Yc-AXc"/>
+                    <constraint firstItem="CeP-kq-kRD" firstAttribute="top" secondItem="Ci9-YR-Iil" secondAttribute="top" id="wlp-in-wuc"/>
+                    <constraint firstItem="CeP-kq-kRD" firstAttribute="leading" secondItem="Ci9-YR-Iil" secondAttribute="leading" id="zpb-SR-HTa"/>
                 </constraints>
             </collectionViewCellContentView>
             <connections>
-                <outlet property="titleLabel" destination="oWh-ou-NXJ" id="MXZ-gF-856"/>
+                <outlet property="previewImageView" destination="CeP-kq-kRD" id="cMA-lm-U52"/>
             </connections>
             <point key="canvasLocation" x="166" y="45"/>
         </collectionViewCell>
