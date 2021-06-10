@@ -119,7 +119,9 @@ final class BoardListViewController: UIViewController {
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.showErrorAlert(error)
+                    self?.showErrorAlert(error) { _ in
+                        self?.requestBoardListIfNeeded()
+                    }
                 case .finished:
                     break
                 }

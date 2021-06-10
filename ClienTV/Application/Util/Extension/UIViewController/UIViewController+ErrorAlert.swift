@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func showErrorAlert(_ error: Error, completion: (() -> Void)? = nil) {
+    func showErrorAlert(_ error: Error, completion: ((UIAlertAction) -> Void)? = nil) {
         let errorDescription: String?
         
         if let error: LocalizedError = error as? LocalizedError{
@@ -21,9 +21,9 @@ extension UIViewController {
                                                            message: errorDescription, preferredStyle: .alert)
         let doneAction: UIAlertAction = .init(title: "확인",
                                               style: .default,
-                                              handler: nil)
+                                              handler: completion)
         
         alertViewController.addAction(doneAction)
-        present(alertViewController, animated: true, completion: completion)
+        present(alertViewController, animated: true, completion: nil)
     }
 }
