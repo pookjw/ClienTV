@@ -16,12 +16,20 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        saveImageTopShelf()
+    }
+    
     private func configureWindow() {
         let window: UIWindow = .init()
         let vc: MainTabBarController = .init()
         self.window = window
         window.rootViewController = vc
         window.makeKeyAndVisible()
+    }
+    
+    private func saveImageTopShelf() {
+        ImageTopShelfSaver.shared.saveIfNeeded()
     }
 }
 

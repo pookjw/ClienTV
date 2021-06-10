@@ -19,6 +19,14 @@
 		4F015A1E266E6057003A7E52 /* CommentContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A1D266E6057003A7E52 /* CommentContentConfiguration.swift */; };
 		4F015A22266E9667003A7E52 /* UIView+removeHeightConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A21266E9667003A7E52 /* UIView+removeHeightConstraint.swift */; };
 		4F10D96026725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D95F26725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift */; };
+		4F10D967267263380034AA48 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10D966267263380034AA48 /* TVServices.framework */; };
+		4F10D96A267263380034AA48 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D969267263380034AA48 /* ContentProvider.swift */; };
+		4F10D96E267263380034AA48 /* ClienTVTopShelfExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4F10D965267263380034AA48 /* ClienTVTopShelfExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F10D9852672666C0034AA48 /* ImageTopShelfReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D9842672666C0034AA48 /* ImageTopShelfReader.swift */; };
+		4F10D987267266C50034AA48 /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D986267266C50034AA48 /* ImageTopShelfConstant.swift */; };
+		4F10D98B2672670B0034AA48 /* ImageTopShelfSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D98A2672670B0034AA48 /* ImageTopShelfSaver.swift */; };
+		4F10D98F267268A90034AA48 /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D98E267268A90034AA48 /* ImageTopShelfConstant.swift */; };
+		4F10D99426726DC90034AA48 /* ImageTopShelfObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D99326726DC90034AA48 /* ImageTopShelfObject.swift */; };
 		4F1C88BB266CB40A004AC01C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BA266CB40A004AC01C /* Comment.swift */; };
 		4F1C88BD266CB4B0004AC01C /* ArticleAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */; };
 		4F1C88BF266CBEBC004AC01C /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */; };
@@ -97,6 +105,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4F10D96C267263380034AA48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FF70ED82667C94400FDC680 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F10D964267263380034AA48;
+			remoteInfo = ClienTVTopShelfExtension;
+		};
 		4FF70EF52667C94500FDC680 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4FF70ED82667C94400FDC680 /* Project object */;
@@ -135,6 +150,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4F10D972267263380034AA48 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4F10D96E267263380034AA48 /* ClienTVTopShelfExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF70F2D2667C96000FDC680 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +187,16 @@
 		4F015A1D266E6057003A7E52 /* CommentContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentContentConfiguration.swift; sourceTree = "<group>"; };
 		4F015A21266E9667003A7E52 /* UIView+removeHeightConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+removeHeightConstraint.swift"; sourceTree = "<group>"; };
 		4F10D95F26725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseLoadMoreCollectoinViewCell.swift; sourceTree = "<group>"; };
+		4F10D965267263380034AA48 /* ClienTVTopShelfExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClienTVTopShelfExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F10D966267263380034AA48 /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
+		4F10D969267263380034AA48 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
+		4F10D96B267263380034AA48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F10D9732672633F0034AA48 /* ClienTVTopShelfExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClienTVTopShelfExtension.entitlements; sourceTree = "<group>"; };
+		4F10D9842672666C0034AA48 /* ImageTopShelfReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfReader.swift; sourceTree = "<group>"; };
+		4F10D986267266C50034AA48 /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfConstant.swift; sourceTree = "<group>"; };
+		4F10D98A2672670B0034AA48 /* ImageTopShelfSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfSaver.swift; sourceTree = "<group>"; };
+		4F10D98E267268A90034AA48 /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfConstant.swift; sourceTree = "<group>"; };
+		4F10D99326726DC90034AA48 /* ImageTopShelfObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfObject.swift; sourceTree = "<group>"; };
 		4F1C88BA266CB40A004AC01C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAPIImpl.swift; sourceTree = "<group>"; };
 		4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
@@ -251,6 +287,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F10D962267263380034AA48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F10D967267263380034AA48 /* TVServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF70EDD2667C94400FDC680 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +338,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F10D968267263380034AA48 /* ClienTVTopShelfExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4F10D976267264800034AA48 /* Util */,
+				4F10D9732672633F0034AA48 /* ClienTVTopShelfExtension.entitlements */,
+				4F10D969267263380034AA48 /* ContentProvider.swift */,
+				4F10D96B267263380034AA48 /* Info.plist */,
+			);
+			path = ClienTVTopShelfExtension;
+			sourceTree = "<group>";
+		};
+		4F10D976267264800034AA48 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				4F10D977267264880034AA48 /* Service */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		4F10D977267264880034AA48 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4F10D991267268B60034AA48 /* ImageTopShelf */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4F10D989267266EF0034AA48 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4F10D990267268B00034AA48 /* ImageTopShelf */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4F10D990267268B00034AA48 /* ImageTopShelf */ = {
+			isa = PBXGroup;
+			children = (
+				4F10D98A2672670B0034AA48 /* ImageTopShelfSaver.swift */,
+				4F10D98E267268A90034AA48 /* ImageTopShelfConstant.swift */,
+				4F10D99326726DC90034AA48 /* ImageTopShelfObject.swift */,
+			);
+			path = ImageTopShelf;
+			sourceTree = "<group>";
+		};
+		4F10D991267268B60034AA48 /* ImageTopShelf */ = {
+			isa = PBXGroup;
+			children = (
+				4F10D9842672666C0034AA48 /* ImageTopShelfReader.swift */,
+				4F10D986267266C50034AA48 /* ImageTopShelfConstant.swift */,
+			);
+			path = ImageTopShelf;
+			sourceTree = "<group>";
+		};
 		4F1C88CB266CD6BE004AC01C /* Logger */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,13 +472,6 @@
 			path = CommentList;
 			sourceTree = "<group>";
 		};
-		4F55A1D5266A99D000429B3E /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		4F60410A267175DC0067A364 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +520,7 @@
 				4FF70F022667C94500FDC680 /* ClienTVUITests */,
 				4FF70F172667C96000FDC680 /* ClienTVAPI */,
 				4FF70F242667C96000FDC680 /* ClienTVAPITests */,
+				4F10D968267263380034AA48 /* ClienTVTopShelfExtension */,
 				4FF70EE12667C94400FDC680 /* Products */,
 				C14842013798FDB53DE489AC /* Pods */,
 				C19BCA231218B37ECB1EE2BD /* Frameworks */,
@@ -443,6 +535,7 @@
 				4FF70EFF2667C94500FDC680 /* ClienTVUITests.xctest */,
 				4FF70F162667C96000FDC680 /* ClienTVAPI.framework */,
 				4FF70F1E2667C96000FDC680 /* ClienTVAPITests.xctest */,
+				4F10D965267263380034AA48 /* ClienTVTopShelfExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -609,7 +702,7 @@
 		4FF70F58266904D300FDC680 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				4F55A1D5266A99D000429B3E /* Service */,
+				4F10D989267266EF0034AA48 /* Service */,
 				4FF70F59266904DD00FDC680 /* Extension */,
 			);
 			path = Util;
@@ -731,6 +824,7 @@
 				4FF70F3E2667DC5400FDC680 /* MapKit.framework */,
 				AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */,
 				9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */,
+				4F10D966267263380034AA48 /* TVServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -749,6 +843,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4F10D964267263380034AA48 /* ClienTVTopShelfExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F10D96F267263380034AA48 /* Build configuration list for PBXNativeTarget "ClienTVTopShelfExtension" */;
+			buildPhases = (
+				4F10D961267263380034AA48 /* Sources */,
+				4F10D962267263380034AA48 /* Frameworks */,
+				4F10D963267263380034AA48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClienTVTopShelfExtension;
+			productName = ClienTVTopShelfExtension;
+			productReference = 4F10D965267263380034AA48 /* ClienTVTopShelfExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4FF70EDF2667C94400FDC680 /* ClienTV */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FF70F082667C94500FDC680 /* Build configuration list for PBXNativeTarget "ClienTV" */;
@@ -759,11 +870,13 @@
 				4FF70EDE2667C94400FDC680 /* Resources */,
 				4FF70F2D2667C96000FDC680 /* Embed Frameworks */,
 				D526A7224595C08A929186AD /* [CP] Embed Pods Frameworks */,
+				4F10D972267263380034AA48 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4FF70F2A2667C96000FDC680 /* PBXTargetDependency */,
+				4F10D96D267263380034AA48 /* PBXTargetDependency */,
 			);
 			name = ClienTV;
 			productName = ClienTV;
@@ -853,6 +966,9 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					4F10D964267263380034AA48 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					4FF70EDF2667C94400FDC680 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -892,11 +1008,19 @@
 				4FF70EFE2667C94500FDC680 /* ClienTVUITests */,
 				4FF70F152667C96000FDC680 /* ClienTVAPI */,
 				4FF70F1D2667C96000FDC680 /* ClienTVAPITests */,
+				4F10D964267263380034AA48 /* ClienTVTopShelfExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F10D963267263380034AA48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF70EDE2667C94400FDC680 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1004,6 +1128,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F10D961267263380034AA48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F10D9852672666C0034AA48 /* ImageTopShelfReader.swift in Sources */,
+				4F10D987267266C50034AA48 /* ImageTopShelfConstant.swift in Sources */,
+				4F10D96A267263380034AA48 /* ContentProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF70EDC2667C94400FDC680 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1014,13 +1148,16 @@
 				F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */,
 				4F1C88C8266CC113004AC01C /* UIViewController+loadFromNib.swift in Sources */,
 				4FF70F8426693C7900FDC680 /* BoardListModel.swift in Sources */,
+				4F10D98B2672670B0034AA48 /* ImageTopShelfSaver.swift in Sources */,
 				4FF70F572669043F00FDC680 /* MainTabBarController.swift in Sources */,
+				4F10D98F267268A90034AA48 /* ImageTopShelfConstant.swift in Sources */,
 				4FF70F61266906A800FDC680 /* ArticleBaseListViewController.swift in Sources */,
 				4F60411B26717ADD0067A364 /* ImageArticleBaseListViewModel.swift in Sources */,
 				4FF70F682669070E00FDC680 /* ArticleViewController.swift in Sources */,
 				4F55A1DB266A9AA100429B3E /* ProcessInfo+isTestMode.swift in Sources */,
 				4FF70F80266938E600FDC680 /* ArticleBaseListModel.swift in Sources */,
 				4FF70EE42667C94400FDC680 /* AppDelegate.swift in Sources */,
+				4F10D99426726DC90034AA48 /* ImageTopShelfObject.swift in Sources */,
 				4FF70F6B2669073F00FDC680 /* HomeSplitViewController.swift in Sources */,
 				4FF70F7E2669376000FDC680 /* ArticleBaseListViewModel.swift in Sources */,
 				4F1C88D8266CDF74004AC01C /* CommentListViewController.swift in Sources */,
@@ -1117,6 +1254,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4F10D96D267263380034AA48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F10D964267263380034AA48 /* ClienTVTopShelfExtension */;
+			targetProxy = 4F10D96C267263380034AA48 /* PBXContainerItemProxy */;
+		};
 		4FF70EF62667C94500FDC680 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4FF70EDF2667C94400FDC680 /* ClienTV */;
@@ -1156,6 +1298,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F10D970267263380034AA48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ClienTVTopShelfExtension/ClienTVTopShelfExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVTopShelfExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTV.ClienTVTopShelfExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
+			};
+			name = Debug;
+		};
+		4F10D971267263380034AA48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ClienTVTopShelfExtension/ClienTVTopShelfExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				INFOPLIST_FILE = ClienTVTopShelfExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.ClienTV.ClienTVTopShelfExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
+			};
+			name = Release;
+		};
 		4FF70F062667C94500FDC680 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1508,6 +1692,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F10D96F267263380034AA48 /* Build configuration list for PBXNativeTarget "ClienTVTopShelfExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F10D970267263380034AA48 /* Debug */,
+				4F10D971267263380034AA48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FF70EDB2667C94400FDC680 /* Build configuration list for PBXProject "ClienTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
