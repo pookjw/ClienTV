@@ -12,9 +12,7 @@ import ClienTVAPI
 final class ImageArticleBaseListViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<ImageArticleBaseListHeaderItem, ImageArticleBaseListCellItem>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<ImageArticleBaseListHeaderItem, ImageArticleBaseListCellItem>
-    
-    /// 다음 페이지 불러올 때, 현재 위치를 잡아주기 위함
-    var cacheIndexPath: IndexPath? = nil
+
     private let dataSource: DataSource
     private let useCase: ImageArticleBaseListUseCase
     private var currentBoardPage: Int = 0

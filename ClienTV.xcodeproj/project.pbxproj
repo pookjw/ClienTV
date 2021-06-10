@@ -18,6 +18,7 @@
 		4F015A1C266E5D10003A7E52 /* CommentContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F015A1B266E5D10003A7E52 /* CommentContentView.xib */; };
 		4F015A1E266E6057003A7E52 /* CommentContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A1D266E6057003A7E52 /* CommentContentConfiguration.swift */; };
 		4F015A22266E9667003A7E52 /* UIView+removeHeightConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F015A21266E9667003A7E52 /* UIView+removeHeightConstraint.swift */; };
+		4F10D96026725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D95F26725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift */; };
 		4F1C88BB266CB40A004AC01C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BA266CB40A004AC01C /* Comment.swift */; };
 		4F1C88BD266CB4B0004AC01C /* ArticleAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */; };
 		4F1C88BF266CBEBC004AC01C /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */; };
@@ -44,8 +45,7 @@
 		4F6041192671775B0067A364 /* ImageArticleBaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6041182671775B0067A364 /* ImageArticleBaseListViewController.swift */; };
 		4F60411B26717ADD0067A364 /* ImageArticleBaseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411A26717ADD0067A364 /* ImageArticleBaseListViewModel.swift */; };
 		4F60411D26717AE30067A364 /* ImageArticleBaseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411C26717AE30067A364 /* ImageArticleBaseListModel.swift */; };
-		4F60411F267187800067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411E267187800067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.swift */; };
-		4F604121267187A90067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F604120267187A90067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.xib */; };
+		4F60411F267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411E267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift */; };
 		4FCD9C00266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */; };
 		4FD598632670ABAD00BB6BC6 /* ImageArticleBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */; };
 		4FD598692670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD598672670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift */; };
@@ -160,6 +160,7 @@
 		4F015A1B266E5D10003A7E52 /* CommentContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentContentView.xib; sourceTree = "<group>"; };
 		4F015A1D266E6057003A7E52 /* CommentContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentContentConfiguration.swift; sourceTree = "<group>"; };
 		4F015A21266E9667003A7E52 /* UIView+removeHeightConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+removeHeightConstraint.swift"; sourceTree = "<group>"; };
+		4F10D95F26725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseLoadMoreCollectoinViewCell.swift; sourceTree = "<group>"; };
 		4F1C88BA266CB40A004AC01C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4F1C88BC266CB4B0004AC01C /* ArticleAPIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAPIImpl.swift; sourceTree = "<group>"; };
 		4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
@@ -186,8 +187,7 @@
 		4F6041182671775B0067A364 /* ImageArticleBaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListViewController.swift; sourceTree = "<group>"; };
 		4F60411A26717ADD0067A364 /* ImageArticleBaseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListViewModel.swift; sourceTree = "<group>"; };
 		4F60411C26717AE30067A364 /* ImageArticleBaseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListModel.swift; sourceTree = "<group>"; };
-		4F60411E267187800067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseTVCollectionViewFullScreenCell.swift; sourceTree = "<group>"; };
-		4F604120267187A90067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageArticleBaseTVCollectionViewFullScreenCell.xib; sourceTree = "<group>"; };
+		4F60411E267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseCollectoinViewCell.swift; sourceTree = "<group>"; };
 		4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+reuseIdentifier.swift"; sourceTree = "<group>"; };
 		4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBase.swift; sourceTree = "<group>"; };
 		4FD598672670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListAPI.swift; sourceTree = "<group>"; };
@@ -399,8 +399,8 @@
 				4F6041182671775B0067A364 /* ImageArticleBaseListViewController.swift */,
 				4F60411A26717ADD0067A364 /* ImageArticleBaseListViewModel.swift */,
 				4F60411C26717AE30067A364 /* ImageArticleBaseListModel.swift */,
-				4F60411E267187800067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.swift */,
-				4F604120267187A90067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.xib */,
+				4F60411E267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift */,
+				4F10D95F26725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift */,
 			);
 			path = ImageArticleBase;
 			sourceTree = "<group>";
@@ -906,7 +906,6 @@
 				4FF70EEE2667C94500FDC680 /* LaunchScreen.storyboard in Resources */,
 				4FF70EEB2667C94500FDC680 /* Assets.xcassets in Resources */,
 				4F015A1C266E5D10003A7E52 /* CommentContentView.xib in Resources */,
-				4F604121267187A90067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,7 +1029,7 @@
 				4F1C88CA266CC5F9004AC01C /* ArticleViewModel.swift in Sources */,
 				4F6041192671775B0067A364 /* ImageArticleBaseListViewController.swift in Sources */,
 				F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */,
-				4F60411F267187800067A364 /* ImageArticleBaseTVCollectionViewFullScreenCell.swift in Sources */,
+				4F60411F267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift in Sources */,
 				4FF70F5E2669068F00FDC680 /* BoardListViewController.swift in Sources */,
 				F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */,
 				4F015A22266E9667003A7E52 /* UIView+removeHeightConstraint.swift in Sources */,
@@ -1041,6 +1040,7 @@
 				4FF70F8226693C5800FDC680 /* BoardListViewModel.swift in Sources */,
 				4F015A1E266E6057003A7E52 /* CommentContentConfiguration.swift in Sources */,
 				4FF70F65266906C100FDC680 /* SettingsViewController.swift in Sources */,
+				4F10D96026725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

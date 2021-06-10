@@ -23,6 +23,7 @@ final class ImageArticleBaseListViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
+        configureGradientLayer()
     }
     
     func requestImageArticleBaseList() {
@@ -35,12 +36,14 @@ final class ImageArticleBaseListViewController: UIViewController {
         let collectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: collectionViewLayout)
         self.collectionView = collectionView
         
+        collectionViewLayout.interitemSpacing = 50
+        
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
-        let imageArticleBaseCellNib: UINib = .init(nibName: ImageArticleBaseTVCollectionViewFullScreenCell.identifier, bundle: nil)
-        collectionView.register(imageArticleBaseCellNib, forCellWithReuseIdentifier: ImageArticleBaseTVCollectionViewFullScreenCell.identifier)
+        collectionView.register(ImageArticleBaseCollectoinViewCell.self, forCellWithReuseIdentifier: ImageArticleBaseCollectoinViewCell.identifier)
+        collectionView.register(ImageArticleBaseLoadMoreCollectoinViewCell.self, forCellWithReuseIdentifier: ImageArticleBaseLoadMoreCollectoinViewCell.identifier)
         collectionView.delegate = self
     }
     
@@ -59,7 +62,7 @@ final class ImageArticleBaseListViewController: UIViewController {
             
             switch cellItem.dataType {
             case .imageArticleBase(let data):
-                guard let cell: ImageArticleBaseTVCollectionViewFullScreenCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageArticleBaseTVCollectionViewFullScreenCell.identifier, for: indexPath) as? ImageArticleBaseTVCollectionViewFullScreenCell else {
+                guard let cell: ImageArticleBaseCollectoinViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageArticleBaseCollectoinViewCell.identifier, for: indexPath) as? ImageArticleBaseCollectoinViewCell else {
                     return nil
                 }
                 
@@ -67,7 +70,11 @@ final class ImageArticleBaseListViewController: UIViewController {
                 
                 return cell
             case .loadMore:
-                return nil
+                guard let cell: ImageArticleBaseLoadMoreCollectoinViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageArticleBaseLoadMoreCollectoinViewCell.identifier, for: indexPath) as? ImageArticleBaseLoadMoreCollectoinViewCell else {
+                    return nil
+                }
+                
+                return cell
             }
         }
     }
@@ -75,6 +82,18 @@ final class ImageArticleBaseListViewController: UIViewController {
     private func configureViewModel() {
         let viewModel: ImageArticleBaseListViewModel = .init(dataSource: makeDataSource())
         self.viewModel = viewModel
+    }
+    
+    private func configureGradientLayer() {
+        let gradientLayer: CAGradientLayer = .init()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [
+            UIColor.white.withAlphaComponent(0).cgColor,
+            UIColor.white.cgColor
+        ]
+        gradientLayer.startPoint = .init(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = .init(x: 0.05, y: 0.0)
+        view.layer.mask = gradientLayer
     }
     
     private func handleRequestCompletion(_ future: Future<Bool, Error>) {
@@ -91,14 +110,8 @@ final class ImageArticleBaseListViewController: UIViewController {
                 guard let self = self else { return }
                 
                 if reset {
-                    self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                } else {
-                    if let cacheIndexPath: IndexPath = self.viewModel.cacheIndexPath {
-                        self.collectionView?.scrollToItem(at: cacheIndexPath, at: .top, animated: false)
-                    }
+                    self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: false)
                 }
-                
-                self.collectionView?.collectionViewLayout.invalidateLayout()
             }
             .store(in: &cancellableBag)
     }
@@ -108,6 +121,11 @@ final class ImageArticleBaseListViewController: UIViewController {
         articleViewController.loadViewIfNeeded()
         articleViewController.requestArticle(boardPath: Const.imageBoardPath, articlePath: articlePath)
         present(articleViewController, animated: true, completion: nil)
+    }
+    
+    private func requestNextImageArticleBaseList() {
+        let future: Future<Bool, Error> = viewModel.requestNextImageArticleBaseList()
+        handleRequestCompletion(future)
     }
 }
 
@@ -127,8 +145,22 @@ extension ImageArticleBaseListViewController: TVCollectionViewDelegateFullScreen
             Logger.info(data.path)
             presentArticleViewController(articlePath: data.path)
         case .loadMore:
-//            requestNextArticleBaseList(from: indexPath)
-        break
+            break
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let cellItem: ImageArticleBaseListCellItem = viewModel?.getCellItem(from: indexPath) else {
+            Logger.error("cellItem is nil")
+            return
+        }
+        
+        switch cellItem.dataType {
+        case .loadMore:
+            requestNextImageArticleBaseList()
+        default:
+            break
         }
     }
 }
