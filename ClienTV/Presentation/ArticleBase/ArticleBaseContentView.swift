@@ -108,15 +108,4 @@ final class ArticleBaseContentView: UIView, UIContentView {
         commentCountLabel.text = String(articleBaseData.commentCount)
         likeCountLabel.text = String(articleBaseData.likeCount)
     }
-    
-    private func getCollectionView() -> UICollectionView? {
-        guard let collectionView: UICollectionView = superview?.superview as? UICollectionView else {
-            return nil
-        }
-        return collectionView
-    }
-    
-    private func invalidateLayout() {
-        getCollectionView()?.collectionViewLayout.invalidateLayout()
-    }
 }

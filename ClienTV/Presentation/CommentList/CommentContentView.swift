@@ -81,10 +81,7 @@ final class CommentContentView: UIView, UIContentView {
             nicknameImageView.isHidden = false
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
-            nicknameImageView.kf.setImage(with: nicknameImageURL) { [weak self] _ in
-                self?.layoutSubviews()
-                self?.invalidateLayout()
-            }
+            nicknameImageView.kf.setImage(with: nicknameImageURL)
             nicknameLabel.isHidden = true
         } else {
             nicknameImageView.isHidden = true
@@ -109,10 +106,7 @@ final class CommentContentView: UIView, UIContentView {
             bodyImageView.isHidden = false
             bodyImageView.image = nil
             bodyImageView.kf.indicatorType = .activity
-            bodyImageView.kf.setImage(with: bodyImageURL) { [weak self] _ in
-                self?.layoutSubviews()
-                self?.invalidateLayout()
-            }
+            bodyImageView.kf.setImage(with: bodyImageURL)
         } else {
             bodyImageView.isHidden = true
             bodyImageView.kf.cancelDownloadTask()
@@ -137,20 +131,9 @@ final class CommentContentView: UIView, UIContentView {
                 
                 // attributedText의 경우 Label에 frame 크기가 정의되기 까지 시간이 걸리므로, 직접 바로 정의해준다.
                 self.bodyLabelHeightLayout?.constant = ceil(rect.height)
-                self.layoutSubviews()
-                self.invalidateLayout()
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
             }
         }
-    }
-    
-    private func getCollectionView() -> UICollectionView? {
-        guard let collectionView: UICollectionView = superview?.superview as? UICollectionView else {
-            return nil
-        }
-        return collectionView
-    }
-    
-    private func invalidateLayout() {
-        getCollectionView()?.collectionViewLayout.invalidateLayout()
     }
 }
