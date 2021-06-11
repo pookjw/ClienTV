@@ -19,6 +19,7 @@ final class ArticleBaseContentView: UIView, UIContentView {
     @IBOutlet weak var hitCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var tileLabelLeadingLayout: NSLayoutConstraint!
     @IBOutlet var timestampLabelTextLeadingLayout: NSLayoutConstraint!
     @IBOutlet var timpstampLabelImageLeadingLayout: NSLayoutConstraint!
     @IBOutlet var timestampLabelTextBottomLayout: NSLayoutConstraint!
@@ -69,11 +70,11 @@ final class ArticleBaseContentView: UIView, UIContentView {
         //
         
         if let category: String = articleBaseData.category {
-//            categoryLabel.isHidden = false
             categoryLabel.text = category
+            tileLabelLeadingLayout.constant = 10
         } else {
-//            categoryLabel.isHidden = true
             categoryLabel.text = nil
+            tileLabelLeadingLayout.constant = 0
         }
         
         titleLabel.text = articleBaseData.title
@@ -82,7 +83,9 @@ final class ArticleBaseContentView: UIView, UIContentView {
             nicknameImageView.isHidden = false
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
-            nicknameImageView.kf.setImage(with: nicknameImageURL)
+            nicknameImageView.kf.setImage(with: nicknameImageURL) { [weak self] _ in
+                self?.layoutSubviews()
+            }
             nicknameLabel.isHidden = true
             timestampLabelTextLeadingLayout.isActive = false
             timpstampLabelImageLeadingLayout.isActive = true
