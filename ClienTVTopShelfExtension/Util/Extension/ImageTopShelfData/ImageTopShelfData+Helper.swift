@@ -15,7 +15,7 @@ extension ImageTopShelfData {
         item.title = title
         item.summary = previewBody
         item.genre = nil
-        item.creationDate = timestamp
+        item.creationDate = nil
         item.previewVideoURL = nil
         item.mediaOptions = []
         item.namedAttributes = [
@@ -24,7 +24,24 @@ extension ImageTopShelfData {
         item.setImageURL(previewImageURL, for: .screenScale1x)
         item.setImageURL(previewImageURL, for: .screenScale2x)
 
-        item.playAction = nil
+        //
+        
+        var components: URLComponents = .init()
+        components.scheme = "clientv"
+        components.host = "article"
+        components.queryItems = [
+            .init(name: "boardPath", value: "/service/board/image"),
+            .init(name: "articlePath", value: path)
+        ]
+        
+        if let url: URL = components.url {
+            item.playAction = .init(url: url)
+        } else {
+            item.playAction = nil
+        }
+        
+        //
+        
         item.displayAction = nil
 
         return item

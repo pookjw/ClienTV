@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import OSLog
 import ClienTVAPI
-import ClienTVTopShelfExtension
 
 final class ImageTopShelfSaver {
     static let shared: ImageTopShelfSaver = .init()
@@ -113,7 +112,6 @@ final class ImageTopShelfSaver {
         return .init(previewImageURL: previewImageURL,
                      title: imageArticleBase.title,
                      previewBody: previewBodyString,
-                     timestamp: imageArticleBase.timestamp,
                      nickname: imageArticleBase.nickname,
                      path: imageArticleBase.path)
     }

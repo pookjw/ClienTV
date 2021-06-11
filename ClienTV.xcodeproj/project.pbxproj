@@ -103,6 +103,8 @@
 		F37E93D626734A91005AA37E /* ImageTopShelfData+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93D526734A91005AA37E /* ImageTopShelfData+Helper.swift */; };
 		F37E93DE26735AF7005AA37E /* ImageTopShelfData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93DD26735AF7005AA37E /* ImageTopShelfData.swift */; };
 		F37E93E026735C53005AA37E /* ImageTopShelfData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93DF26735C53005AA37E /* ImageTopShelfData.swift */; };
+		F37E93E326736395005AA37E /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93E226736395005AA37E /* ShortcutService.swift */; };
+		F37E93E6267364E3005AA37E /* RawRepresentable+s.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93E5267364E3005AA37E /* RawRepresentable+s.swift */; };
 		F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */; };
 		F3D318E8266A2A0C00B579E6 /* ArticleBaseContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */; };
 /* End PBXBuildFile section */
@@ -288,6 +290,8 @@
 		F37E93D526734A91005AA37E /* ImageTopShelfData+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageTopShelfData+Helper.swift"; sourceTree = "<group>"; };
 		F37E93DD26735AF7005AA37E /* ImageTopShelfData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfData.swift; sourceTree = "<group>"; };
 		F37E93DF26735C53005AA37E /* ImageTopShelfData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTopShelfData.swift; path = ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfData.swift; sourceTree = SOURCE_ROOT; };
+		F37E93E226736395005AA37E /* ShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutService.swift; sourceTree = "<group>"; };
+		F37E93E5267364E3005AA37E /* RawRepresentable+s.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RawRepresentable+s.swift"; sourceTree = "<group>"; };
 		F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseContentConfiguration.swift; sourceTree = "<group>"; };
 		F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleBaseContentView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -375,6 +379,7 @@
 		4F10D989267266EF0034AA48 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F37E93E12673638D005AA37E /* Shortcut */,
 				4F10D990267268B00034AA48 /* ImageTopShelf */,
 			);
 			path = Service;
@@ -719,6 +724,7 @@
 		4FF70F59266904DD00FDC680 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F37E93E4267364D9005AA37E /* RawRepresentable */,
 				4FCD9BFE266F43610003531B /* UICollectionViewCell */,
 				4F1C88D2266CD6F9004AC01C /* String */,
 				4F1C88D1266CD6F1004AC01C /* ProcessInfo */,
@@ -860,6 +866,22 @@
 				F37E93D526734A91005AA37E /* ImageTopShelfData+Helper.swift */,
 			);
 			path = ImageTopShelfData;
+			sourceTree = "<group>";
+		};
+		F37E93E12673638D005AA37E /* Shortcut */ = {
+			isa = PBXGroup;
+			children = (
+				F37E93E226736395005AA37E /* ShortcutService.swift */,
+			);
+			path = Shortcut;
+			sourceTree = "<group>";
+		};
+		F37E93E4267364D9005AA37E /* RawRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				F37E93E5267364E3005AA37E /* RawRepresentable+s.swift */,
+			);
+			path = RawRepresentable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1191,11 +1213,13 @@
 				4FF70F61266906A800FDC680 /* ArticleBaseListViewController.swift in Sources */,
 				4F60411B26717ADD0067A364 /* ImageArticleBaseListViewModel.swift in Sources */,
 				4FF70F682669070E00FDC680 /* ArticleViewController.swift in Sources */,
+				F37E93E6267364E3005AA37E /* RawRepresentable+s.swift in Sources */,
 				4F55A1DB266A9AA100429B3E /* ProcessInfo+isTestMode.swift in Sources */,
 				4FF70F80266938E600FDC680 /* ArticleBaseListModel.swift in Sources */,
 				4FF70EE42667C94400FDC680 /* AppDelegate.swift in Sources */,
 				4FF70F6B2669073F00FDC680 /* HomeSplitViewController.swift in Sources */,
 				4FF70F7E2669376000FDC680 /* ArticleBaseListViewModel.swift in Sources */,
+				F37E93E326736395005AA37E /* ShortcutService.swift in Sources */,
 				4F1C88D8266CDF74004AC01C /* CommentListViewController.swift in Sources */,
 				4F015A16266E57AB003A7E52 /* CommentListViewModel.swift in Sources */,
 				4F1C88CA266CC5F9004AC01C /* ArticleViewModel.swift in Sources */,
