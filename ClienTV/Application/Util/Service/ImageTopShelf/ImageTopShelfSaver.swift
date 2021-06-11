@@ -56,7 +56,7 @@ final class ImageTopShelfSaver {
     }
     
     private func configureQueue() {
-        queue.qualityOfService = .utility
+        queue.qualityOfService = .background
     }
     
     private func fetchImageArticleBaseList(completion: @escaping ([ImageArticleBase]?, Error?) -> Void) {
