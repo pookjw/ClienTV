@@ -6,6 +6,7 @@
 //
 
 import TVServices
+import OSLog
 
 final class ContentProvider: TVTopShelfContentProvider {
     private let queue: OperationQueue = .init()
@@ -16,8 +17,18 @@ final class ContentProvider: TVTopShelfContentProvider {
     }
 
     override func loadTopShelfContent(completionHandler: @escaping (TVTopShelfContent?) -> Void) {
-        // Fetch content and call completionHandler
-        completionHandler(nil);
+        queue.addOperation {
+            do {
+                let objects: [ImageTopShelfData] = try ImageTopShelfLoader.shared.load()
+                let items: [TVTopShelfCarouselItem] = objects.map { $0.makeCarouselItem() }
+                let content: TVTopShelfCarouselContent = .init(style: .details, items: items)
+                completionHandler(content)
+                Logger.info("Loaded!")
+            } catch {
+                Logger.error(error.localizedDescription)
+                completionHandler(nil)
+            }
+        }
     }
 
     private func configureQueue() {

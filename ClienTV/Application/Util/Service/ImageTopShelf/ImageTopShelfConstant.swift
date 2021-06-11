@@ -10,7 +10,7 @@ import Foundation
 struct ImageTopShelfConstant {
     static let suitName: String = "group.com.pookjw.ClienTV"
     static let timestampKey: String = "timestampKey"
-    static let imageTopShelfObjectsDataKey: String = "imageTopShelfObjectsDataKey"
+    static let imageTopShelfDatasKey: String = "imageTopShelfDatasKey"
     
     #if DEBUG
     static let saveThrottleInterval: TimeInterval = 0

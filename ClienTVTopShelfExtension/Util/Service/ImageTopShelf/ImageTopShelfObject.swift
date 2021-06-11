@@ -1,1 +1,0 @@
-../../../../ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfObject.swift

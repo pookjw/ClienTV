@@ -9,13 +9,15 @@ import Foundation
 import Combine
 import OSLog
 import ClienTVAPI
+import ClienTVTopShelfExtension
 
 final class ImageTopShelfSaver {
     static let shared: ImageTopShelfSaver = .init()
     
     private let useCase: ImageArticleBaseListUseCase
-    private let userDefaults: UserDefaults = .init(suiteName: "group.com.pookjw.ClienTV") ?? .standard
+    private let userDefaults: UserDefaults = .init(suiteName: ImageTopShelfConstant.suitName) ?? .standard
     private let queue: OperationQueue = .init()
+    private let encoder: JSONEncoder = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     private var shouldSave: Bool {
         guard let prevTimestamp: Date = userDefaults.object(forKey: ImageTopShelfConstant.timestampKey) as? Date else {
@@ -47,16 +49,13 @@ final class ImageTopShelfSaver {
             
             self?.saveImageTopShelfObjects(from: imageArticleBaseList)
             self?.saveTimestamp()
+            Logger.info("사진게시판 캐시 저장 완료!")
         }
     }
     
     private init(useCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()) {
         self.useCase = useCase
         configureQueue()
-    }
-    
-    private func configureQueue() {
-        queue.qualityOfService = .background
     }
     
     private func fetchImageArticleBaseList(completion: @escaping ([ImageArticleBase]?, Error?) -> Void) {
@@ -68,7 +67,7 @@ final class ImageTopShelfSaver {
                 case .failure(let error):
                     completion(nil, error)
                 case .finished:
-                    Logger.info("이미지 캐시 저장 완료!")
+                    break
                 }
             } receiveValue: { imageArticleBaseList in
                 completion(imageArticleBaseList, nil)
@@ -77,14 +76,14 @@ final class ImageTopShelfSaver {
     }
     
     private func saveImageTopShelfObjects(from imageArticleBaseList: [ImageArticleBase]) {
-        let objects: [ImageTopShelfObject] = imageArticleBaseList
+        let datas: [ImageTopShelfData] = imageArticleBaseList
             .compactMap { [weak self] imageArticleBase in
-                return self?.convertObject(from: imageArticleBase)
+                return self?.convertData(from: imageArticleBase)
             }
         
         do {
-            let data: Data = try NSKeyedArchiver.archivedData(withRootObject: objects, requiringSecureCoding: false)
-            userDefaults.set(data, forKey: ImageTopShelfConstant.imageTopShelfObjectsDataKey)
+            let jsonData: Data = try encoder.encode(datas)
+            userDefaults.set(jsonData, forKey: ImageTopShelfConstant.imageTopShelfDatasKey)
         } catch {
             Logger.error(error.localizedDescription)
         }
@@ -94,9 +93,13 @@ final class ImageTopShelfSaver {
         userDefaults.set(Date(), forKey: ImageTopShelfConstant.timestampKey)
     }
     
+    private func configureQueue() {
+        queue.qualityOfService = .background
+    }
+    
     // MARK: - Helper
     
-    private func convertObject(from imageArticleBase: ImageArticleBase) -> ImageTopShelfObject? {
+    private func convertData(from imageArticleBase: ImageArticleBase) -> ImageTopShelfData? {
         guard let previewImageURL: URL = imageArticleBase.previewImageURL else {
             return nil
         }
@@ -108,7 +111,6 @@ final class ImageTopShelfSaver {
         let previewBodyString: String = previewBodyAttributedString.string
         
         return .init(previewImageURL: previewImageURL,
-                     category: imageArticleBase.category,
                      title: imageArticleBase.title,
                      previewBody: previewBodyString,
                      timestamp: imageArticleBase.timestamp,
