@@ -16,6 +16,7 @@ final class ImageArticleBaseListViewController: UIViewController {
     }
     
     private weak var collectionView: UICollectionView!
+    private weak var gradientLayer: CAGradientLayer!
     private var viewModel: ImageArticleBaseListViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
@@ -24,6 +25,16 @@ final class ImageArticleBaseListViewController: UIViewController {
         configureCollectionView()
         configureViewModel()
         configureGradientLayer()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateGradientLayer()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateGradientLayer()
     }
     
     func requestImageArticleBaseList() {
@@ -86,14 +97,21 @@ final class ImageArticleBaseListViewController: UIViewController {
     
     private func configureGradientLayer() {
         let gradientLayer: CAGradientLayer = .init()
-        gradientLayer.frame = view.bounds
+        self.gradientLayer = gradientLayer
         gradientLayer.colors = [
             UIColor.white.withAlphaComponent(0).cgColor,
             UIColor.white.cgColor
         ]
         gradientLayer.startPoint = .init(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = .init(x: 0.05, y: 0.0)
+        gradientLayer.endPoint = .init(x: 0.015, y: 0.0)
         view.layer.mask = gradientLayer
+    }
+    
+    private func updateGradientLayer() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        gradientLayer?.frame = view.bounds
+        CATransaction.commit()
     }
     
     private func handleRequestCompletion(_ future: Future<Bool, Error>) {
