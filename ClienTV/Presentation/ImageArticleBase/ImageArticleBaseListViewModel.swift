@@ -16,12 +16,14 @@ final class ImageArticleBaseListViewModel {
     private let dataSource: DataSource
     private let useCase: ImageArticleBaseListUseCase
     private var currentBoardPage: Int = 0
+    private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource,
          useCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()) {
         self.dataSource = dataSource
         self.useCase = useCase
+        configureQueue()
     }
     
     func getCellItem(from indexPath: IndexPath) -> ImageArticleBaseListCellItem? {
@@ -41,25 +43,27 @@ final class ImageArticleBaseListViewModel {
     
     private func requestImageArticleBaseList(shouldResetSnapshot: Bool) -> Future<Bool, Error> {
         return .init { [weak self] promise in
-            guard let self = self else {
-                return
-            }
-            
-            self.useCase
-                .getImageArticleBaseList(page: self.currentBoardPage)
-                .sink { completion in
-                    switch completion {
-                    case .failure(let error):
-                        promise(.failure(error))
-                    case .finished:
-                        break
-                    }
-                } receiveValue: { [weak self] imageArticleBaseList in
-                    self?.updateImageArticleBaseList(imageArticleBaseList, reset: shouldResetSnapshot)
-                    promise(.success(shouldResetSnapshot))
-                }
-                .store(in: &self.cancellableBag)
+            self?.configurePromise(promise, shouldResetSnapshot: shouldResetSnapshot)
         }
+    }
+    
+    private func configurePromise(_ promise: @escaping ((Result<Bool, Error>) -> Void),
+                                  shouldResetSnapshot: Bool) {
+        useCase
+            .getImageArticleBaseList(page: currentBoardPage)
+            .receive(on: queue)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    promise(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] imageArticleBaseList in
+                self?.updateImageArticleBaseList(imageArticleBaseList, reset: shouldResetSnapshot)
+                promise(.success(shouldResetSnapshot))
+            }
+            .store(in: &cancellableBag)
     }
     
     private func updateImageArticleBaseList(_ imageArticleBaseList: [ImageArticleBase], reset: Bool) {
@@ -91,6 +95,10 @@ final class ImageArticleBaseListViewModel {
         snapshot.appendItems([loadMoreCellItem], toSection: headerItem)
         
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    private func configureQueue() {
+        queue.qualityOfService = .userInteractive
     }
     
     // MARK: - Helper

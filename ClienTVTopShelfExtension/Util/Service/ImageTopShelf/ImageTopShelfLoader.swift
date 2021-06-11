@@ -1,5 +1,5 @@
 //
-//  ImageTopShelfService.swift
+//  ImageTopShelfLoader.swift
 //  ClienTVTopShelfExtension
 //
 //  Created by Jinwoo Kim on 6/11/21.

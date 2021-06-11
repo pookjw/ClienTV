@@ -20,12 +20,14 @@ final class ArticleBaseListViewModel {
     private let dataSource: DataSource
     private let useCase: ArticleBaseListUseCase
     private var currentBoardPage: Int = 0
+    private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource,
         useCase: ArticleBaseListUseCase = ArticleBaseListUseCaseImpl()) {
         self.dataSource = dataSource
         self.useCase = useCase
+        configureQueue()
     }
     
     func getCellItem(from indexPath: IndexPath) -> ArticleBaseListCellItem? {
@@ -46,30 +48,32 @@ final class ArticleBaseListViewModel {
     
     private func requestArticleBaseList(shouldResetSnapshot: Bool) -> Future<Bool, Error> {
         return .init { [weak self] promise in
-            guard let self = self else {
-                return
-            }
-            
-            guard let boardPath: String = self.boardPath else {
-                Logger.error("boardPath is nil!")
-                return
-            }
-            
-            self.useCase
-                .getArticleBaseList(path: boardPath, page: self.currentBoardPage)
-                .sink { completion in
-                    switch completion {
-                    case .failure(let error):
-                        promise(.failure(error))
-                    case .finished:
-                        break
-                    }
-                } receiveValue: { [weak self] articleBaseList in
-                    self?.updateArticleBaseList(articleBaseList, reset: shouldResetSnapshot)
-                    promise(.success(shouldResetSnapshot))
-                }
-                .store(in: &self.cancellableBag)
+            self?.configurePromise(promise, shouldResetSnapshot: shouldResetSnapshot)
         }
+    }
+    
+    private func configurePromise(_ promise: @escaping ((Result<Bool, Error>) -> Void),
+                                  shouldResetSnapshot: Bool) {
+        guard let boardPath: String = boardPath else {
+            Logger.error("boardPath is nil!")
+            return
+        }
+        
+        useCase
+            .getArticleBaseList(path: boardPath, page: currentBoardPage)
+            .receive(on: queue)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    promise(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] articleBaseList in
+                self?.updateArticleBaseList(articleBaseList, reset: shouldResetSnapshot)
+                promise(.success(shouldResetSnapshot))
+            }
+            .store(in: &self.cancellableBag)
     }
     
     private func updateArticleBaseList(_ articleBaseList: [ArticleBase], reset: Bool) {
@@ -101,6 +105,10 @@ final class ArticleBaseListViewModel {
         snapshot.appendItems([loadMoreCellItem], toSection: headerItem)
         
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    private func configureQueue() {
+        queue.qualityOfService = .userInteractive
     }
     
     // MARK: - Helper

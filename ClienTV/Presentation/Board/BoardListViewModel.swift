@@ -21,12 +21,14 @@ final class BoardListViewModel {
         let isBoardListEmpty: Bool = snapshot.numberOfItems == 0
         return isBoardListEmpty
     }
+    private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource,
         useCase: BoardListUseCase = BoardListUseCaseImpl()) {
         self.dataSource = dataSource
         self.useCase = useCase
+        configureQueue()
     }
     
     func getHeaderItem(from indexPath: IndexPath) -> BoardListHeaderItem? {
@@ -41,38 +43,39 @@ final class BoardListViewModel {
     
     func requestBoardListIfNeeded() -> Future<Void, Error> {
         return .init { [weak self] promise in
-            guard let self = self else {
-                return
-            }
-            
-            let isTestMode: Bool = ProcessInfo.processInfo.isTestMode
-            
-            // Test Mode에서는 데이터를 불러오지 않는다.
-            guard !isTestMode else {
-                Logger.debug("isTestMode == true")
-                return
-            }
-            
-            guard self.isBoardListEmpty else {
-                Logger.warning("이미 BoardList가 존재함!")
-                return
-            }
-            
-            self.useCase
-                .getAllBoardList()
-                .sink { completion in
-                    switch completion {
-                    case .failure(let error):
-                        promise(.failure(error))
-                    case .finished:
-                        break
-                    }
-                } receiveValue: { [weak self] boardList in
-                    self?.updateBoardList(boardList)
-                    promise(.success(()))
-                }
-                .store(in: &self.cancellableBag)
+            self?.configurePromise(promise)
         }
+    }
+    
+    private func configurePromise(_ promise: @escaping ((Result<Void, Error>) -> Void)) {
+        let isTestMode: Bool = ProcessInfo.processInfo.isTestMode
+        
+        // Test Mode에서는 데이터를 불러오지 않는다.
+        guard !isTestMode else {
+            Logger.debug("isTestMode == true")
+            return
+        }
+        
+        guard isBoardListEmpty else {
+            Logger.warning("이미 BoardList가 존재함!")
+            return
+        }
+        
+        useCase
+            .getAllBoardList()
+            .receive(on: queue)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    promise(.failure(error))
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] boardList in
+                self?.updateBoardList(boardList)
+                promise(.success(()))
+            }
+            .store(in: &cancellableBag)
     }
     
     private func updateBoardList(_ boardList: [Board]) {
@@ -93,6 +96,10 @@ final class BoardListViewModel {
         snapshot.appendItems(somoimEtcCellItems, toSection: somoimEtcHeaderItem)
         
         dataSource.apply(snapshot)
+    }
+    
+    private func configureQueue() {
+        queue.qualityOfService = .userInteractive
     }
     
     // MARK: - Helper

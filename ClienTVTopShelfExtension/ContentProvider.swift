@@ -7,12 +7,21 @@
 
 import TVServices
 
-class ContentProvider: TVTopShelfContentProvider {
+final class ContentProvider: TVTopShelfContentProvider {
+    private let queue: OperationQueue = .init()
+    
+    override init() {
+        super.init()
+        configureQueue()
+    }
 
     override func loadTopShelfContent(completionHandler: @escaping (TVTopShelfContent?) -> Void) {
         // Fetch content and call completionHandler
         completionHandler(nil);
     }
 
+    private func configureQueue() {
+        queue.qualityOfService = .background
+    }
 }
 

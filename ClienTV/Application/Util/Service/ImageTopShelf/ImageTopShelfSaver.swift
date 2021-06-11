@@ -15,6 +15,7 @@ final class ImageTopShelfSaver {
     
     private let useCase: ImageArticleBaseListUseCase
     private let userDefaults: UserDefaults = .init(suiteName: "group.com.pookjw.ClienTV") ?? .standard
+    private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     private var shouldSave: Bool {
         guard let prevTimestamp: Date = userDefaults.object(forKey: ImageTopShelfConstant.timestampKey) as? Date else {
@@ -51,11 +52,17 @@ final class ImageTopShelfSaver {
     
     private init(useCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()) {
         self.useCase = useCase
+        configureQueue()
+    }
+    
+    private func configureQueue() {
+        queue.qualityOfService = .utility
     }
     
     private func fetchImageArticleBaseList(completion: @escaping ([ImageArticleBase]?, Error?) -> Void) {
         useCase
             .getImageArticleBaseList(page: 0)
+            .receive(on: queue)
             .sink { result in
                 switch result {
                 case .failure(let error):

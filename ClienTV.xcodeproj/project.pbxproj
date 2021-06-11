@@ -22,8 +22,7 @@
 		4F10D967267263380034AA48 /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F10D966267263380034AA48 /* TVServices.framework */; };
 		4F10D96A267263380034AA48 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D969267263380034AA48 /* ContentProvider.swift */; };
 		4F10D96E267263380034AA48 /* ClienTVTopShelfExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4F10D965267263380034AA48 /* ClienTVTopShelfExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4F10D9852672666C0034AA48 /* ImageTopShelfReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D9842672666C0034AA48 /* ImageTopShelfReader.swift */; };
-		4F10D987267266C50034AA48 /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D986267266C50034AA48 /* ImageTopShelfConstant.swift */; };
+		4F10D9852672666C0034AA48 /* ImageTopShelfLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D9842672666C0034AA48 /* ImageTopShelfLoader.swift */; };
 		4F10D98B2672670B0034AA48 /* ImageTopShelfSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D98A2672670B0034AA48 /* ImageTopShelfSaver.swift */; };
 		4F10D98F267268A90034AA48 /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D98E267268A90034AA48 /* ImageTopShelfConstant.swift */; };
 		4F10D99426726DC90034AA48 /* ImageTopShelfObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D99326726DC90034AA48 /* ImageTopShelfObject.swift */; };
@@ -100,6 +99,8 @@
 		A43050FEE2953D6F28C4F9BD /* Pods_ClienTVAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */; };
 		F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */; };
 		F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */; };
+		F37E93CD26733804005AA37E /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */; };
+		F37E93CE26733804005AA37E /* ImageTopShelfObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CC26733804005AA37E /* ImageTopShelfObject.swift */; };
 		F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */; };
 		F3D318E8266A2A0C00B579E6 /* ArticleBaseContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */; };
 /* End PBXBuildFile section */
@@ -192,8 +193,7 @@
 		4F10D969267263380034AA48 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
 		4F10D96B267263380034AA48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F10D9732672633F0034AA48 /* ClienTVTopShelfExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClienTVTopShelfExtension.entitlements; sourceTree = "<group>"; };
-		4F10D9842672666C0034AA48 /* ImageTopShelfReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfReader.swift; sourceTree = "<group>"; };
-		4F10D986267266C50034AA48 /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfConstant.swift; sourceTree = "<group>"; };
+		4F10D9842672666C0034AA48 /* ImageTopShelfLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfLoader.swift; sourceTree = "<group>"; };
 		4F10D98A2672670B0034AA48 /* ImageTopShelfSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfSaver.swift; sourceTree = "<group>"; };
 		4F10D98E267268A90034AA48 /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfConstant.swift; sourceTree = "<group>"; };
 		4F10D99326726DC90034AA48 /* ImageTopShelfObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTopShelfObject.swift; sourceTree = "<group>"; };
@@ -282,6 +282,8 @@
 		E5A8A0B3752122A1B3738CE9 /* Pods-ClienTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.release.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.release.xcconfig"; sourceTree = "<group>"; };
 		F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+Item.swift"; sourceTree = "<group>"; };
 		F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
+		F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTopShelfConstant.swift; path = ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfConstant.swift; sourceTree = SOURCE_ROOT; };
+		F37E93CC26733804005AA37E /* ImageTopShelfObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTopShelfObject.swift; path = ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfObject.swift; sourceTree = SOURCE_ROOT; };
 		F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseContentConfiguration.swift; sourceTree = "<group>"; };
 		F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleBaseContentView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -386,8 +388,9 @@
 		4F10D991267268B60034AA48 /* ImageTopShelf */ = {
 			isa = PBXGroup;
 			children = (
-				4F10D9842672666C0034AA48 /* ImageTopShelfReader.swift */,
-				4F10D986267266C50034AA48 /* ImageTopShelfConstant.swift */,
+				4F10D9842672666C0034AA48 /* ImageTopShelfLoader.swift */,
+				F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */,
+				F37E93CC26733804005AA37E /* ImageTopShelfObject.swift */,
 			);
 			path = ImageTopShelf;
 			sourceTree = "<group>";
@@ -1132,9 +1135,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F10D9852672666C0034AA48 /* ImageTopShelfReader.swift in Sources */,
-				4F10D987267266C50034AA48 /* ImageTopShelfConstant.swift in Sources */,
+				4F10D9852672666C0034AA48 /* ImageTopShelfLoader.swift in Sources */,
+				F37E93CD26733804005AA37E /* ImageTopShelfConstant.swift in Sources */,
 				4F10D96A267263380034AA48 /* ContentProvider.swift in Sources */,
+				F37E93CE26733804005AA37E /* ImageTopShelfObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,6 +1307,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ClienTVTopShelfExtension/ClienTVTopShelfExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
 				INFOPLIST_FILE = ClienTVTopShelfExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1324,6 +1329,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ClienTVTopShelfExtension/ClienTVTopShelfExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
 				INFOPLIST_FILE = ClienTVTopShelfExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
