@@ -19,6 +19,10 @@ final class ArticleBaseContentView: UIView, UIContentView {
     @IBOutlet weak var hitCountLabel: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet var timestampLabelTextLeadingLayout: NSLayoutConstraint!
+    @IBOutlet var timpstampLabelImageLeadingLayout: NSLayoutConstraint!
+    @IBOutlet var timestampLabelTextBottomLayout: NSLayoutConstraint!
+    @IBOutlet var timestampLabelImageBottomLayout: NSLayoutConstraint!
     
     var configuration: UIContentConfiguration {
         get {
@@ -65,10 +69,10 @@ final class ArticleBaseContentView: UIView, UIContentView {
         //
         
         if let category: String = articleBaseData.category {
-            categoryLabel.isHidden = false
+//            categoryLabel.isHidden = false
             categoryLabel.text = category
         } else {
-            categoryLabel.isHidden = true
+//            categoryLabel.isHidden = true
             categoryLabel.text = nil
         }
         
@@ -78,19 +82,21 @@ final class ArticleBaseContentView: UIView, UIContentView {
             nicknameImageView.isHidden = false
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
-            nicknameImageView.kf.setImage(with: nicknameImageURL) { [weak self] _ in
-                self?.invalidateLayout()
-            }
+            nicknameImageView.kf.setImage(with: nicknameImageURL)
             nicknameLabel.isHidden = true
+            timestampLabelTextLeadingLayout.isActive = false
+            timpstampLabelImageLeadingLayout.isActive = true
+            timestampLabelTextBottomLayout.isActive = false
+            timestampLabelImageBottomLayout.isActive = true
         } else {
             nicknameImageView.isHidden = true
             nicknameImageView.kf.cancelDownloadTask()
             nicknameImageView.image = nil
-            
-            // UIStackView의 버그때문인지, height가 0으로 되어 버려서 Label들이 싹다 안 보이는 문제가 있다. 따라서 height를 0으로 맞춰주는건 꺼버린다.
-            nicknameImageView.removeHeightConstraint()
-            
             nicknameLabel.isHidden = false
+            timestampLabelTextLeadingLayout.isActive = true
+            timpstampLabelImageLeadingLayout.isActive = false
+            timestampLabelTextBottomLayout.isActive = true
+            timestampLabelImageBottomLayout.isActive = false
         }
         
         nicknameLabel.text = articleBaseData.nickname
