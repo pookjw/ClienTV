@@ -73,7 +73,6 @@ final class CommentContentView: UIView, UIContentView {
             replyImageView.isHidden = false
         } else {
             replyImageView.isHidden = true
-            replyImageView.removeHeightConstraint()
         }
         
         //
@@ -83,6 +82,7 @@ final class CommentContentView: UIView, UIContentView {
             nicknameImageView.image = nil
             nicknameImageView.kf.indicatorType = .activity
             nicknameImageView.kf.setImage(with: nicknameImageURL) { [weak self] _ in
+                self?.layoutSubviews()
                 self?.invalidateLayout()
             }
             nicknameLabel.isHidden = true
@@ -90,10 +90,6 @@ final class CommentContentView: UIView, UIContentView {
             nicknameImageView.isHidden = true
             nicknameImageView.kf.cancelDownloadTask()
             nicknameImageView.image = nil
-            
-            // UIStackView의 버그때문인지, height가 0으로 되어 버려서 Label들이 싹다 안 보이는 문제가 있다. 따라서 height를 0으로 맞춰주는건 꺼버린다.
-            nicknameImageView.removeHeightConstraint()
-            
             nicknameLabel.isHidden = false
         }
         
@@ -121,7 +117,6 @@ final class CommentContentView: UIView, UIContentView {
             bodyImageView.isHidden = true
             bodyImageView.kf.cancelDownloadTask()
             bodyImageView.image = nil
-            bodyImageView.removeHeightConstraint()
         }
         
         //
@@ -138,10 +133,12 @@ final class CommentContentView: UIView, UIContentView {
                 let rect: CGRect = attributedString.boundingRect(with: .init(width: self.frame.width, height: .greatestFiniteMagnitude),
                                                                   options: .usesLineFragmentOrigin,
                                                                   context: nil)
-                self.bodyLabel.attributedText = attributedString.copy() as? NSAttributedString
+                self.bodyLabel?.attributedText = attributedString.copy() as? NSAttributedString
                 
                 // attributedText의 경우 Label에 frame 크기가 정의되기 까지 시간이 걸리므로, 직접 바로 정의해준다.
-                self.bodyLabelHeightLayout.constant = ceil(rect.height)
+                self.bodyLabelHeightLayout?.constant = ceil(rect.height)
+                self.layoutSubviews()
+                self.invalidateLayout()
             }
         }
     }

@@ -10,7 +10,6 @@ import Foundation
 final class ImageTopShelfLoader {
     enum LoaderError: Error {
         case noCacheFound
-        case unarchiverTypeError
     }
     
     static let shared: ImageTopShelfLoader = .init()
