@@ -163,7 +163,7 @@ extension ImageArticleBaseListViewController: TVCollectionViewDelegateFullScreen
             Logger.info(data.path)
             presentArticleViewController(articlePath: data.path)
         case .loadMore:
-            break
+            requestNextImageArticleBaseList()
         }
     }
     
