@@ -50,7 +50,7 @@ final class ArticleBaseListViewController: UIViewController {
         }
     }
     
-    private func makeDataSource() -> ArticleBaseListViewModel.DataSource {
+    private func getDataSource() -> ArticleBaseListViewModel.DataSource {
         guard let collectionView: UICollectionView = collectionView else {
             fatalError("collectionView is not configured!")
         }
@@ -94,7 +94,7 @@ final class ArticleBaseListViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        let viewModel: ArticleBaseListViewModel = .init(dataSource: makeDataSource())
+        let viewModel: ArticleBaseListViewModel = .init(dataSource: getDataSource())
         self.viewModel = viewModel
     }
     

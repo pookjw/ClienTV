@@ -51,7 +51,12 @@ final class CommentListViewController: UIViewController {
         }
     }
     
-    private func makeDataSource() -> CommentListViewModel.DataSource {
+    private func configureViewModel() {
+        let viewModel: CommentListViewModel = .init(dataSource: getDataSource())
+        self.viewModel = viewModel
+    }
+    
+    private func getDataSource() -> CommentListViewModel.DataSource {
         guard let collectionView: UICollectionView = collectionView else {
             fatalError("collectionView is not configured!")
         }
@@ -93,7 +98,7 @@ final class CommentListViewController: UIViewController {
     private func getSupplementaryViewProvider() -> CommentListViewModel.DataSource.SupplementaryViewProvider {
         return { [weak self] (collectionView, elementKind, indexPath) -> UICollectionReusableView? in
             
-            guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
+            guard let headerView: UICollectionViewListCell = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
             }
             
@@ -113,11 +118,6 @@ final class CommentListViewController: UIViewController {
             
             return headerView
         }
-    }
-    
-    private func configureViewModel() {
-        let viewModel: CommentListViewModel = .init(dataSource: makeDataSource())
-        self.viewModel = viewModel
     }
     
     private func handleRequestCompletion(_ future: Future<Void, Error>) {

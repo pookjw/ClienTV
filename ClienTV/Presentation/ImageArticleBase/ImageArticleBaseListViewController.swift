@@ -58,7 +58,7 @@ final class ImageArticleBaseListViewController: UIViewController {
         collectionView.delegate = self
     }
     
-    private func makeDataSource() -> ImageArticleBaseListViewModel.DataSource {
+    private func getDataSource() -> ImageArticleBaseListViewModel.DataSource {
         guard let collectionView: UICollectionView = collectionView else {
             fatalError("collectionView is not configured!")
         }
@@ -91,7 +91,7 @@ final class ImageArticleBaseListViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        let viewModel: ImageArticleBaseListViewModel = .init(dataSource: makeDataSource())
+        let viewModel: ImageArticleBaseListViewModel = .init(dataSource: getDataSource())
         self.viewModel = viewModel
     }
     

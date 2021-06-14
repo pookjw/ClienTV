@@ -8,14 +8,14 @@
 import Foundation
 
 struct ImageArticleBaseListHeaderItem: Equatable, Hashable {
-    static func ==(lhs: ImageArticleBaseListHeaderItem, rhs: ImageArticleBaseListHeaderItem) -> Bool {
+    static func == (lhs: ImageArticleBaseListHeaderItem, rhs: ImageArticleBaseListHeaderItem) -> Bool {
         return lhs.dataType == rhs.dataType
     }
     
     enum DataType: Equatable, Hashable {
         case imageArticleBaseList
         
-        static func ==(lhs: DataType, rhs: DataType) -> Bool {
+        static func == (lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
             case (.imageArticleBaseList, .imageArticleBaseList):
                 return true
@@ -32,7 +32,7 @@ extension ImageArticleBaseListHeaderItem {
 // MARK: - ArticleBaseListCellItem
 
 struct ImageArticleBaseListCellItem: Equatable, Hashable {
-    static func ==(lhs: ImageArticleBaseListCellItem, rhs: ImageArticleBaseListCellItem) -> Bool {
+    static func == (lhs: ImageArticleBaseListCellItem, rhs: ImageArticleBaseListCellItem) -> Bool {
         return lhs.dataType == rhs.dataType
     }
     
@@ -40,7 +40,7 @@ struct ImageArticleBaseListCellItem: Equatable, Hashable {
         case imageArticleBase(data: ImageArticleBaseData)
         case loadMore
         
-        static func ==(lhs: DataType, rhs: DataType) -> Bool {
+        static func == (lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
             case let (.imageArticleBase(lhsData), .imageArticleBase(rhsData)):
                 return lhsData == rhsData
@@ -57,7 +57,7 @@ struct ImageArticleBaseListCellItem: Equatable, Hashable {
 
 extension ImageArticleBaseListCellItem {
     struct ImageArticleBaseData: Equatable, Hashable {
-        static func ==(lhs: ImageArticleBaseData, rhs: ImageArticleBaseData) -> Bool {
+        static func == (lhs: ImageArticleBaseData, rhs: ImageArticleBaseData) -> Bool {
             return lhs.previewImageURL == rhs.previewImageURL &&
                 lhs.category == rhs.category &&
                 lhs.title == rhs.title &&

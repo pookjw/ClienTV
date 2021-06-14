@@ -54,7 +54,7 @@ final class BoardListViewController: UIViewController {
         }
     }
     
-    private func makeDataSource() -> BoardListViewModel.DataSource {
+    private func getDataSource() -> BoardListViewModel.DataSource {
         guard let collectionView: UICollectionView = collectionView else {
             fatalError("collectionView is not configured!")
         }
@@ -109,7 +109,7 @@ final class BoardListViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        let viewModel: BoardListViewModel = .init(dataSource: makeDataSource())
+        let viewModel: BoardListViewModel = .init(dataSource: getDataSource())
         self.viewModel = viewModel
     }
     

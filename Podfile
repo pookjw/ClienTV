@@ -12,11 +12,16 @@ def kingfisher_pod
   pod 'Kingfisher', '~> 6.3.0'
 end
 
+def sortsnapshot_pod
+  pod 'SortSnapshot', '~> 1.7'
+end
+
 ###
 
 target 'ClienTV' do
   snapkit_pod
   kingfisher_pod
+  sortsnapshot_pod
 end
 
 target 'ClienTVAPI' do

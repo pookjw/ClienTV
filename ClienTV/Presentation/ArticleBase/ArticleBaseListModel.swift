@@ -10,14 +10,14 @@ import Foundation
 // MARK: - ArticleBaseListHeaderItem
 
 struct ArticleBaseListHeaderItem: Equatable, Hashable {
-    static func ==(lhs: ArticleBaseListHeaderItem, rhs: ArticleBaseListHeaderItem) -> Bool {
+    static func == (lhs: ArticleBaseListHeaderItem, rhs: ArticleBaseListHeaderItem) -> Bool {
         return lhs.dataType == rhs.dataType
     }
     
     enum DataType: Equatable, Hashable {
         case articleBaseList
         
-        static func ==(lhs: DataType, rhs: DataType) -> Bool {
+        static func == (lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
             case (.articleBaseList, .articleBaseList):
                 return true
@@ -34,7 +34,7 @@ extension ArticleBaseListHeaderItem {
 // MARK: - ArticleBaseListCellItem
 
 struct ArticleBaseListCellItem: Equatable, Hashable {
-    static func ==(lhs: ArticleBaseListCellItem, rhs: ArticleBaseListCellItem) -> Bool {
+    static func == (lhs: ArticleBaseListCellItem, rhs: ArticleBaseListCellItem) -> Bool {
         return lhs.dataType == rhs.dataType
     }
     
@@ -42,7 +42,7 @@ struct ArticleBaseListCellItem: Equatable, Hashable {
         case articleBase(data: ArticleBaseData)
         case loadMore
         
-        static func ==(lhs: DataType, rhs: DataType) -> Bool {
+        static func == (lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
             case let (.articleBase(lhsData), .articleBase(rhsData)):
                 return lhsData == rhsData
@@ -59,7 +59,7 @@ struct ArticleBaseListCellItem: Equatable, Hashable {
 
 extension ArticleBaseListCellItem {
     struct ArticleBaseData: Equatable, Hashable {
-        static func ==(lhs: ArticleBaseData, rhs: ArticleBaseData) -> Bool {
+        static func == (lhs: ArticleBaseData, rhs: ArticleBaseData) -> Bool {
             return lhs.likeCount == rhs.likeCount &&
                 lhs.category == rhs.category &&
                 lhs.likeCount == rhs.likeCount &&
