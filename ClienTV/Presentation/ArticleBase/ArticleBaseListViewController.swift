@@ -12,6 +12,7 @@ import SnapKit
 
 final class ArticleBaseListViewController: UIViewController {
     private weak var collectionView: UICollectionView!
+    private weak var gradientLayer: CAGradientLayer!
     private var viewModel: ArticleBaseListViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
@@ -19,6 +20,17 @@ final class ArticleBaseListViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
+        configureGradientLayer()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateGradientLayer()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateGradientLayer()
     }
     
     func requestArticleBaseList(with boardPath: String) {
@@ -36,7 +48,7 @@ final class ArticleBaseListViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
-        collectionView.contentInset = .init(top: 0, left: 100, bottom: 0, right: 0)
+        collectionView.contentInset = .init(top: 20, left: 100, bottom: 0, right: 0)
         collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: UICollectionViewListCell.identifier)
         collectionView.register(UICollectionViewListCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: UICollectionViewListCell.identifier)
         collectionView.delegate = self
@@ -96,6 +108,25 @@ final class ArticleBaseListViewController: UIViewController {
     private func configureViewModel() {
         let viewModel: ArticleBaseListViewModel = .init(dataSource: getDataSource())
         self.viewModel = viewModel
+    }
+    
+    private func configureGradientLayer() {
+        let gradientLayer: CAGradientLayer = .init()
+        self.gradientLayer = gradientLayer
+        gradientLayer.colors = [
+            UIColor.white.withAlphaComponent(0).cgColor,
+            UIColor.white.cgColor
+        ]
+        gradientLayer.startPoint = .init(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = .init(x: 0.0, y: 0.015)
+        view.layer.mask = gradientLayer
+    }
+    
+    private func updateGradientLayer() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        gradientLayer?.frame = view.bounds
+        CATransaction.commit()
     }
     
     private func presentArticleViewController(articlePath: String) {
