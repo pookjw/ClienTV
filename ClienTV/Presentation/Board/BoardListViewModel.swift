@@ -20,6 +20,11 @@ final class BoardListViewModel {
     
     private let dataSource: DataSource
     private let useCase: BoardListUseCase
+    private var isBoardListEmpty: Bool {
+        let snapshot: Snapshot = dataSource.snapshot()
+        let isBoardListEmpty: Bool = snapshot.numberOfItems == 0
+        return isBoardListEmpty
+    }
     private let queue: OperationQueue = .init()
     private let settingService: SettingsService = .shared
     private var cancellableBag: Set<AnyCancellable> = .init()
@@ -53,6 +58,11 @@ final class BoardListViewModel {
         // Test Mode에서는 데이터를 불러오지 않는다.
         guard !isTestMode else {
             Logger.debug("isTestMode == true")
+            return
+        }
+        
+        guard isBoardListEmpty else {
+            Logger.warning("이미 BoardList가 존재함!")
             return
         }
         

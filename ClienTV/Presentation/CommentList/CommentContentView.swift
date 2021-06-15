@@ -77,7 +77,7 @@ final class CommentContentView: UIView, UIContentView {
         let isAuthor: Bool = commentData.isAuthor
         let isReply: Bool = commentData.isReply
         
-        backgroundColor = isAuthor ? .orange : nil
+//        backgroundColor = isAuthor ? .orange : nil
         
         if isReply {
             replyImageView.isHidden = false

@@ -26,8 +26,12 @@ final class BoardListViewController: UIViewController {
         configureCollectionView()
         configureViewModel()
         configureGradientLayer()
-        requestBoardListIfNeeded()
         bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestBoardListIfNeeded()
     }
     
     override func viewDidLayoutSubviews() {
@@ -150,6 +154,7 @@ final class BoardListViewController: UIViewController {
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
+                    Logger.error(error.localizedDescription)
                     self?.showErrorAlert(error) { _ in
                         self?.requestBoardListIfNeeded()
                     }

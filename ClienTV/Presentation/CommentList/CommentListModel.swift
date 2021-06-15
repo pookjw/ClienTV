@@ -66,14 +66,15 @@ struct CommentListCellItem: Equatable, Hashable {
 extension CommentListCellItem {
     struct CommentData: Equatable, Hashable {
         static func == (lhs: CommentData, rhs: CommentData) -> Bool {
-            return lhs.isAuthor == rhs.isAuthor &&
-            lhs.isReply == rhs.isReply &&
-            lhs.nickname == rhs.nickname &&
-            lhs.nicknameImageURL == rhs.nicknameImageURL &&
-            lhs.timestamp == rhs.timestamp &&
-            lhs.likeCount == rhs.likeCount &&
-            lhs.bodyImageURL == rhs.bodyImageURL &&
-            lhs.bodyHTML == rhs.bodyHTML
+//            return lhs.isAuthor == rhs.isAuthor &&
+//                lhs.isReply == rhs.isReply &&
+//                lhs.nickname == rhs.nickname &&
+//                lhs.nicknameImageURL == rhs.nicknameImageURL &&
+//                lhs.timestamp == rhs.timestamp &&
+//                lhs.likeCount == rhs.likeCount &&
+//                lhs.bodyImageURL == rhs.bodyImageURL &&
+//                lhs.bodyHTML == rhs.bodyHTML
+            return lhs.uuid == rhs.uuid
         }
         
         let isAuthor: Bool
@@ -84,5 +85,7 @@ extension CommentListCellItem {
         let likeCount: Int
         let bodyImageURL: URL?
         let bodyHTML: String
+        
+        let uuid: UUID = .init()
     }
 }

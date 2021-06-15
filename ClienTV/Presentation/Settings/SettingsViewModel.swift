@@ -79,7 +79,7 @@ final class SettingsViewModel {
             
             //
             
-            self.dataSource.apply(snapshot)
+            self.dataSource.apply(snapshot, animatingDifferences: false)
         }
     }
     
@@ -134,6 +134,6 @@ final class SettingsViewModel {
         
         snapshot.ssSortSections()
         
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 }
