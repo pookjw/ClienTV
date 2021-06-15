@@ -102,15 +102,23 @@ final class CommentContentView: UIView, UIContentView {
             nicknameLabel.isHidden = false
         }
         
-        nicknameLabel.text = commentData.nickname
+        nicknameLabel.text = commentData.nickname ?? "(알 수 없음)"
         
         //
         
-        timestampLabel.text = dateFormatter.string(from: commentData.timestamp)
+        if let timestamp: Date = commentData.timestamp {
+            timestampLabel.text = dateFormatter.string(from: timestamp)
+        } else {
+            timestampLabel.text = "(알 수 없음)"
+        }
         
         //
         
-        likeCountLabel.text = "\(commentData.likeCount) 공감수"
+        if let likeCount: Int = commentData.likeCount {
+            likeCountLabel.text = "\(likeCount) 공감수"
+        } else {
+            likeCountLabel.text = nil
+        }
         
         //
         

@@ -92,45 +92,64 @@ final class CommentListAPIImpl: CommentListAPI {
     
     private func convertComment(from element: Element) throws -> Comment? {
         let commentType: String = try element.className()
+        
         let isAuthor: Bool
         let isReply: Bool
         let isMe: Bool
+        let isBlocked: Bool
         
         switch commentType {
         case "comment_row":
             isAuthor = false
             isReply = false
             isMe = false
+            isBlocked = false
         case "comment_row  re":
             isAuthor = false
             isReply = true
             isMe = false
+            isBlocked = false
         case "comment_row by-author ":
             isAuthor = true
             isReply = false
             isMe = false
+            isBlocked = false
         case "comment_row by-author re":
             isAuthor = true
             isReply = true
             isMe = false
+            isBlocked = false
         case "comment_row by-me ":
             isAuthor = false
             isReply = false
             isMe = true
+            isBlocked = false
         case "comment_row by-me re":
             isAuthor = false
             isReply = true
             isMe = true
+            isBlocked = false
+        case "comment_row blocked":
+            isAuthor = false
+            isReply = false
+            isMe = false
+            isBlocked = true
+        case "comment_row blocked re":
+            isAuthor = false
+            isReply = true
+            isMe = false
+            isBlocked = true
         default:
             Logger.warning("unspecified comment type: \(commentType)")
             isAuthor = false
             isReply = false
             isMe = false
+            isBlocked = false
         }
         
         //
         
-        let nickname: String
+        let nickname: String?
         let nicknameImageURL: URL?
         
         if let nicknameElement: Element = try element
@@ -153,19 +172,19 @@ final class CommentListAPIImpl: CommentListAPI {
                 nicknameImageURL = nil
             } else {
                 Logger.warning("no nickname (1)")
-                nickname = "(no nickname)"
+                nickname = nil
                 nicknameImageURL = nil
             }
             
         } else {
             Logger.warning("no nickname (2)")
-            nickname = "(no nickname)"
+            nickname = nil
             nicknameImageURL = nil
         }
         
         //
         
-        let timestamp: Date
+        let timestamp: Date?
         
         if let timestampString: String = try element
             .getElementsByClass("timestamp")
@@ -174,21 +193,21 @@ final class CommentListAPIImpl: CommentListAPI {
             .components(separatedBy: " / 수정일:")
             .first
         {
-            timestamp = dateFormatter.date(from: timestampString) ?? Date(timeIntervalSince1970: 0)
+            timestamp = dateFormatter.date(from: timestampString) ?? nil
         } else {
-            timestamp = Date(timeIntervalSince1970: 0)
+            timestamp = nil
         }
         
         //
         
-        let likeCount: Int = try element
+        let likeCount: Int? = try element
             .getElementsByClass("comment_symph")
             .first()?
             .select("strong")
             .filter { try $0.attr("id").contains("setLikeCount") }
             .first?
             .ownText()
-            .toInt() ?? 0
+            .toInt()
         
         //
         
@@ -205,14 +224,24 @@ final class CommentListAPIImpl: CommentListAPI {
             imageURL = nil
         }
         
-        let bodyHTML: String = try element
-            .getElementsByClass("comment_view")
-            .first()?
-            .html() ?? ""
+        let bodyHTML: String = try {
+            if isBlocked {
+                return try element
+                    .getElementsByTag("span")
+                    .first()?
+                    .ownText() ?? ""
+            } else {
+                return try element
+                    .getElementsByClass("comment_view")
+                    .first()?
+                    .html() ?? ""
+            }
+        }()
         
         let comment: Comment = .init(isAuthor: isAuthor,
                                      isReply: isReply,
                                      isMe: isMe,
+                                     isBlocked: isBlocked,
                                      nickname: nickname,
                                      nicknameImageURL: nicknameImageURL,
                                      timestamp: timestamp,

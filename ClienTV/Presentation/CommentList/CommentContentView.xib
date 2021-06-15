@@ -44,6 +44,11 @@
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="aoJ-HT-A2g" secondAttribute="height" multiplier="60:16" id="6YM-P8-DGi"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <integer key="value" value="7"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 공감수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5d-hN-S18">
                             <rect key="frame" x="722" y="0.0" width="131" height="46"/>

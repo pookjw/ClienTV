@@ -79,10 +79,10 @@ extension CommentListCellItem {
         
         let isAuthor: Bool
         let isReply: Bool
-        let nickname: String
+        let nickname: String?
         let nicknameImageURL: URL?
-        let timestamp: Date
-        let likeCount: Int
+        let timestamp: Date?
+        let likeCount: Int?
         let bodyImageURL: URL?
         let bodyHTML: String
         
