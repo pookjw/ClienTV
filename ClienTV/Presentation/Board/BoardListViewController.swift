@@ -24,11 +24,8 @@ final class BoardListViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         configureViewModel()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         requestBoardListIfNeeded()
+        bind()
     }
     
     private func configureCollectionView() {
@@ -67,7 +64,9 @@ final class BoardListViewController: UIViewController {
     }
     
     private func getCellProvider() -> BoardListViewModel.DataSource.CellProvider {
-        return { (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
+        return { [weak self] (collectionView, indexPath, cellItem) -> UICollectionViewCell? in
+            guard let self = self else { return nil }
+            
             guard let cell: UICollectionViewListCell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewListCell.identifier, for: indexPath) as? UICollectionViewListCell else {
                 return nil
             }
@@ -77,6 +76,7 @@ final class BoardListViewController: UIViewController {
             switch cellItem.dataType {
             case .board(let data):
                 configuration.text = data.name
+                configuration.secondaryText = self.viewModel.boardPathVisibilityStatus ? data.path : nil
             }
             
             cell.contentConfiguration = configuration
@@ -126,6 +126,17 @@ final class BoardListViewController: UIViewController {
                     break
                 }
             }, receiveValue: {})
+            .store(in: &cancellableBag)
+    }
+    
+    private func bind() {
+        SettingsService
+            .shared
+            .changedEvent
+            .receive(on: OperationQueue.main)
+            .sink(receiveValue: { [weak self] _ in
+                self?.collectionView?.reloadData()
+            })
             .store(in: &cancellableBag)
     }
 }

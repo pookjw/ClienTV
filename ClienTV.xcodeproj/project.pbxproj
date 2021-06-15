@@ -51,6 +51,8 @@
 		4F60411B26717ADD0067A364 /* ImageArticleBaseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411A26717ADD0067A364 /* ImageArticleBaseListViewModel.swift */; };
 		4F60411D26717AE30067A364 /* ImageArticleBaseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411C26717AE30067A364 /* ImageArticleBaseListModel.swift */; };
 		4F60411F267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F60411E267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift */; };
+		4F624D2B2677E79700B19BAD /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F624D2A2677E79700B19BAD /* SettingsService.swift */; };
+		4F624D2F2677E86400B19BAD /* SettingsServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F624D2E2677E86400B19BAD /* SettingsServiceModel.swift */; };
 		4F6B563326751005002090E8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B563226751005002090E8 /* SettingsViewModel.swift */; };
 		4F6B56352675100C002090E8 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B56342675100C002090E8 /* SettingsModel.swift */; };
 		4FCD9C00266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */; };
@@ -226,6 +228,8 @@
 		4F60411A26717ADD0067A364 /* ImageArticleBaseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListViewModel.swift; sourceTree = "<group>"; };
 		4F60411C26717AE30067A364 /* ImageArticleBaseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListModel.swift; sourceTree = "<group>"; };
 		4F60411E267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseCollectoinViewCell.swift; sourceTree = "<group>"; };
+		4F624D2A2677E79700B19BAD /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		4F624D2E2677E86400B19BAD /* SettingsServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsServiceModel.swift; sourceTree = "<group>"; };
 		4F6B563226751005002090E8 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4F6B56342675100C002090E8 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+reuseIdentifier.swift"; sourceTree = "<group>"; };
@@ -379,6 +383,7 @@
 		4F10D989267266EF0034AA48 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4F624D292677E78A00B19BAD /* Settings */,
 				F37E93E12673638D005AA37E /* Shortcut */,
 				4F10D990267268B00034AA48 /* ImageTopShelf */,
 			);
@@ -506,6 +511,15 @@
 				4F10D95F26725BFC0034AA48 /* ImageArticleBaseLoadMoreCollectoinViewCell.swift */,
 			);
 			path = ImageArticleBase;
+			sourceTree = "<group>";
+		};
+		4F624D292677E78A00B19BAD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4F624D2A2677E79700B19BAD /* SettingsService.swift */,
+				4F624D2E2677E86400B19BAD /* SettingsServiceModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		4FCD9BFE266F43610003531B /* UICollectionViewCell */ = {
@@ -1208,11 +1222,13 @@
 				4F6B563326751005002090E8 /* SettingsViewModel.swift in Sources */,
 				4F55A1DB266A9AA100429B3E /* ProcessInfo+isTestMode.swift in Sources */,
 				4FF70F80266938E600FDC680 /* ArticleBaseListModel.swift in Sources */,
+				4F624D2F2677E86400B19BAD /* SettingsServiceModel.swift in Sources */,
 				4FF70EE42667C94400FDC680 /* AppDelegate.swift in Sources */,
 				4FF70F6B2669073F00FDC680 /* HomeSplitViewController.swift in Sources */,
 				4FF70F7E2669376000FDC680 /* ArticleBaseListViewModel.swift in Sources */,
 				F37E93E326736395005AA37E /* ShortcutService.swift in Sources */,
 				4F6B56352675100C002090E8 /* SettingsModel.swift in Sources */,
+				4F624D2B2677E79700B19BAD /* SettingsService.swift in Sources */,
 				4F1C88D8266CDF74004AC01C /* CommentListViewController.swift in Sources */,
 				4F015A16266E57AB003A7E52 /* CommentListViewModel.swift in Sources */,
 				4F1C88CA266CC5F9004AC01C /* ArticleViewModel.swift in Sources */,

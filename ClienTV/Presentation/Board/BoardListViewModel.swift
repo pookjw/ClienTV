@@ -14,14 +14,14 @@ final class BoardListViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<BoardListHeaderItem, BoardListCellItem>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<BoardListHeaderItem, BoardListCellItem>
     
+    var boardPathVisibilityStatus: Bool {
+        return settingService.boardPathVisibilityStatus
+    }
+    
     private let dataSource: DataSource
     private let useCase: BoardListUseCase
-    private var isBoardListEmpty: Bool {
-        let snapshot: Snapshot = dataSource.snapshot()
-        let isBoardListEmpty: Bool = snapshot.numberOfItems == 0
-        return isBoardListEmpty
-    }
     private let queue: OperationQueue = .init()
+    private let settingService: SettingsService = .shared
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource,
@@ -56,11 +56,6 @@ final class BoardListViewModel {
             return
         }
         
-        guard isBoardListEmpty else {
-            Logger.warning("이미 BoardList가 존재함!")
-            return
-        }
-        
         useCase
             .getAllBoardList()
             .receive(on: queue)
@@ -72,6 +67,12 @@ final class BoardListViewModel {
                     break
                 }
             } receiveValue: { [weak self] boardList in
+                guard !(boardList.isEmpty) else {
+                    Logger.warning("불러오기 실패! 재시도 중...")
+                    self?.configurePromise(promise)
+                    return
+                }
+                
                 self?.updateBoardList(boardList)
                 promise(.success(()))
             }
@@ -95,7 +96,7 @@ final class BoardListViewModel {
         snapshot.appendItems(somoimCellItems, toSection: somoimHeaderItem)
         snapshot.appendItems(somoimEtcCellItems, toSection: somoimEtcHeaderItem)
         
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func configureQueue() {

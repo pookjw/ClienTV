@@ -83,6 +83,14 @@ extension SettingsCellItem {
         }
         
         let status: Bool
+        
+        var title: String {
+            return "게시판 목록에서 URL Path 표시"
+        }
+        
+        var accessoryText: String {
+            return status ? "켜짐" : "꺼짐"
+        }
     }
 }
 
@@ -128,7 +136,7 @@ extension SettingsCellItem {
         let dataType: DataType
         
         var image: UIImage? {
-            return .init(named: "github")
+            return .init(systemName: "chevron.left.slash.chevron.right")
         }
         
         var title: String {

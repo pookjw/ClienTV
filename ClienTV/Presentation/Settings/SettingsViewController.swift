@@ -45,7 +45,6 @@ final class SettingsViewController: UIViewController {
     private func configureViewModel() {
         let viewModel: SettingsViewModel = .init(dataSource: getDataSource())
         self.viewModel = viewModel
-        viewModel.configureInitialDataSource()
     }
     
     private func getDataSource() -> SettingsViewModel.DataSource {
@@ -69,21 +68,26 @@ final class SettingsViewController: UIViewController {
             
             switch cellItem.dataType {
             case .toggleBoardPathVisibility(let data):
-                break
+                var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
+                configuration.text = data.title
+                cell.contentConfiguration = configuration
+                cell.accessories = [.label(text: data.accessoryText)]
             case .developerEmail(let data):
                 var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = data.title
                 configuration.secondaryText = data.subtitle
                 configuration.image = data.image
-                configuration.imageProperties.maximumSize = .init(width: 48, height: 48)
+                configuration.imageToTextPadding = 30
                 cell.contentConfiguration = configuration
+                cell.accessories = []
             case .developerGitHub(let data):
                 var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = data.title
                 configuration.secondaryText = data.subtitle
                 configuration.image = data.image
-                configuration.imageProperties.maximumSize = .init(width: 48, height: 48)
+                configuration.imageToTextPadding = 30
                 cell.contentConfiguration = configuration
+                cell.accessories = []
             }
             
             return cell
@@ -112,5 +116,16 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - UICollectionViewDelegate
 extension SettingsViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cellItem: SettingsCellItem = viewModel.getCellItem(from: indexPath) else {
+            return
+        }
+        
+        switch cellItem.dataType {
+        case .toggleBoardPathVisibility(_):
+            viewModel.toggleBoardPathVisibility()
+        default:
+            break
+        }
+    }
 }
