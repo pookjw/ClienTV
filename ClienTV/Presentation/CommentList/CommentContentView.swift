@@ -37,10 +37,20 @@ final class CommentContentView: UIView, UIContentView {
         clearContents()
     }
     
-    func update(_ commentContentConfiguration: CommentContentConfiguration) {
+    func update(commentContentConfiguration: CommentContentConfiguration) {
         self.commentContentConfiguration = commentContentConfiguration
         clearContents()
         configureViews()
+    }
+    
+    func update(isFocused: Bool) {
+        if isFocused {
+            nicknameLabel.textColor = .black
+            bodyLabel.textColor = .black
+        } else {
+            nicknameLabel.textColor = nil
+            bodyLabel.textColor = nil
+        }
     }
     
     private func clearContents() {

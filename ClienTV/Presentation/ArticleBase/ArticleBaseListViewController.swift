@@ -81,16 +81,15 @@ final class ArticleBaseListViewController: UIViewController {
             
             switch cellItem.dataType {
             case .articleBase(let data):
-                let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data)
                 
                 if let contentView: ArticleBaseContentView = cell.contentView as? ArticleBaseContentView,
                    cell.contentConfiguration is ArticleBaseContentConfiguration {
                     
+                    let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data, contentView: contentView)
                     // Reuse
                     cell.contentConfiguration = configuration
-                    contentView.update(configuration)
-                    
                 } else {
+                    let configuration: ArticleBaseContentConfiguration = .init(articleBaseData: data, contentView: .loadFromNib())
                     cell.contentConfiguration = configuration
                 }
             case .loadMore:

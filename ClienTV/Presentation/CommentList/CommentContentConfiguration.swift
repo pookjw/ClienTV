@@ -9,14 +9,24 @@ import UIKit
 
 struct CommentContentConfiguration: UIContentConfiguration {
     let commentData: CommentListCellItem.CommentData
+    private weak var contentView: CommentContentView!
+    
+    init(commentData: CommentListCellItem.CommentData,
+         contentView: CommentContentView?) {
+        self.commentData = commentData
+        self.contentView = contentView
+    }
     
     func makeContentView() -> UIView & UIContentView {
-        let contentView: CommentContentView = .loadFromNib()
-        contentView.update(self)
+        contentView.update(commentContentConfiguration: self)
         return contentView
     }
     
     func updated(for state: UIConfigurationState) -> CommentContentConfiguration {
+        if let state: UICellConfigurationState = state as? UICellConfigurationState {
+            contentView?.update(isFocused: state.isFocused)
+        }
+        contentView?.update(commentContentConfiguration: self)
         return self
     }
 }
