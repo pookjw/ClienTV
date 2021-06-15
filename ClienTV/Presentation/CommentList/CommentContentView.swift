@@ -11,7 +11,7 @@ import Kingfisher
 import ClienTVAPI
 
 final class CommentContentView: UIView, UIContentView {
-    @IBOutlet weak var replyImageView: UIImageView!
+    @IBOutlet weak var leadingImageView: UIImageView!
     @IBOutlet weak var nicknameImageView: UIImageView!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
@@ -47,15 +47,17 @@ final class CommentContentView: UIView, UIContentView {
         if isFocused {
             nicknameLabel.textColor = .black
             bodyLabel.textColor = .black
+            leadingImageView.tintColor = .black
         } else {
             nicknameLabel.textColor = nil
             bodyLabel.textColor = nil
+            leadingImageView.tintColor = nil
         }
     }
     
     private func clearContents() {
         backgroundColor = nil
-        replyImageView.isHidden = true
+        leadingImageView.image = nil
         nicknameImageView.image = nil
         nicknameLabel.text = nil
         timestampLabel.text = nil
@@ -80,9 +82,9 @@ final class CommentContentView: UIView, UIContentView {
 //        backgroundColor = isAuthor ? .orange : nil
         
         if isReply {
-            replyImageView.isHidden = false
+            leadingImageView.image = .init(systemName: "arrow.turn.down.right")
         } else {
-            replyImageView.isHidden = true
+            leadingImageView.image = .init(systemName: "bubble.left")
         }
         
         //

@@ -116,10 +116,10 @@
                 <outlet property="bodyImageView" destination="Noe-Ct-y8O" id="Dwm-Vf-tLy"/>
                 <outlet property="bodyLabel" destination="pB3-gu-fIv" id="8hU-0i-lOt"/>
                 <outlet property="bodyLabelHeightLayout" destination="lAW-cg-JSM" id="dso-th-HUq"/>
+                <outlet property="leadingImageView" destination="fSK-RH-YkQ" id="2uR-Z6-g5z"/>
                 <outlet property="likeCountLabel" destination="o5d-hN-S18" id="Vcz-bA-5Ll"/>
                 <outlet property="nicknameImageView" destination="aoJ-HT-A2g" id="RlJ-cy-nha"/>
                 <outlet property="nicknameLabel" destination="mVC-b7-cGt" id="mCI-rm-5NX"/>
-                <outlet property="replyImageView" destination="fSK-RH-YkQ" id="2uR-Z6-g5z"/>
                 <outlet property="timestampLabel" destination="mi1-98-94k" id="hh0-Pm-DZW"/>
             </connections>
             <point key="canvasLocation" x="-125" y="4"/>
