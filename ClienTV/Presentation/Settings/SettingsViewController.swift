@@ -117,6 +117,10 @@ final class SettingsViewController: UIViewController {
 // MARK: - UICollectionViewDelegate
 extension SettingsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        defer {
+            collectionView.deselectItem(at: indexPath, animated: false)
+        }
+        
         guard let cellItem: SettingsCellItem = viewModel.getCellItem(from: indexPath) else {
             return
         }
