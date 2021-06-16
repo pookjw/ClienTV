@@ -28,11 +28,6 @@ final class ArticleBaseListViewController: UIViewController {
         updateGradientLayer()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        updateGradientLayer()
-    }
-    
     func requestArticleBaseList(with boardPath: String) {
         Logger.debug("ArticleBaseListViewController: \(boardPath)")
         let future: Future<Bool, Error> = viewModel.requestFirstArticleBaseList(boardPath: boardPath)

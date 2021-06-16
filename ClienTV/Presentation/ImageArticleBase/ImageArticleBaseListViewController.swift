@@ -32,11 +32,6 @@ final class ImageArticleBaseListViewController: UIViewController {
         updateGradientLayer()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        updateGradientLayer()
-    }
-    
     func requestImageArticleBaseList() {
         let future: Future<Bool, Error> = viewModel.requestFirstImageArticleBaseList()
         handleRequestCompletion(future)

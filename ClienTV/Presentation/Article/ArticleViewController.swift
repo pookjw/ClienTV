@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import OSLog
 import Kingfisher
+import SnapKit
 import ClienTVAPI
 
 final class ArticleViewController: UIViewController {
@@ -22,6 +23,9 @@ final class ArticleViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var commentListButton: UIButton!
     
+    private weak var commentListButtonTopFocusGuide: UIFocusGuide!
+    private weak var bodyTextViewBottomFocusGuide: UIFocusGuide!
+    
     private var dateFormatter: ClienDateFormatter = .init()
     private var viewModel: ArticleViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
@@ -29,8 +33,14 @@ final class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setAttributes()
+        configureFocusGuides()
         clearContents()
         configureViewModel()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateBodyTextViewBottomFocusGuide()
     }
     
     func requestArticle(boardPath: String, articlePath: String) {
@@ -44,6 +54,38 @@ final class ArticleViewController: UIViewController {
         bodyTextView.isSelectable = true
         bodyTextView.isScrollEnabled = true
         bodyTextView.panGestureRecognizer.allowedTouchTypes = [UITouch.TouchType.indirect.rawValue] as [NSNumber]
+        bodyTextView.delegate = self
+    }
+    
+    private func configureFocusGuides() {
+        let commentListButtonTopFocusGuide: UIFocusGuide = .init()
+        self.commentListButtonTopFocusGuide = commentListButtonTopFocusGuide
+        view.addLayoutGuide(commentListButtonTopFocusGuide)
+        
+        commentListButtonTopFocusGuide.snp.makeConstraints { [weak self] make in
+            guard let self = self else { return }
+            make.bottom.equalTo(self.commentListButton.snp.top)
+            make.width.equalTo(self.commentListButton.snp.width)
+            make.height.equalTo(1)
+        }
+        
+        commentListButtonTopFocusGuide.preferredFocusEnvironments = [bodyTextView]
+        
+        //
+        
+        let bodyTextViewBottomFocusGuide: UIFocusGuide = .init()
+        self.bodyTextViewBottomFocusGuide = bodyTextViewBottomFocusGuide
+        view.addLayoutGuide(bodyTextViewBottomFocusGuide)
+        
+        bodyTextViewBottomFocusGuide.snp.makeConstraints { [weak self] make in
+            guard let self = self else { return }
+            make.top.equalTo(self.bodyTextView.snp.bottom)
+            make.width.equalTo(self.bodyTextView.snp.width)
+            make.height.equalTo(1)
+        }
+        
+        bodyTextViewBottomFocusGuide.preferredFocusEnvironments = [commentListButton]
+        bodyTextViewBottomFocusGuide.isEnabled = false
     }
     
     private func clearContents() {
@@ -136,8 +178,25 @@ final class ArticleViewController: UIViewController {
         present(commentListViewController, animated: true, completion: nil)
     }
     
+    private func updateBodyTextViewBottomFocusGuide() {
+        let isRecheadToBottom: Bool = (bodyTextView.contentOffset.y >= (bodyTextView.contentSize.height - bodyTextView.frame.height))
+        if isRecheadToBottom {
+            bodyTextViewBottomFocusGuide.isEnabled = true
+        } else {
+            bodyTextViewBottomFocusGuide.isEnabled = false
+        }
+    }
+    
     // MARK: - IBActions
     @IBAction func pressedCommentListButton(_ sender: UIButton) {
         presentCommentListViewController()
+    }
+}
+
+// MARK: - UITextViewDelegate
+
+extension ArticleViewController: UITextViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateBodyTextViewBottomFocusGuide()
     }
 }

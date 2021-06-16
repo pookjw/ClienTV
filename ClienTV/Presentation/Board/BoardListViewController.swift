@@ -39,11 +39,6 @@ final class BoardListViewController: UIViewController {
         updateGradientLayer()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        updateGradientLayer()
-    }
-    
     private func configureCollectionView() {
         let collectionViewLayout: UICollectionViewCompositionalLayout = .init(sectionProvider: getSectionProvider())
         let collectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: collectionViewLayout)
