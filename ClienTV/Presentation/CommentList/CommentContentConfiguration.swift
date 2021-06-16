@@ -18,15 +18,13 @@ struct CommentContentConfiguration: UIContentConfiguration {
     }
     
     func makeContentView() -> UIView & UIContentView {
-        contentView.update(commentContentConfiguration: self)
+        contentView.update(for: self)
         return contentView
     }
     
     func updated(for state: UIConfigurationState) -> CommentContentConfiguration {
-        if let state: UICellConfigurationState = state as? UICellConfigurationState {
-            contentView?.update(isFocused: state.isFocused)
-        }
-        contentView?.update(commentContentConfiguration: self)
+        contentView?.update(for: state)
+        contentView?.update(for: self)
         return self
     }
 }

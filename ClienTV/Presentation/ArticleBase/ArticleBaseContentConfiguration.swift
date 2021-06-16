@@ -18,15 +18,13 @@ struct ArticleBaseContentConfiguration: UIContentConfiguration {
     }
     
     func makeContentView() -> UIView & UIContentView {
-        contentView.update(articleBaseContentConfiguration: self)
+        contentView.update(for: self)
         return contentView
     }
     
     func updated(for state: UIConfigurationState) -> ArticleBaseContentConfiguration {
-        if let state: UICellConfigurationState = state as? UICellConfigurationState {
-            contentView?.update(isFocused: state.isFocused)
-        }
-        contentView?.update(articleBaseContentConfiguration: self)
+        contentView?.update(for: state)
+        contentView?.update(for: self)
         return self
     }
 }

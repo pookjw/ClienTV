@@ -42,13 +42,21 @@ final class ArticleBaseContentView: UIView, UIContentView {
         clearContents()
     }
     
-    func update(articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
+    func update(for articleBaseContentConfiguration: ArticleBaseContentConfiguration) {
         self.articleBaseContentConfiguration = articleBaseContentConfiguration
         clearContents()
         configureViews()
     }
     
-    func update(isFocused: Bool) {
+    func update(for state: UIConfigurationState) {
+        let isFocused: Bool
+        
+        if let state: UICellConfigurationState = state as? UICellConfigurationState {
+            isFocused = state.isFocused
+        } else {
+            isFocused = false
+        }
+        
         if isFocused {
             titleLabel.textColor = .black
         } else {

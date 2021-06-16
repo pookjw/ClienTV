@@ -37,13 +37,22 @@ final class CommentContentView: UIView, UIContentView {
         clearContents()
     }
     
-    func update(commentContentConfiguration: CommentContentConfiguration) {
+    func update(for commentContentConfiguration: CommentContentConfiguration) {
         self.commentContentConfiguration = commentContentConfiguration
         clearContents()
         configureViews()
     }
     
-    func update(isFocused: Bool) {
+    func update(for state: UIConfigurationState) {
+        let isLight: Bool = state.traitCollection.userInterfaceStyle == .light
+        let isFocused: Bool
+        
+        if let state: UICellConfigurationState = state as? UICellConfigurationState {
+            isFocused = state.isFocused
+        } else {
+            isFocused = false
+        }
+        
         if isFocused {
             nicknameLabel.textColor = .black
             bodyLabel.textColor = .black
@@ -51,7 +60,7 @@ final class CommentContentView: UIView, UIContentView {
         } else {
             nicknameLabel.textColor = nil
             bodyLabel.textColor = nil
-            leadingImageView.tintColor = nil
+            leadingImageView.tintColor = isLight ? .black : nil
         }
     }
     
