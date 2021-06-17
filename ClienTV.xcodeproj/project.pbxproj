@@ -60,6 +60,10 @@
 		4F9A660C267B31FA0091E61F /* ConditionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A660B267B31FA0091E61F /* ConditionAPI.swift */; };
 		4F9A660E267B322A0091E61F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A660D267B32290091E61F /* APIError.swift */; };
 		4F9A6610267B32B30091E61F /* ConditionAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A660F267B32B30091E61F /* ConditionAPIImpl.swift */; };
+		4F9A6612267B369C0091E61F /* ConditionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6611267B369C0091E61F /* ConditionRepository.swift */; };
+		4F9A6614267B36E70091E61F /* ConditionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */; };
+		4F9A6616267B37220091E61F /* ConditionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6615267B37220091E61F /* ConditionUseCase.swift */; };
+		4F9A6618267B37730091E61F /* ConditionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6617267B37730091E61F /* ConditionUseCaseTest.swift */; };
 		4FCD9C00266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */; };
 		4FD598632670ABAD00BB6BC6 /* ImageArticleBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */; };
 		4FD598692670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD598672670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift */; };
@@ -245,6 +249,10 @@
 		4F9A660B267B31FA0091E61F /* ConditionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionAPI.swift; sourceTree = "<group>"; };
 		4F9A660D267B32290091E61F /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4F9A660F267B32B30091E61F /* ConditionAPIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionAPIImpl.swift; sourceTree = "<group>"; };
+		4F9A6611267B369C0091E61F /* ConditionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionRepository.swift; sourceTree = "<group>"; };
+		4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionRepositoryImpl.swift; sourceTree = "<group>"; };
+		4F9A6615267B37220091E61F /* ConditionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionUseCase.swift; sourceTree = "<group>"; };
+		4F9A6617267B37730091E61F /* ConditionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionUseCaseTest.swift; sourceTree = "<group>"; };
 		4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+reuseIdentifier.swift"; sourceTree = "<group>"; };
 		4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBase.swift; sourceTree = "<group>"; };
 		4FD598672670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListAPI.swift; sourceTree = "<group>"; };
@@ -510,6 +518,7 @@
 				4F6041112671761D0067A364 /* ArticleUseCaseTest.swift */,
 				4F604113267176250067A364 /* CommentListUseCaseTest.swift */,
 				4F6041152671762D0067A364 /* ImageArticleBaseListUseCaseTest.swift */,
+				4F9A6617267B37730091E61F /* ConditionUseCaseTest.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -825,6 +834,7 @@
 				4F1C88BE266CBEBC004AC01C /* ArticleRepository.swift */,
 				4F015A0F266E5668003A7E52 /* CommentListRepository.swift */,
 				4F604104267175120067A364 /* ImageArticleBaseListRepository.swift */,
+				4F9A6611267B369C0091E61F /* ConditionRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -837,6 +847,7 @@
 				4F1C88C2266CBF0E004AC01C /* ArticleUseCase.swift */,
 				4F015A13266E56C6003A7E52 /* CommentListUseCase.swift */,
 				4F6041082671756D0067A364 /* ImageArticleBaseListUseCase.swift */,
+				4F9A6615267B37220091E61F /* ConditionUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -849,6 +860,7 @@
 				4F1C88C0266CBEDE004AC01C /* ArticleRepositoryImpl.swift */,
 				4F015A11266E568D003A7E52 /* CommentListRepositoryImpl.swift */,
 				4F6041062671752D0067A364 /* ImageArticleBaseListRepositoryImpl.swift */,
+				4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */,
 			);
 			path = RepositoryImplementation;
 			sourceTree = "<group>";
@@ -1292,6 +1304,7 @@
 				4FF70F472668D35000FDC680 /* ArticleBaseListAPI.swift in Sources */,
 				4F9A660A267B31C70091E61F /* Condition.swift in Sources */,
 				4FF70F522668E03700FDC680 /* String+toInt.swift in Sources */,
+				4F9A6612267B369C0091E61F /* ConditionRepository.swift in Sources */,
 				4F1C88BD266CB4B0004AC01C /* ArticleAPIImpl.swift in Sources */,
 				4FD598692670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift in Sources */,
 				4F015A10266E5668003A7E52 /* CommentListRepository.swift in Sources */,
@@ -1325,8 +1338,10 @@
 				4F9A660C267B31FA0091E61F /* ConditionAPI.swift in Sources */,
 				4FF70F3D2667CBE900FDC680 /* BoardListAPIImpl.swift in Sources */,
 				4FF70F722669261700FDC680 /* BoardListRepositoryImpl.swift in Sources */,
+				4F9A6616267B37220091E61F /* ConditionUseCase.swift in Sources */,
 				4F604105267175120067A364 /* ImageArticleBaseListRepository.swift in Sources */,
 				4FF70F742669289900FDC680 /* ArticleBaseListRepository.swift in Sources */,
+				4F9A6614267B36E70091E61F /* ConditionRepositoryImpl.swift in Sources */,
 				4FF70F70266925EA00FDC680 /* BoardListRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1340,6 +1355,7 @@
 				4F604110267176040067A364 /* ArticleBaseListUseCaseTest.swift in Sources */,
 				4F60410E267175F90067A364 /* BoardListUseCaseTest.swift in Sources */,
 				4F6041162671762D0067A364 /* ImageArticleBaseListUseCaseTest.swift in Sources */,
+				4F9A6618267B37730091E61F /* ConditionUseCaseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

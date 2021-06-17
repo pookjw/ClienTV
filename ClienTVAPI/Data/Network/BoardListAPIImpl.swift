@@ -14,11 +14,7 @@ final class BoardListAPIImpl: BoardListAPI {
     
     func getBoardList(categories: [Board.Category]) -> Future<[Board], Error> {
         return .init { [weak self] promise in
-            guard let self = self else {
-                promise(.failure(APIError.nilError))
-                return
-            }
-            self.configurePromise(promise, categories: categories)
+            self?.configurePromise(promise, categories: categories)
         }
     }
     

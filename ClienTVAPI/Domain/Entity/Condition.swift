@@ -9,5 +9,5 @@ import Foundation
 
 /// 이용약관
 public struct Condition {
-    public let body: String
+    public let bodyHTML: String
 }

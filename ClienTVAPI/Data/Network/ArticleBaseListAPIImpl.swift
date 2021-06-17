@@ -16,11 +16,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
     
     func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {
         return .init { [weak self] promise in
-            guard let self = self else {
-                promise(.failure(APIError.nilError))
-                return
-            }
-            self.configurePromise(promise, path: path, page: page)
+            self?.configurePromise(promise, path: path, page: page)
         }
     }
     
