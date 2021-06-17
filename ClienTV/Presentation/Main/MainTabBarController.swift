@@ -7,17 +7,29 @@
 
 import UIKit
 import Combine
-import OSLog
 
 final class MainTabBarController: UITabBarController {
     private weak var homeSplitViewController: HomeSplitViewController? = nil
     private weak var settingsViewController: SettingsViewController? = nil
+    
+    private var viewModel: MainTabBarViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewModel()
         configureViewControllers()
         bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presentConditionViewControllerIfNeeded()
+    }
+    
+    private func configureViewModel() {
+        let viewModel: MainTabBarViewModel = .init()
+        self.viewModel = viewModel
     }
     
     private func configureViewControllers() {
@@ -59,5 +71,15 @@ final class MainTabBarController: UITabBarController {
         articleViewController.loadViewIfNeeded()
         articleViewController.requestArticle(boardPath: boardPath, articlePath: articlePath)
         present(articleViewController, animated: true, completion: nil)
+    }
+    
+    private func presentConditionViewControllerIfNeeded() {
+        guard !(viewModel.agreedConditionStatus) else {
+            return
+        }
+        
+        let conditionViewController: ConditionViewController = .init()
+        conditionViewController.loadViewIfNeeded()
+        present(conditionViewController, animated: true, completion: nil)
     }
 }

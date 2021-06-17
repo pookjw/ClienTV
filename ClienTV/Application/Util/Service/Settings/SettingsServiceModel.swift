@@ -8,5 +8,6 @@
 import Foundation
 
 enum SettingsServiceDataKey: String, CaseIterable {
-    case toggleBoardPathVisibility = "toggleBoardPathVisibility"
+    case boardPathVisibility = "boardPathVisibility"
+    case agreedCondition = "agreedCondition"
 }

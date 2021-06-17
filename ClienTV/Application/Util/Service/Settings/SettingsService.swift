@@ -26,7 +26,15 @@ final class SettingsService {
     
     // MARK: - Values
     var boardPathVisibilityStatus: Bool {
-        guard let number: NSNumber = load(forKey: .toggleBoardPathVisibility) as? NSNumber else {
+        guard let number: NSNumber = load(forKey: .boardPathVisibility) as? NSNumber else {
+            return false
+        }
+        
+        return number.boolValue
+    }
+    
+    var agreedConditionStatus: Bool {
+        guard let number: NSNumber = load(forKey: .agreedCondition) as? NSNumber else {
             return false
         }
         

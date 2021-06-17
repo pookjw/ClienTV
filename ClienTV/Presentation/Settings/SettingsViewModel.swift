@@ -41,7 +41,7 @@ final class SettingsViewModel {
         let newStatus: Bool = !oldStatus
         let newNumber: NSNumber = .init(booleanLiteral: newStatus)
         
-        settingService.save(key: .toggleBoardPathVisibility, value: newNumber)
+        settingService.save(key: .boardPathVisibility, value: newNumber)
     }
     
     private func configureInitialDataSource() {
@@ -99,11 +99,13 @@ final class SettingsViewModel {
     
     private func updateSettingsDataSource(newValue: (key: SettingsServiceDataKey, value: Any)) {
         switch newValue.key {
-        case .toggleBoardPathVisibility:
+        case .boardPathVisibility:
             guard let number: NSNumber = newValue.value as? NSNumber else {
                 return
             }
             updateToggleBoardPathVisibility(status: number.boolValue)
+        case .agreedCondition:
+            break
         }
     }
     

@@ -148,11 +148,7 @@ final class ArticleViewController: UIViewController {
         hitCountLabel.text = String("\(articleBase.hitCount) 조회수")
         likeCountLabel.text = String("\(articleBase.likeCount) 공감수")
         
-        if let attributedString: NSMutableAttributedString = article.bodyHTML.convertToAttributedStringFromHTML()?.mutableCopy() as? NSMutableAttributedString {
-            let totalRange: NSRange = NSMakeRange(0, attributedString.length)
-            attributedString.removeAttribute(NSAttributedString.Key.foregroundColor, range: totalRange)
-            attributedString.removeAttribute(NSAttributedString.Key.font, range: totalRange)
-            attributedString.addAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)], range: totalRange)
+        if let attributedString: NSAttributedString = article.bodyHTML.convertToAttributedStringFromHTMLWithClear() {
             bodyTextView.attributedText = attributedString.copy() as? NSAttributedString
         }
         

@@ -147,12 +147,7 @@ final class CommentContentView: UIView, UIContentView {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
-            if let attributedString: NSMutableAttributedString = commentData.bodyHTML.convertToAttributedStringFromHTML()?.mutableCopy() as? NSMutableAttributedString {
-                let totalRange: NSRange = NSMakeRange(0, attributedString.length)
-                attributedString.removeAttribute(NSAttributedString.Key.foregroundColor, range: totalRange)
-                attributedString.removeAttribute(NSAttributedString.Key.font, range: totalRange)
-                attributedString.addAttributes([NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)], range: totalRange)
-                
+            if let attributedString: NSAttributedString = commentData.bodyHTML.convertToAttributedStringFromHTMLWithClear() {
                 let rect: CGRect = attributedString.boundingRect(with: .init(width: self.frame.width, height: .greatestFiniteMagnitude),
                                                                   options: .usesLineFragmentOrigin,
                                                                   context: nil)

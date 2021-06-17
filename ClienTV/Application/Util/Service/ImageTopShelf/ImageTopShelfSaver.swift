@@ -103,7 +103,7 @@ final class ImageTopShelfSaver {
             return nil
         }
         
-        guard let previewBodyAttributedString: NSAttributedString = imageArticleBase.previewBody.convertToAttributedStringFromHTML() else{
+        guard let previewBodyAttributedString: NSAttributedString = imageArticleBase.previewBody.convertToAttributedStringFromHTMLWithClear() else{
             return nil
         }
         

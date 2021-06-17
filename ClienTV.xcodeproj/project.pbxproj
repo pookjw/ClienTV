@@ -64,6 +64,10 @@
 		4F9A6614267B36E70091E61F /* ConditionRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */; };
 		4F9A6616267B37220091E61F /* ConditionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6615267B37220091E61F /* ConditionUseCase.swift */; };
 		4F9A6618267B37730091E61F /* ConditionUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6617267B37730091E61F /* ConditionUseCaseTest.swift */; };
+		4F9A661D267B385B0091E61F /* ConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A661C267B385B0091E61F /* ConditionViewModel.swift */; };
+		4F9A6620267B38790091E61F /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A661E267B38790091E61F /* ConditionViewController.swift */; };
+		4F9A6621267B38790091E61F /* ConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9A661F267B38790091E61F /* ConditionViewController.xib */; };
+		4F9A6623267B3FDA0091E61F /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A6622267B3FDA0091E61F /* MainTabBarViewModel.swift */; };
 		4FCD9C00266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */; };
 		4FD598632670ABAD00BB6BC6 /* ImageArticleBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */; };
 		4FD598692670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD598672670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift */; };
@@ -253,6 +257,10 @@
 		4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionRepositoryImpl.swift; sourceTree = "<group>"; };
 		4F9A6615267B37220091E61F /* ConditionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionUseCase.swift; sourceTree = "<group>"; };
 		4F9A6617267B37730091E61F /* ConditionUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionUseCaseTest.swift; sourceTree = "<group>"; };
+		4F9A661C267B385B0091E61F /* ConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewModel.swift; sourceTree = "<group>"; };
+		4F9A661E267B38790091E61F /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
+		4F9A661F267B38790091E61F /* ConditionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConditionViewController.xib; sourceTree = "<group>"; };
+		4F9A6622267B3FDA0091E61F /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
 		4FCD9BFF266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+reuseIdentifier.swift"; sourceTree = "<group>"; };
 		4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBase.swift; sourceTree = "<group>"; };
 		4FD598672670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageArticleBaseListAPI.swift; sourceTree = "<group>"; };
@@ -544,6 +552,16 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		4F9A6619267B38340091E61F /* Condition */ = {
+			isa = PBXGroup;
+			children = (
+				4F9A661E267B38790091E61F /* ConditionViewController.swift */,
+				4F9A661F267B38790091E61F /* ConditionViewController.xib */,
+				4F9A661C267B385B0091E61F /* ConditionViewModel.swift */,
+			);
+			path = Condition;
+			sourceTree = "<group>";
+		};
 		4FCD9BFE266F43610003531B /* UICollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -733,6 +751,7 @@
 			isa = PBXGroup;
 			children = (
 				4FF70F552669041600FDC680 /* Main */,
+				4F9A6619267B38340091E61F /* Condition */,
 				4FF70F692669072900FDC680 /* Home */,
 				4FF70F5C2669067D00FDC680 /* Board */,
 				4FF70F5F2669069100FDC680 /* ArticleBase */,
@@ -748,6 +767,7 @@
 			isa = PBXGroup;
 			children = (
 				4FF70F562669043F00FDC680 /* MainTabBarController.swift */,
+				4F9A6622267B3FDA0091E61F /* MainTabBarViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1120,6 +1140,7 @@
 				F3D318E8266A2A0C00B579E6 /* ArticleBaseContentView.xib in Resources */,
 				4F9A6603267B2B180091E61F /* InfoPlist.strings in Resources */,
 				4F1C88C5266CC0DA004AC01C /* ArticleViewController.xib in Resources */,
+				4F9A6621267B38790091E61F /* ConditionViewController.xib in Resources */,
 				4FF70EEE2667C94500FDC680 /* LaunchScreen.storyboard in Resources */,
 				4FF70EEB2667C94500FDC680 /* Assets.xcassets in Resources */,
 				4F015A1C266E5D10003A7E52 /* CommentContentView.xib in Resources */,
@@ -1248,6 +1269,7 @@
 				4FF70F572669043F00FDC680 /* MainTabBarController.swift in Sources */,
 				F37E93D0267346BB005AA37E /* Logger+shared.swift in Sources */,
 				4F10D98F267268A90034AA48 /* ImageTopShelfConstant.swift in Sources */,
+				4F9A6623267B3FDA0091E61F /* MainTabBarViewModel.swift in Sources */,
 				4FF70F61266906A800FDC680 /* ArticleBaseListViewController.swift in Sources */,
 				4F60411B26717ADD0067A364 /* ImageArticleBaseListViewModel.swift in Sources */,
 				4FF70F682669070E00FDC680 /* ArticleViewController.swift in Sources */,
@@ -1268,11 +1290,13 @@
 				F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */,
 				4F60411F267187800067A364 /* ImageArticleBaseCollectoinViewCell.swift in Sources */,
 				4FF70F5E2669068F00FDC680 /* BoardListViewController.swift in Sources */,
+				4F9A6620267B38790091E61F /* ConditionViewController.swift in Sources */,
 				F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */,
 				4F55A1D1266A5F2A00429B3E /* ArticleBaseContentView.swift in Sources */,
 				4F1C88D4266CD702004AC01C /* String+HTML.swift in Sources */,
 				4F015A1A266E5D04003A7E52 /* CommentContentView.swift in Sources */,
 				4FCD9C00266F43790003531B /* UICollectionViewCell+reuseIdentifier.swift in Sources */,
+				4F9A661D267B385B0091E61F /* ConditionViewModel.swift in Sources */,
 				4FF70F8226693C5800FDC680 /* BoardListViewModel.swift in Sources */,
 				F37E93DE26735AF7005AA37E /* ImageTopShelfData.swift in Sources */,
 				4F015A1E266E6057003A7E52 /* CommentContentConfiguration.swift in Sources */,
