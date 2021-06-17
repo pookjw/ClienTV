@@ -15,18 +15,11 @@ final class BoardListAPIImpl: BoardListAPI {
     func getBoardList(categories: [Board.Category]) -> Future<[Board], Error> {
         return .init { [weak self] promise in
             guard let self = self else {
-                promise(.failure(BoardListAPIError.nilError))
+                promise(.failure(APIError.nilError))
                 return
             }
             self.configurePromise(promise, categories: categories)
         }
-    }
-    
-    func getBoardList() -> URLSession.DataTaskPublisher {
-        let url: URL = ClienURLFactory.url()
-        return URLSession
-            .shared
-            .dataTaskPublisher(for: url)
     }
     
     private func configurePromise(_ promise: @escaping ((Result<[Board], Error>) -> Void), categories: [Board.Category]) {
@@ -38,20 +31,20 @@ final class BoardListAPIImpl: BoardListAPI {
             .dataTaskPublisher(for: url)
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
                 guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
-                    throw BoardListAPIError.nilError
+                    throw APIError.nilError
                 }
                 return (data, response)
             }
             .tryFilter { (_, response) throws -> Bool in
                 let statusCode: Int = response.statusCode
                 guard 200..<300 ~= statusCode else {
-                    throw BoardListAPIError.responseError(statusCode)
+                    throw APIError.responseError(statusCode)
                 }
                 return true
             }
             .tryMap { [weak self] (data, response) throws -> [Board] in
                 guard let self = self else {
-                    throw BoardListAPIError.nilError
+                    throw APIError.nilError
                 }
                 
                 let boardList: [Board] = try self.convertMenuList(from: data, categories: categories)
@@ -72,7 +65,7 @@ final class BoardListAPIImpl: BoardListAPI {
     
     private func convertMenuList(from data: Data, categories: [Board.Category]) throws -> [Board] {
         guard let html: String = String(data: data, encoding: .utf8) else {
-            throw BoardListAPIError.parseError
+            throw APIError.parseError
         }
         
         var result: [Board] = []

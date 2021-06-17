@@ -17,7 +17,7 @@ final class CommentListAPIImpl: CommentListAPI {
     func getCommentList(path: String) -> Future<[Comment], Error> {
         return .init { [weak self] promise in
             guard let self = self else {
-                promise(.failure(CommentListAPIError.nilError))
+                promise(.failure(APIError.nilError))
                 return
             }
             self.configurePromise(promise, path: path)
@@ -32,20 +32,20 @@ final class CommentListAPIImpl: CommentListAPI {
             .dataTaskPublisher(for: url)
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
                 guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
-                    throw CommentListAPIError.nilError
+                    throw APIError.nilError
                 }
                 return (data, response)
             }
             .tryFilter { (_, response) throws -> Bool in
                 let statusCode: Int = response.statusCode
                 guard 200..<300 ~= statusCode else {
-                    throw CommentListAPIError.responseError(statusCode)
+                    throw APIError.responseError(statusCode)
                 }
                 return true
             }
             .tryMap { [weak self] (data, response) throws -> [Comment] in
                 guard let self = self else {
-                    throw CommentListAPIError.nilError
+                    throw APIError.nilError
                 }
                 
                 let commentList: [Comment] = try self.convertCommentList(from: data)
@@ -66,7 +66,7 @@ final class CommentListAPIImpl: CommentListAPI {
     
     private func convertCommentList(from data: Data) throws -> [Comment] {
         guard let html: String = String(data: data, encoding: .utf8) else {
-            throw CommentListAPIError.parseError
+            throw APIError.parseError
         }
         
         let document: Document = try SwiftSoup.parse(html)
@@ -75,13 +75,13 @@ final class CommentListAPIImpl: CommentListAPI {
                 .getElementsByClass("comment")
                 .first()?
                 .children() else {
-            throw CommentListAPIError.parseError
+            throw APIError.parseError
         }
         
         let result: [Comment] = try elements
             .compactMap { [weak self] element in
                 guard let self = self else {
-                    throw CommentListAPIError.nilError
+                    throw APIError.nilError
                 }
                 let comment: Comment? = try self.convertComment(from: element)
                 return comment

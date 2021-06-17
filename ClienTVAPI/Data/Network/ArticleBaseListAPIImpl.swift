@@ -17,7 +17,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
     func getArticleBaseList(path: String, page: Int) -> Future<[ArticleBase], Error> {
         return .init { [weak self] promise in
             guard let self = self else {
-                promise(.failure(ArticleBaseListAPIError.nilError))
+                promise(.failure(APIError.nilError))
                 return
             }
             self.configurePromise(promise, path: path, page: page)
@@ -33,20 +33,20 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
             .dataTaskPublisher(for: url)
             .tryMap { (data, response) throws -> (Data, HTTPURLResponse) in
                 guard let response: HTTPURLResponse = response as? HTTPURLResponse else {
-                    throw ArticleBaseListAPIError.nilError
+                    throw APIError.nilError
                 }
                 return (data, response)
             }
             .tryFilter { (_, response) throws -> Bool in
                 let statusCode: Int = response.statusCode
                 guard 200..<300 ~= statusCode else {
-                    throw ArticleBaseListAPIError.responseError(statusCode)
+                    throw APIError.responseError(statusCode)
                 }
                 return true
             }
             .tryMap { [weak self] (data, response) throws -> [ArticleBase] in
                 guard let self = self else {
-                    throw ArticleBaseListAPIError.nilError
+                    throw APIError.nilError
                 }
                 
                 let articleBaseList: [ArticleBase] = try self.convertArticleBaseList(from: data)
@@ -67,7 +67,7 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
     
     private func convertArticleBaseList(from data: Data) throws -> [ArticleBase] {
         guard let html: String = String(data: data, encoding: .utf8) else {
-            throw ArticleBaseListAPIError.parseError
+            throw APIError.parseError
         }
         
         let document: Document = try SwiftSoup.parse(html)
@@ -77,13 +77,13 @@ final class ArticleBaseListAPIImpl: ArticleBaseListAPI {
                 .first()?
                 .getElementsByTag("div")
                 .filter({ try $0.attr("class").contains("list_item symph_row") }) else {
-            throw ArticleBaseListAPIError.parseError
+            throw APIError.parseError
         }
         
         let result: [ArticleBase] = try elements
             .map { [weak self] element -> ArticleBase in
                 guard let self = self else {
-                    throw ArticleBaseListAPIError.nilError
+                    throw APIError.nilError
                 }
                 let articleBase: ArticleBase = try self.convertArticleBase(from: element)
                 return articleBase
