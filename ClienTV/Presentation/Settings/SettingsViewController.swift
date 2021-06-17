@@ -70,12 +70,14 @@ final class SettingsViewController: UIViewController {
             case .toggleBoardPathVisibility(let data):
                 var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = data.title
+                configuration.image = data.image
+                configuration.imageToTextPadding = 30
                 cell.contentConfiguration = configuration
                 cell.accessories = [.label(text: data.accessoryText)]
             case .developerEmail(let data):
                 var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = data.title
-                configuration.secondaryText = data.subtitle
+                configuration.secondaryText = data.subTitle
                 configuration.image = data.image
                 configuration.imageToTextPadding = 30
                 cell.contentConfiguration = configuration
@@ -83,11 +85,18 @@ final class SettingsViewController: UIViewController {
             case .developerGitHub(let data):
                 var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
                 configuration.text = data.title
-                configuration.secondaryText = data.subtitle
+                configuration.secondaryText = data.subTitle
                 configuration.image = data.image
                 configuration.imageToTextPadding = 30
                 cell.contentConfiguration = configuration
                 cell.accessories = []
+            case .presentCondition(let data):
+                var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
+                configuration.text = data.title
+                configuration.image = data.image
+                configuration.imageToTextPadding = 30
+                cell.contentConfiguration = configuration
+                cell.accessories = [.disclosureIndicator()]
             }
             
             return cell
@@ -112,6 +121,12 @@ final class SettingsViewController: UIViewController {
             return headerView
         }
     }
+    
+    private func presentConditionViewController() {
+        let conditionViewController: ConditionViewController = .init()
+        conditionViewController.loadViewIfNeeded()
+        present(conditionViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -128,6 +143,8 @@ extension SettingsViewController: UICollectionViewDelegate {
         switch cellItem.dataType {
         case .toggleBoardPathVisibility(_):
             viewModel.toggleBoardPathVisibility()
+        case .presentCondition:
+            presentConditionViewController()
         default:
             break
         }

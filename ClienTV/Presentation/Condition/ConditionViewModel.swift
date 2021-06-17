@@ -15,6 +15,10 @@ final class ConditionViewModel {
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
+    var agreedConditionStatus: Bool {
+        return settingService.agreedConditionStatus
+    }
+    
     init(useCase: ConditionUseCase = ConditionUseCaseImpl()) {
         self.useCase = useCase
         configureQueue()

@@ -17,12 +17,38 @@ final class ConditionViewController: UIViewController {
     private var viewModel: ConditionViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
+    // -300 offset 부여. 없어도 상관은 없음.
+    private var isRecheadToBottom: Bool {
+        return (bodyTextView.contentOffset.y >= (bodyTextView.contentSize.height - bodyTextView.frame.height - 300))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setAttributes()
         clearContents()
         configureViewModel()
         requestCondition()
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        
+    }
+
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        defer {
+            super.pressesEnded(presses, with: event)
+        }
+        
+        guard let press: UIPress = presses.first else {
+            return
+        }
+
+        if press.type == .menu {
+            if isRecheadToBottom {
+//                confirmButton.isEnabled = true
+//                preferredFocusEnvironments = [confirmButton]
+            }
+        }
     }
     
     private func setAttributes() {
@@ -36,6 +62,7 @@ final class ConditionViewController: UIViewController {
     private func clearContents() {
         bodyTextView.text = nil
         confirmButton.isEnabled = false
+        confirmButton.setTitle("끝까지 읽어 주세요!", for: .normal)
     }
     
     private func configureViewModel() {
@@ -70,23 +97,18 @@ final class ConditionViewController: UIViewController {
         if let attributedString: NSAttributedString = condition.bodyHTML.convertToAttributedStringFromHTMLWithClear() {
             bodyTextView.attributedText = attributedString
         }
-        
-        updateConfirmButtonStatus()
     }
     
-    private func updateConfirmButtonStatus() {
-        // -100 offset 부여. 없어도 상관은 없음.
-        let isRecheadToBottom: Bool = (bodyTextView.contentOffset.y >= (bodyTextView.contentSize.height - bodyTextView.frame.height - 100))
+    private func makeConfirmButtonEnabledIfNeeded() {
         if isRecheadToBottom {
             confirmButton.isEnabled = true
-        } else {
-            confirmButton.isEnabled = false
+            confirmButton.setTitle("이용약관에 동의합니다.", for: .normal)
         }
     }
     
     @IBAction func pressedConfirmButton(_ sender: UIButton) {
         viewModel.setAgreedCondition()
-        dismiss(animated: true, completion: nil)
+        super.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -94,6 +116,6 @@ final class ConditionViewController: UIViewController {
 
 extension ConditionViewController: UITextViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateConfirmButtonStatus()
+        makeConfirmButtonEnabledIfNeeded()
     }
 }

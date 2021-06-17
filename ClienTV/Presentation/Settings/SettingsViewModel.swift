@@ -60,9 +60,20 @@ final class SettingsViewModel {
             
             let boardPathVisibilityStatus: Bool = self.settingService.boardPathVisibilityStatus
             let toggleBoardPathVisibilityData: SettingsCellItem.ToggleBoardPathVisibilityData = .init(status: boardPathVisibilityStatus)
-            let toggleBoardPathVisibilityItem: SettingsCellItem = .init(dataType: .toggleBoardPathVisibility(data: toggleBoardPathVisibilityData))
+            let toggleBoardPathVisibilityCellItem: SettingsCellItem = .init(dataType: .toggleBoardPathVisibility(data: toggleBoardPathVisibilityData))
             
-            snapshot.appendItems([toggleBoardPathVisibilityItem], toSection: boardListHeaderItem)
+            snapshot.appendItems([toggleBoardPathVisibilityCellItem], toSection: boardListHeaderItem)
+            
+            //
+            
+            let miscHeaderItem: SettingsHeaderItem = .init(dataType: .misc)
+            
+            snapshot.appendSections([miscHeaderItem])
+            
+            let presentConditionData: SettingsCellItem.PresentConditionData = . init()
+            let presentConditionCellItem: SettingsCellItem = .init(dataType: .presentCondition(data: presentConditionData))
+            
+            snapshot.appendItems([presentConditionCellItem], toSection: miscHeaderItem)
             
             //
             

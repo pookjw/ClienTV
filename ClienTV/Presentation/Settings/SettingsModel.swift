@@ -20,14 +20,17 @@ struct SettingsHeaderItem: Comparable, Hashable {
     
     enum DataType {
         case boardList
+        case misc
         case developerInfo
         
         var index: Int {
             switch self {
             case .boardList:
                 return 0
+            case .misc:
+                return 1
             case .developerInfo:
-                return 0
+                return 2
             }
         }
     }
@@ -38,6 +41,8 @@ struct SettingsHeaderItem: Comparable, Hashable {
         switch dataType {
         case .boardList:
             return "게시판 목록 설정"
+        case .misc:
+            return "MISC"
         case .developerInfo:
             return "개발자 정보"
         }
@@ -58,6 +63,7 @@ struct SettingsCellItem: Equatable, Hashable {
         case toggleBoardPathVisibility(data: ToggleBoardPathVisibilityData)
         case developerEmail(data: DeveloperEmailData)
         case developerGitHub(data: DeveloperGitHubData)
+        case presentCondition(data: PresentConditionData)
         
         static func == (lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
@@ -66,6 +72,8 @@ struct SettingsCellItem: Equatable, Hashable {
             case (.developerEmail(let lhsData), .developerEmail(let rhsData)):
                 return lhsData == rhsData
             case (.developerGitHub(let lhsData), .developerGitHub(let rhsData)):
+                return lhsData == rhsData
+            case (.presentCondition(let lhsData), .presentCondition(let rhsData)):
                 return lhsData == rhsData
             default:
                 return false
@@ -86,6 +94,10 @@ extension SettingsCellItem {
         
         var title: String {
             return "게시판 목록에서 URL Path 표시"
+        }
+        
+        var image: UIImage? {
+            return .init(systemName: "point.topleft.down.curvedto.point.bottomright.up")
         }
         
         var accessoryText: String {
@@ -114,7 +126,7 @@ extension SettingsCellItem {
             return "이메일 주소"
         }
         
-        var subtitle: String {
+        var subTitle: String {
             switch dataType {
             case .jinwooKim:
                 return "kidjinwoo@me.com"
@@ -143,11 +155,29 @@ extension SettingsCellItem {
             return "GitHub"
         }
         
-        var subtitle: String {
+        var subTitle: String {
             switch dataType {
             case .jinwooKim:
                 return "github.com/pookjw"
             }
         }
+    }
+}
+
+extension SettingsCellItem {
+    struct PresentConditionData: Equatable, Hashable {
+        static func == (lhs: PresentConditionData, rhs: PresentConditionData) -> Bool {
+            return lhs.id == rhs.id
+        }
+        
+        var title: String {
+            return "클리앙 이용약관 보기"
+        }
+        
+        var image: UIImage? {
+            return .init(systemName: "doc.plaintext")
+        }
+        
+        let id: UUID = .init()
     }
 }
