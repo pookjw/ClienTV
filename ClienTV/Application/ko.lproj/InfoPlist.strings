@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  ClienTV
+
+  Created by Jinwoo Kim on 6/17/21.
+  
+*/
+
+/* */
+"CFBundleDisplayName" = "티비리앙";
+
+/* */
+"CFBundleName" = "티비리앙";
