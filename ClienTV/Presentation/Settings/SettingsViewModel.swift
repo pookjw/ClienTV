@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import OSLog
 import SortSnapshot
+import ClienTVAPI
 
 final class SettingsViewModel {
     typealias DataSource = UICollectionViewDiffableDataSource<SettingsHeaderItem, SettingsCellItem>
@@ -16,11 +17,12 @@ final class SettingsViewModel {
     
     private let dataSource: DataSource
     private let queue: OperationQueue = .init()
-    private let settingService: SettingsService = .shared
+    private let boardSettingUseCase: BoardSettingUseCase
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource) {
         self.dataSource = dataSource
+        self.boardSettingUseCase = BoardSettingUseCaseImpl()
         configureQueue()
         configureInitialDataSource()
         bind()
@@ -37,11 +39,8 @@ final class SettingsViewModel {
     }
     
     func toggleBoardPathVisibility() {
-        let oldStatus: Bool = settingService.boardPathVisibilityStatus
-        let newStatus: Bool = !oldStatus
-        let newNumber: NSNumber = .init(booleanLiteral: newStatus)
-        
-        settingService.save(key: .boardPathVisibility, value: newNumber)
+        try! boardSettingUseCase
+            .toggleBoardSetting()
     }
     
     private func configureInitialDataSource() {
@@ -58,7 +57,8 @@ final class SettingsViewModel {
             
             snapshot.appendSections([boardListHeaderItem])
             
-            let boardPathVisibilityStatus: Bool = self.settingService.boardPathVisibilityStatus
+            let boardSetting: BoardSetting = try! self.boardSettingUseCase.getBoardSetting()
+            let boardPathVisibilityStatus: Bool = boardSetting.isEnabled
             let toggleBoardPathVisibilityData: SettingsCellItem.ToggleBoardPathVisibilityData = .init(status: boardPathVisibilityStatus)
             let toggleBoardPathVisibilityCellItem: SettingsCellItem = .init(dataType: .toggleBoardPathVisibility(data: toggleBoardPathVisibilityData))
             
@@ -99,28 +99,23 @@ final class SettingsViewModel {
     }
     
     private func bind() {
-        settingService
-            .changedEvent
+        boardSettingUseCase
+            .observeBoardSetting()
             .receive(on: queue)
-            .sink(receiveValue: { [weak self] newValue in
-                self?.updateSettingsDataSource(newValue: newValue)
-            })
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    Logger.error(error)
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] boardSetting in
+                self?.updateToggleBoardPathVisibility(boardSetting: boardSetting)
+            }
             .store(in: &cancellableBag)
     }
     
-    private func updateSettingsDataSource(newValue: (key: SettingsServiceDataKey, value: Any)) {
-        switch newValue.key {
-        case .boardPathVisibility:
-            guard let number: NSNumber = newValue.value as? NSNumber else {
-                return
-            }
-            updateToggleBoardPathVisibility(status: number.boolValue)
-        case .agreedCondition:
-            break
-        }
-    }
-    
-    private func updateToggleBoardPathVisibility(status: Bool) {
+    private func updateToggleBoardPathVisibility(boardSetting: BoardSetting) {
         var snapshot: Snapshot = dataSource.snapshot()
         
         let boardListHeaderItem: SettingsHeaderItem = {
@@ -139,10 +134,10 @@ final class SettingsViewModel {
         snapshot.deleteSections([boardListHeaderItem])
         snapshot.appendSections([boardListHeaderItem])
         
-        let boardPathVisibilityStatus: Bool = settingService.boardPathVisibilityStatus
+        let boardPathVisibilityStatus: Bool = boardSetting.isEnabled
         let toggleBoardPathVisibilityData: SettingsCellItem.ToggleBoardPathVisibilityData = .init(status: boardPathVisibilityStatus)
         let toggleBoardPathVisibilityItem: SettingsCellItem = .init(dataType: .toggleBoardPathVisibility(data: toggleBoardPathVisibilityData))
-        
+
         snapshot.appendItems([toggleBoardPathVisibilityItem], toSection: boardListHeaderItem)
         
         snapshot.ssSortSections()

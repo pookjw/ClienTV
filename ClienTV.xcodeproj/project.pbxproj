@@ -122,6 +122,16 @@
 		F37E93E326736395005AA37E /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93E226736395005AA37E /* ShortcutService.swift */; };
 		F3D318E6266A27A800B579E6 /* ArticleBaseContentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */; };
 		F3D318E8266A2A0C00B579E6 /* ArticleBaseContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */; };
+		F3EE930D268CCDC2006365A3 /* NSManagedObject+_fetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE930C268CCDC2006365A3 /* NSManagedObject+_fetchRequest.swift */; };
+		F3EE9313268CCF34006365A3 /* CloudDataStackImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE9312268CCF34006365A3 /* CloudDataStackImpl.swift */; };
+		F3EE9316268CCFF9006365A3 /* NSObject+className.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE9315268CCFF9006365A3 /* NSObject+className.swift */; };
+		F3EE9319268DDE5E006365A3 /* BoardSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE9318268DDE5E006365A3 /* BoardSettingRepository.swift */; };
+		F3EE931B268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE931A268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift */; };
+		F3EE931F268DE331006365A3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE931E268DE331006365A3 /* CoreDataStack.swift */; };
+		F3EE9323268DF4E3006365A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EE9322268DF4E3006365A3 /* CloudKit.framework */; };
+		F3EE9325268E0CAE006365A3 /* BoardSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE9324268E0CAE006365A3 /* BoardSettingUseCase.swift */; };
+		F3EE932C268E1F5E006365A3 /* BoardSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EE9309268CCC26006365A3 /* BoardSetting.swift */; };
+		F3EE932D268E1F74006365A3 /* BoardSetting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3EE9326268E1650006365A3 /* BoardSetting.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +337,16 @@
 		F37E93E226736395005AA37E /* ShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutService.swift; sourceTree = "<group>"; };
 		F3D318E5266A27A800B579E6 /* ArticleBaseContentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBaseContentConfiguration.swift; sourceTree = "<group>"; };
 		F3D318E7266A2A0C00B579E6 /* ArticleBaseContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleBaseContentView.xib; sourceTree = "<group>"; };
+		F3EE9309268CCC26006365A3 /* BoardSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSetting.swift; sourceTree = "<group>"; };
+		F3EE930C268CCDC2006365A3 /* NSManagedObject+_fetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+_fetchRequest.swift"; sourceTree = "<group>"; };
+		F3EE9312268CCF34006365A3 /* CloudDataStackImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudDataStackImpl.swift; sourceTree = "<group>"; };
+		F3EE9315268CCFF9006365A3 /* NSObject+className.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+className.swift"; sourceTree = "<group>"; };
+		F3EE9318268DDE5E006365A3 /* BoardSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSettingRepository.swift; sourceTree = "<group>"; };
+		F3EE931A268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSettingRepositoryImpl.swift; sourceTree = "<group>"; };
+		F3EE931E268DE331006365A3 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F3EE9322268DF4E3006365A3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F3EE9324268E0CAE006365A3 /* BoardSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSettingUseCase.swift; sourceTree = "<group>"; };
+		F3EE9327268E1650006365A3 /* BoardSetting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardSetting.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF70F2B2667C96000FDC680 /* ClienTVAPI.framework in Frameworks */,
+				F3EE9323268DF4E3006365A3 /* CloudKit.framework in Frameworks */,
 				4FF70F3F2667DC5400FDC680 /* MapKit.framework in Frameworks */,
 				98B29A0F02991F88EA5AAAC6 /* Pods_ClienTV.framework in Frameworks */,
 			);
@@ -669,6 +690,9 @@
 		4FF70F352667C9C300FDC680 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F3EE931E268DE331006365A3 /* CoreDataStack.swift */,
+				F3EE931D268DE2D3006365A3 /* Local */,
+				F3EE931C268DE2CC006365A3 /* Cloud */,
 				4FF70F362667C9EF00FDC680 /* Network */,
 				4FF70F6E2669083600FDC680 /* RepositoryImplementation */,
 			);
@@ -698,12 +722,8 @@
 		4FF70F392667CA1900FDC680 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				4FF70F3A2667CA2400FDC680 /* Board.swift */,
-				4FF70F4A2668D38B00FDC680 /* ArticleBase.swift */,
-				4FF70F4C2668D39C00FDC680 /* Article.swift */,
-				4F1C88BA266CB40A004AC01C /* Comment.swift */,
-				4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */,
-				4F9A6609267B31C70091E61F /* Condition.swift */,
+				F3EE9304268CCBBC006365A3 /* Clien */,
+				F3EE9305268CCBC9006365A3 /* Settings */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -721,6 +741,8 @@
 		4FF70F4326689F0000FDC680 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F3EE9314268CCFEC006365A3 /* NSObject */,
+				F3EE930B268CCDAF006365A3 /* NSManagedObject */,
 				4F1C88CD266CD6CC004AC01C /* String */,
 				4F1C88CC266CD6C7004AC01C /* Logger */,
 			);
@@ -855,6 +877,7 @@
 				4F015A0F266E5668003A7E52 /* CommentListRepository.swift */,
 				4F604104267175120067A364 /* ImageArticleBaseListRepository.swift */,
 				4F9A6611267B369C0091E61F /* ConditionRepository.swift */,
+				F3EE9318268DDE5E006365A3 /* BoardSettingRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -868,6 +891,7 @@
 				4F015A13266E56C6003A7E52 /* CommentListUseCase.swift */,
 				4F6041082671756D0067A364 /* ImageArticleBaseListUseCase.swift */,
 				4F9A6615267B37220091E61F /* ConditionUseCase.swift */,
+				F3EE9324268E0CAE006365A3 /* BoardSettingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -881,6 +905,7 @@
 				4F015A11266E568D003A7E52 /* CommentListRepositoryImpl.swift */,
 				4F6041062671752D0067A364 /* ImageArticleBaseListRepositoryImpl.swift */,
 				4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */,
+				F3EE931A268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift */,
 			);
 			path = RepositoryImplementation;
 			sourceTree = "<group>";
@@ -899,6 +924,7 @@
 		C19BCA231218B37ECB1EE2BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3EE9322268DF4E3006365A3 /* CloudKit.framework */,
 				4FF70F3E2667DC5400FDC680 /* MapKit.framework */,
 				AA149CCAA9FE7F51B21FB631 /* Pods_ClienTV.framework */,
 				9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */,
@@ -938,6 +964,59 @@
 				F37E93E226736395005AA37E /* ShortcutService.swift */,
 			);
 			path = Shortcut;
+			sourceTree = "<group>";
+		};
+		F3EE9304268CCBBC006365A3 /* Clien */ = {
+			isa = PBXGroup;
+			children = (
+				4FF70F3A2667CA2400FDC680 /* Board.swift */,
+				4FF70F4A2668D38B00FDC680 /* ArticleBase.swift */,
+				4FF70F4C2668D39C00FDC680 /* Article.swift */,
+				4F1C88BA266CB40A004AC01C /* Comment.swift */,
+				4FD598612670ABAD00BB6BC6 /* ImageArticleBase.swift */,
+				4F9A6609267B31C70091E61F /* Condition.swift */,
+			);
+			path = Clien;
+			sourceTree = "<group>";
+		};
+		F3EE9305268CCBC9006365A3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F3EE9309268CCC26006365A3 /* BoardSetting.swift */,
+				F3EE9326268E1650006365A3 /* BoardSetting.xcdatamodeld */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F3EE930B268CCDAF006365A3 /* NSManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				F3EE930C268CCDC2006365A3 /* NSManagedObject+_fetchRequest.swift */,
+			);
+			path = NSManagedObject;
+			sourceTree = "<group>";
+		};
+		F3EE9314268CCFEC006365A3 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				F3EE9315268CCFF9006365A3 /* NSObject+className.swift */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		F3EE931C268DE2CC006365A3 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				F3EE9312268CCF34006365A3 /* CloudDataStackImpl.swift */,
+			);
+			path = Cloud;
+			sourceTree = "<group>";
+		};
+		F3EE931D268DE2D3006365A3 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1334,11 +1413,15 @@
 				4F015A10266E5668003A7E52 /* CommentListRepository.swift in Sources */,
 				4FF70F4526689F0F00FDC680 /* Logger+shared.swift in Sources */,
 				4FF70F4B2668D38B00FDC680 /* ArticleBase.swift in Sources */,
+				F3EE931B268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift in Sources */,
+				F3EE931F268DE331006365A3 /* CoreDataStack.swift in Sources */,
 				4F015A0C266DE8BB003A7E52 /* CommentListAPI.swift in Sources */,
 				4FF70F492668D36500FDC680 /* ArticleBaseListAPIImpl.swift in Sources */,
 				4FF70F4D2668D39C00FDC680 /* Article.swift in Sources */,
 				4FF70F502668D6C800FDC680 /* ClienURLFactory.swift in Sources */,
+				F3EE9325268E0CAE006365A3 /* BoardSettingUseCase.swift in Sources */,
 				4F6041072671752D0067A364 /* ImageArticleBaseListRepositoryImpl.swift in Sources */,
+				F3EE9313268CCF34006365A3 /* CloudDataStackImpl.swift in Sources */,
 				4F56557C266F66E8009EE630 /* String+toFloat.swift in Sources */,
 				4F1C88BB266CB40A004AC01C /* Comment.swift in Sources */,
 				4FD598632670ABAD00BB6BC6 /* ImageArticleBase.swift in Sources */,
@@ -1350,10 +1433,14 @@
 				4FD5986C2670ACDB00BB6BC6 /* ImageArticleBaseListAPIImpl.swift in Sources */,
 				4FF70F382667CA1000FDC680 /* BoardListAPI.swift in Sources */,
 				4FF70F7826692B2200FDC680 /* BoardListUseCase.swift in Sources */,
+				F3EE932D268E1F74006365A3 /* BoardSetting.xcdatamodeld in Sources */,
 				4F9A6610267B32B30091E61F /* ConditionAPIImpl.swift in Sources */,
+				F3EE9319268DDE5E006365A3 /* BoardSettingRepository.swift in Sources */,
+				F3EE932C268E1F5E006365A3 /* BoardSetting.swift in Sources */,
 				4F015A0E266DE93C003A7E52 /* CommentListAPIImpl.swift in Sources */,
 				4FF70F76266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift in Sources */,
 				4F1C88C1266CBEDE004AC01C /* ArticleRepositoryImpl.swift in Sources */,
+				F3EE9316268CCFF9006365A3 /* NSObject+className.swift in Sources */,
 				4F9A660E267B322A0091E61F /* APIError.swift in Sources */,
 				4F1C88BF266CBEBC004AC01C /* ArticleRepository.swift in Sources */,
 				4F015A14266E56C6003A7E52 /* CommentListUseCase.swift in Sources */,
@@ -1361,6 +1448,7 @@
 				4FF70F7A26692EBD00FDC680 /* ArticleBaseListUseCase.swift in Sources */,
 				4F9A660C267B31FA0091E61F /* ConditionAPI.swift in Sources */,
 				4FF70F3D2667CBE900FDC680 /* BoardListAPIImpl.swift in Sources */,
+				F3EE930D268CCDC2006365A3 /* NSManagedObject+_fetchRequest.swift in Sources */,
 				4FF70F722669261700FDC680 /* BoardListRepositoryImpl.swift in Sources */,
 				4F9A6616267B37220091E61F /* ConditionUseCase.swift in Sources */,
 				4F604105267175120067A364 /* ImageArticleBaseListRepository.swift in Sources */,
@@ -1903,6 +1991,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F3EE9326268E1650006365A3 /* BoardSetting.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F3EE9327268E1650006365A3 /* BoardSetting.xcdatamodel */,
+			);
+			currentVersion = F3EE9327268E1650006365A3 /* BoardSetting.xcdatamodel */;
+			path = BoardSetting.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4FF70ED82667C94400FDC680 /* Project object */;
 }
