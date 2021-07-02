@@ -9,6 +9,6 @@ import Foundation
 import CoreData
 
 @objc(ConditionSetting)
-public final class ConditionSetting: NSManagedObject {
+final class ConditionSetting: NSManagedObject {
     @NSManaged public var didRead: Bool
 }

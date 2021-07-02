@@ -15,8 +15,7 @@ final class BoardListViewModel {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<BoardListHeaderItem, BoardListCellItem>
     
     var boardPathVisibilityStatus: Bool {
-        let boardSetting: BoardSetting = try! boardSettingUseCase.getBoardSetting()
-        return boardSetting.isEnabled
+        return try! boardSettingUseCase.getIsEnabled()
     }
     let shouldReloadCollectionViewData: PassthroughSubject<Void, Never> = .init()
     
@@ -118,7 +117,7 @@ final class BoardListViewModel {
     
     private func bind() {
         boardSettingUseCase
-            .observeBoardSetting()
+            .observeIsEnabled()
             .map { _ -> Void in }
             .sink { [weak self] _ in
                 self?.shouldReloadCollectionViewData.send()

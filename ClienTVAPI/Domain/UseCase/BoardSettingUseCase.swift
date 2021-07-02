@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 public protocol BoardSettingUseCase {
-    func toggleBoardSetting() throws
-    func getBoardSetting() throws -> BoardSetting
-    func observeBoardSetting() -> AnyPublisher<BoardSetting, Never>
+    func toggleIsEnabled() throws
+    func getIsEnabled() throws -> Bool
+    func observeIsEnabled() -> AnyPublisher<Bool, Never>
 }
 
 public final class BoardSettingUseCaseImpl: BoardSettingUseCase {
@@ -21,17 +21,22 @@ public final class BoardSettingUseCaseImpl: BoardSettingUseCase {
         self.boardSettingRepository = BoardSettingRepositoryImpl()
     }
     
-    public func toggleBoardSetting() throws {
+    public func toggleIsEnabled() throws {
         let boardSetting: BoardSetting = try boardSettingRepository.getBoardSetting()
         boardSetting.isEnabled.toggle()
         try boardSettingRepository.saveChanges()
     }
     
-    public func getBoardSetting() throws -> BoardSetting {
-        return try boardSettingRepository.getBoardSetting()
+    public func getIsEnabled() throws -> Bool {
+        let boardSetting: BoardSetting = try boardSettingRepository.getBoardSetting()
+        return boardSetting.isEnabled
     }
     
-    public func observeBoardSetting() -> AnyPublisher<BoardSetting, Never> {
-        return boardSettingRepository.observeBoardSetting()
+    public func observeIsEnabled() -> AnyPublisher<Bool, Never> {
+        return boardSettingRepository
+            .observeBoardSetting()
+            .map { $0.isEnabled }
+            .removeDuplicates()
+            .eraseToAnyPublisher()
     }
 }

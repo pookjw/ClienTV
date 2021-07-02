@@ -9,6 +9,6 @@ import Foundation
 import CoreData
 
 @objc(BoardSetting)
-public final class BoardSetting: NSManagedObject {
+final class BoardSetting: NSManagedObject {
     @NSManaged public var isEnabled: Bool
 }

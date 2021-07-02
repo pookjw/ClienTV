@@ -117,6 +117,9 @@
 		F34A86E5268EED9E00315005 /* LocalDataStackImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E4268EED9E00315005 /* LocalDataStackImpl.swift */; };
 		F34A86E8268EEEA900315005 /* ConditionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E7268EEEA900315005 /* ConditionSetting.swift */; };
 		F34A86EB268EEEB800315005 /* ConditionSetting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E9268EEEB800315005 /* ConditionSetting.xcdatamodeld */; };
+		F34A86ED268EEF0700315005 /* ConditionSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86EC268EEF0700315005 /* ConditionSettingRepository.swift */; };
+		F34A86EF268EEF4200315005 /* ConditionSettingRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86EE268EEF4200315005 /* ConditionSettingRepositoryImpl.swift */; };
+		F34A86F1268EEFE000315005 /* ConditionSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86F0268EEFE000315005 /* ConditionSettingUseCase.swift */; };
 		F37E93CD26733804005AA37E /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */; };
 		F37E93D0267346BB005AA37E /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CF267346BB005AA37E /* Logger+shared.swift */; };
 		F37E93D326734704005AA37E /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93D226734704005AA37E /* Logger+shared.swift */; };
@@ -336,6 +339,9 @@
 		F34A86E4268EED9E00315005 /* LocalDataStackImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataStackImpl.swift; sourceTree = "<group>"; };
 		F34A86E7268EEEA900315005 /* ConditionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSetting.swift; sourceTree = "<group>"; };
 		F34A86EA268EEEB800315005 /* ConditionSetting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConditionSetting.xcdatamodel; sourceTree = "<group>"; };
+		F34A86EC268EEF0700315005 /* ConditionSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSettingRepository.swift; sourceTree = "<group>"; };
+		F34A86EE268EEF4200315005 /* ConditionSettingRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSettingRepositoryImpl.swift; sourceTree = "<group>"; };
+		F34A86F0268EEFE000315005 /* ConditionSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSettingUseCase.swift; sourceTree = "<group>"; };
 		F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTopShelfConstant.swift; path = ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfConstant.swift; sourceTree = SOURCE_ROOT; };
 		F37E93CF267346BB005AA37E /* Logger+shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Logger+shared.swift"; path = "ClienTVAPI/Util/Extension/Logger/Logger+shared.swift"; sourceTree = SOURCE_ROOT; };
 		F37E93D226734704005AA37E /* Logger+shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Logger+shared.swift"; path = "ClienTVAPI/Util/Extension/Logger/Logger+shared.swift"; sourceTree = SOURCE_ROOT; };
@@ -884,6 +890,7 @@
 				4F604104267175120067A364 /* ImageArticleBaseListRepository.swift */,
 				4F9A6611267B369C0091E61F /* ConditionRepository.swift */,
 				F3EE9318268DDE5E006365A3 /* BoardSettingRepository.swift */,
+				F34A86EC268EEF0700315005 /* ConditionSettingRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -898,6 +905,7 @@
 				4F6041082671756D0067A364 /* ImageArticleBaseListUseCase.swift */,
 				4F9A6615267B37220091E61F /* ConditionUseCase.swift */,
 				F3EE9324268E0CAE006365A3 /* BoardSettingUseCase.swift */,
+				F34A86F0268EEFE000315005 /* ConditionSettingUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -912,6 +920,7 @@
 				4F6041062671752D0067A364 /* ImageArticleBaseListRepositoryImpl.swift */,
 				4F9A6613267B36E70091E61F /* ConditionRepositoryImpl.swift */,
 				F3EE931A268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift */,
+				F34A86EE268EEF4200315005 /* ConditionSettingRepositoryImpl.swift */,
 			);
 			path = RepositoryImplementation;
 			sourceTree = "<group>";
@@ -1425,12 +1434,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF70F472668D35000FDC680 /* ArticleBaseListAPI.swift in Sources */,
+				F34A86EF268EEF4200315005 /* ConditionSettingRepositoryImpl.swift in Sources */,
 				4F9A660A267B31C70091E61F /* Condition.swift in Sources */,
 				4FF70F522668E03700FDC680 /* String+toInt.swift in Sources */,
 				4F9A6612267B369C0091E61F /* ConditionRepository.swift in Sources */,
 				4F1C88BD266CB4B0004AC01C /* ArticleAPIImpl.swift in Sources */,
 				4FD598692670ACCB00BB6BC6 /* ImageArticleBaseListAPI.swift in Sources */,
 				4F015A10266E5668003A7E52 /* CommentListRepository.swift in Sources */,
+				F34A86F1268EEFE000315005 /* ConditionSettingUseCase.swift in Sources */,
 				4FF70F4526689F0F00FDC680 /* Logger+shared.swift in Sources */,
 				4FF70F4B2668D38B00FDC680 /* ArticleBase.swift in Sources */,
 				F3EE931B268DE0E6006365A3 /* BoardSettingRepositoryImpl.swift in Sources */,
@@ -1446,6 +1457,7 @@
 				4F1C88BB266CB40A004AC01C /* Comment.swift in Sources */,
 				4FD598632670ABAD00BB6BC6 /* ImageArticleBase.swift in Sources */,
 				4F015A12266E568D003A7E52 /* CommentListRepositoryImpl.swift in Sources */,
+				F34A86ED268EEF0700315005 /* ConditionSettingRepository.swift in Sources */,
 				4F6041092671756D0067A364 /* ImageArticleBaseListUseCase.swift in Sources */,
 				4FF70F3B2667CA2400FDC680 /* Board.swift in Sources */,
 				4FD598702670ADB800BB6BC6 /* ClienDateFormatter.swift in Sources */,

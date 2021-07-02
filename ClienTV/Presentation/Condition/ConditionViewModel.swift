@@ -11,13 +11,9 @@ import ClienTVAPI
 
 final class ConditionViewModel {
     private let useCase: ConditionUseCase
-    private let settingService: SettingsService = .shared
+    private let conditionSettingUseCase: ConditionSettingUseCase = ConditionSettingUseCaseImpl()
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
-    
-    var agreedConditionStatus: Bool {
-        return settingService.agreedConditionStatus
-    }
     
     init(useCase: ConditionUseCase = ConditionUseCaseImpl()) {
         self.useCase = useCase
@@ -31,7 +27,7 @@ final class ConditionViewModel {
     }
     
     func setAgreedCondition() {
-        settingService.save(key: .agreedCondition, value: true)
+        try! conditionSettingUseCase.setRead()
     }
     
     private func configurePromise(_ promise: @escaping ((Result<Condition, Error>) -> Void)) {

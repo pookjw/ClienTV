@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import ClienTVAPI
 
 final class MainTabBarViewModel {
-    private let settingService: SettingsService = .shared
+    private let conditionSettingUseCase: ConditionSettingUseCase = ConditionSettingUseCaseImpl()
     
     var agreedConditionStatus: Bool {
-        return settingService.agreedConditionStatus
+        return try! conditionSettingUseCase.getReadStatus()
     }
 }

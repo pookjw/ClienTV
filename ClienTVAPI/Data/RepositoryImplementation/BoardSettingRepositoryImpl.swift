@@ -10,14 +10,14 @@ import Combine
 import CoreData
 
 final class BoardSettingRepositoryImpl: BoardSettingRepository {
-    private let cloudDataStack: CoreDataStack = CloudDataStackImpl(modelName: "BoardSetting")
+    private let coreDataStack: CoreDataStack = CloudDataStackImpl(modelName: "BoardSetting")
     
     func saveChanges() throws {
-        return try cloudDataStack.saveChanges()
+        return try coreDataStack.saveChanges()
     }
     
     func getBoardSetting() throws -> BoardSetting {
-        let mainContext: NSManagedObjectContext = cloudDataStack.mainContext
+        let mainContext: NSManagedObjectContext = coreDataStack.mainContext
         let fetchRequest: NSFetchRequest<BoardSetting> = BoardSetting._fetchRequest()
         let results: [BoardSetting] = try mainContext.fetch(fetchRequest)
         
@@ -25,7 +25,7 @@ final class BoardSettingRepositoryImpl: BoardSettingRepository {
             return result
         } else {
             let new: BoardSetting = .init(context: mainContext)
-            try cloudDataStack.saveChanges()
+            try coreDataStack.saveChanges()
             return new
         }
     }
@@ -33,7 +33,7 @@ final class BoardSettingRepositoryImpl: BoardSettingRepository {
     func observeBoardSetting() -> AnyPublisher<BoardSetting, Never> {
         return NotificationCenter
             .default
-            .publisher(for: .NSManagedObjectContextDidSave, object: cloudDataStack.mainContext)
+            .publisher(for: .NSManagedObjectContextDidSave, object: coreDataStack.mainContext)
             .compactMap { notification -> BoardSetting? in
                 guard let userInfo: [AnyHashable: Any] = notification.userInfo else {
                     return nil
