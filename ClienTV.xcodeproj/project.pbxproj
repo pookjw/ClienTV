@@ -123,6 +123,8 @@
 		F34A86FD268EF4E800315005 /* FilterSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86FC268EF4E800315005 /* FilterSettingRepository.swift */; };
 		F34A86FF268EF76B00315005 /* FilterSettingRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86FE268EF76B00315005 /* FilterSettingRepositoryImpl.swift */; };
 		F34A8701268EF97A00315005 /* FilterSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A8700268EF97A00315005 /* FilterSettingUseCase.swift */; };
+		F34A8705268F08CA00315005 /* FilterSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A8703268F08CA00315005 /* FilterSettingViewController.swift */; };
+		F34A8706268F08CA00315005 /* FilterSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F34A8704268F08CA00315005 /* FilterSettingViewController.xib */; };
 		F37E93CD26733804005AA37E /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */; };
 		F37E93D0267346BB005AA37E /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CF267346BB005AA37E /* Logger+shared.swift */; };
 		F37E93D326734704005AA37E /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93D226734704005AA37E /* Logger+shared.swift */; };
@@ -348,6 +350,8 @@
 		F34A86FC268EF4E800315005 /* FilterSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSettingRepository.swift; sourceTree = "<group>"; };
 		F34A86FE268EF76B00315005 /* FilterSettingRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSettingRepositoryImpl.swift; sourceTree = "<group>"; };
 		F34A8700268EF97A00315005 /* FilterSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSettingUseCase.swift; sourceTree = "<group>"; };
+		F34A8703268F08CA00315005 /* FilterSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSettingViewController.swift; sourceTree = "<group>"; };
+		F34A8704268F08CA00315005 /* FilterSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterSettingViewController.xib; sourceTree = "<group>"; };
 		F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTopShelfConstant.swift; path = ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfConstant.swift; sourceTree = SOURCE_ROOT; };
 		F37E93CF267346BB005AA37E /* Logger+shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Logger+shared.swift"; path = "ClienTVAPI/Util/Extension/Logger/Logger+shared.swift"; sourceTree = SOURCE_ROOT; };
 		F37E93D226734704005AA37E /* Logger+shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Logger+shared.swift"; path = "ClienTVAPI/Util/Extension/Logger/Logger+shared.swift"; sourceTree = SOURCE_ROOT; };
@@ -789,6 +793,7 @@
 				4FF70F66266906CE00FDC680 /* Article */,
 				4F1C88D6266CDF30004AC01C /* CommentList */,
 				4FF70F62266906AF00FDC680 /* Settings */,
+				F34A8702268F08A600315005 /* FilterSetting */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -956,6 +961,15 @@
 				F3EE931C268DE2CC006365A3 /* Cloud */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F34A8702268F08A600315005 /* FilterSetting */ = {
+			isa = PBXGroup;
+			children = (
+				F34A8703268F08CA00315005 /* FilterSettingViewController.swift */,
+				F34A8704268F08CA00315005 /* FilterSettingViewController.xib */,
+			);
+			path = FilterSetting;
 			sourceTree = "<group>";
 		};
 		F37E93D1267346FC005AA37E /* Logger */ = {
@@ -1249,6 +1263,7 @@
 				F3D318E8266A2A0C00B579E6 /* ArticleBaseContentView.xib in Resources */,
 				4F9A6603267B2B180091E61F /* InfoPlist.strings in Resources */,
 				4F1C88C5266CC0DA004AC01C /* ArticleViewController.xib in Resources */,
+				F34A8706268F08CA00315005 /* FilterSettingViewController.xib in Resources */,
 				4F9A6621267B38790091E61F /* ConditionViewController.xib in Resources */,
 				4FF70EEE2667C94500FDC680 /* LaunchScreen.storyboard in Resources */,
 				4FF70EEB2667C94500FDC680 /* Assets.xcassets in Resources */,
@@ -1391,6 +1406,7 @@
 				F37E93E326736395005AA37E /* ShortcutService.swift in Sources */,
 				4F6B56352675100C002090E8 /* SettingsModel.swift in Sources */,
 				4F1C88D8266CDF74004AC01C /* CommentListViewController.swift in Sources */,
+				F34A8705268F08CA00315005 /* FilterSettingViewController.swift in Sources */,
 				4F015A16266E57AB003A7E52 /* CommentListViewModel.swift in Sources */,
 				4F1C88CA266CC5F9004AC01C /* ArticleViewModel.swift in Sources */,
 				4F6041192671775B0067A364 /* ImageArticleBaseListViewController.swift in Sources */,
