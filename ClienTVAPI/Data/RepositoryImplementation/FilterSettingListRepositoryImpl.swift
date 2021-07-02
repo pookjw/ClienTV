@@ -1,5 +1,5 @@
 //
-//  FilterSettingRepositoryImpl.swift
+//  FilterSettingListRepositoryImpl.swift
 //  ClienTVAPI
 //
 //  Created by Jinwoo Kim on 7/2/21.
@@ -9,14 +9,14 @@ import Foundation
 import CoreData
 import Combine
 
-final class FilterSettingRepositoryImpl: FilterSettingRepository {
+final class FilterSettingListRepositoryImpl: FilterSettingListRepository {
     private let coreDataStack: CoreDataStack = CloudDataStackImpl(modelName: "FilterSetting")
     
     func saveChanges() throws {
         try coreDataStack.saveChanges()
     }
     
-    func getFilterSettings() throws -> [FilterSetting] {
+    func getFilterSettingList() throws -> [FilterSetting] {
         let mainContext: NSManagedObjectContext = coreDataStack.mainContext
         let fetchRequest: NSFetchRequest<FilterSetting> = FilterSetting._fetchRequest()
         let sortDescriptor: NSSortDescriptor = .init(key: #keyPath(FilterSetting.timestamp), ascending: true)
@@ -44,7 +44,7 @@ final class FilterSettingRepositoryImpl: FilterSettingRepository {
                     return nil
                 }
                 
-                return try self.getFilterSettings()
+                return try self.getFilterSettingList()
             }
             .replaceError(with: nil)
             .compactMap { $0 }

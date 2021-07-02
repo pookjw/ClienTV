@@ -1,5 +1,5 @@
 //
-//  FilterSettingUseCase.swift
+//  FilterSettingListUseCase.swift
 //  ClienTVAPI
 //
 //  Created by Jinwoo Kim on 7/2/21.
@@ -9,28 +9,28 @@ import Foundation
 import Combine
 import OSLog
 
-public protocol FilterSettingUseCase {
-    func getFilterTexts() throws -> [String: Date]
-    func observeFilterTexts() -> AnyPublisher<[String: Date], Never>
-    func removeFilterTexts(toRemove filterText: String) throws
-    func createFilterText(_ text: String) throws
+public protocol FilterSettingListUseCase {
+    func getFilterSettingList() throws -> [String: Date]
+    func observeFilterSettingList() -> AnyPublisher<[String: Date], Never>
+    func removeFilterSetting(toRemove filterText: String) throws
+    func createFilterSetting(_ text: String) throws
 }
 
-public final class FilterSettingUseCaseImpl: FilterSettingUseCase {
-    private let filterSettingRepository: FilterSettingRepository
+public final class FilterSettingListUseCaseImpl: FilterSettingListUseCase {
+    private let filterSettingRepository: FilterSettingListRepository
     
     public init() {
-        self.filterSettingRepository = FilterSettingRepositoryImpl()
+        self.filterSettingRepository = FilterSettingListRepositoryImpl()
     }
     
-    public func getFilterTexts() throws -> [String: Date] {
+    public func getFilterSettingList() throws -> [String: Date] {
         let filterSettings: [FilterSetting] = try filterSettingRepository
-            .getFilterSettings()
+            .getFilterSettingList()
         
         return convert(filterSettings: filterSettings)
     }
     
-    public func observeFilterTexts() -> AnyPublisher<[String: Date], Never> {
+    public func observeFilterSettingList() -> AnyPublisher<[String: Date], Never> {
         return filterSettingRepository
             .observeFilterSetting()
             .compactMap { [weak self] filterSettings in
@@ -42,7 +42,7 @@ public final class FilterSettingUseCaseImpl: FilterSettingUseCase {
             .eraseToAnyPublisher()
     }
     
-    public func removeFilterTexts(toRemove filterText: String) throws {
+    public func removeFilterSetting(toRemove filterText: String) throws {
         guard let filterSetting: FilterSetting = try filterSettingRepository
                 .getFilterSetting(text: filterText) else {
                     Logger.warning("filterText에 해당되는 FilterSetting가 존재하지 않음!")
@@ -53,7 +53,7 @@ public final class FilterSettingUseCaseImpl: FilterSettingUseCase {
         try filterSettingRepository.saveChanges()
     }
     
-    public func createFilterText(_ text: String) throws {
+    public func createFilterSetting(_ text: String) throws {
         let filterSetting: FilterSetting = try filterSettingRepository.createFilterSetting()
         filterSetting.text = text
         filterSetting.timestamp = .init()

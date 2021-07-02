@@ -79,7 +79,9 @@ final class MainTabBarController: UITabBarController {
         }
         
         let conditionViewController: ConditionViewController = .init()
+        let navigationController: UINavigationController = .init(rootViewController: conditionViewController)
         conditionViewController.loadViewIfNeeded()
-        present(conditionViewController, animated: true, completion: nil)
+        navigationController.loadViewIfNeeded()
+        present(navigationController, animated: true, completion: nil)
     }
 }

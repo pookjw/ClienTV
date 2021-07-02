@@ -131,15 +131,19 @@ final class SettingsViewController: UIViewController {
     
     private func presentConditionViewController() {
         let conditionViewController: ConditionViewController = .loadFromNib()
+        let navigationController: UINavigationController = .init(rootViewController: conditionViewController)
         conditionViewController.canDismissViaMenuButton = true
         conditionViewController.loadViewIfNeeded()
-        present(conditionViewController, animated: true, completion: nil)
+        navigationController.loadViewIfNeeded()
+        present(navigationController, animated: true, completion: nil)
     }
     
-    private func presentFilterSettingViewController() {
-        let filterSettingViewController: FilterSettingViewController = .loadFromNib()
+    private func presentFilterSettingListViewController() {
+        let filterSettingViewController: FilterSettingListViewController = .init()
+        let navigationController: UINavigationController = .init(rootViewController: filterSettingViewController)
         filterSettingViewController.loadViewIfNeeded()
-        present(filterSettingViewController, animated: true, completion: nil)
+        navigationController.loadViewIfNeeded()
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
@@ -160,7 +164,7 @@ extension SettingsViewController: UICollectionViewDelegate {
         case .presentCondition:
             presentConditionViewController()
         case .presentFilterSetting:
-            presentFilterSettingViewController()
+            presentFilterSettingListViewController()
         default:
             break
         }

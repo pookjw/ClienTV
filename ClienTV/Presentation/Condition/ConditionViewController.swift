@@ -60,6 +60,8 @@ final class ConditionViewController: UIViewController {
         bodyTextView.isScrollEnabled = true
         bodyTextView.panGestureRecognizer.allowedTouchTypes = [UITouch.TouchType.indirect.rawValue] as [NSNumber]
         bodyTextView.delegate = self
+        
+        title = "이용약관"
     }
     
     private func clearContents() {
