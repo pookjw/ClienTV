@@ -17,12 +17,11 @@ final class SettingsViewModel {
     
     private let dataSource: DataSource
     private let queue: OperationQueue = .init()
-    private let boardSettingUseCase: BoardSettingUseCase
+    private let boardSettingUseCase: BoardSettingUseCase = BoardSettingUseCaseImpl()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.boardSettingUseCase = BoardSettingUseCaseImpl()
         configureQueue()
         configureInitialDataSource()
         bind()

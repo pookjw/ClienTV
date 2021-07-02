@@ -25,7 +25,7 @@ final class BoardSettingRepositoryImpl: BoardSettingRepository {
             return result
         } else {
             let new: BoardSetting = .init(context: mainContext)
-            try mainContext.save()
+            try cloudDataStack.saveChanges()
             return new
         }
     }

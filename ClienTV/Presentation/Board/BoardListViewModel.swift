@@ -15,8 +15,10 @@ final class BoardListViewModel {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<BoardListHeaderItem, BoardListCellItem>
     
     var boardPathVisibilityStatus: Bool {
-        return settingService.boardPathVisibilityStatus
+        let boardSetting: BoardSetting = try! boardSettingUseCase.getBoardSetting()
+        return boardSetting.isEnabled
     }
+    let shouldReloadCollectionViewData: PassthroughSubject<Void, Never> = .init()
     
     private let dataSource: DataSource
     private let useCase: BoardListUseCase
@@ -26,7 +28,7 @@ final class BoardListViewModel {
         return isBoardListEmpty
     }
     private let queue: OperationQueue = .init()
-    private let settingService: SettingsService = .shared
+    private let boardSettingUseCase: BoardSettingUseCase = BoardSettingUseCaseImpl()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
     init(dataSource: DataSource,
@@ -34,6 +36,7 @@ final class BoardListViewModel {
         self.dataSource = dataSource
         self.useCase = useCase
         configureQueue()
+        bind()
     }
     
     func getHeaderItem(from indexPath: IndexPath) -> BoardListHeaderItem? {
@@ -111,6 +114,16 @@ final class BoardListViewModel {
     
     private func configureQueue() {
         queue.qualityOfService = .userInteractive
+    }
+    
+    private func bind() {
+        boardSettingUseCase
+            .observeBoardSetting()
+            .map { _ -> Void in }
+            .sink { [weak self] _ in
+                self?.shouldReloadCollectionViewData.send()
+            }
+            .store(in: &cancellableBag)
     }
     
     // MARK: - Helper
