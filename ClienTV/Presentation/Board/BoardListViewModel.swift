@@ -36,6 +36,15 @@ final class BoardListViewModel {
         self.useCase = useCase
         configureQueue()
         bind()
+        
+        let useCase: FilterSettingUseCase = FilterSettingUseCaseImpl()
+        
+        useCase.observeFilterTexts()
+            .sink(receiveValue: { _ in })
+            .store(in: &cancellableBag)
+        
+        try! useCase.createFilterText("Test")
+        try! useCase.createFilterText("Test2")
     }
     
     func getHeaderItem(from indexPath: IndexPath) -> BoardListHeaderItem? {

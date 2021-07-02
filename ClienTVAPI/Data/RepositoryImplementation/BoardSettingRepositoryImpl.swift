@@ -13,7 +13,7 @@ final class BoardSettingRepositoryImpl: BoardSettingRepository {
     private let coreDataStack: CoreDataStack = CloudDataStackImpl(modelName: "BoardSetting")
     
     func saveChanges() throws {
-        return try coreDataStack.saveChanges()
+        try coreDataStack.saveChanges()
     }
     
     func getBoardSetting() throws -> BoardSetting {

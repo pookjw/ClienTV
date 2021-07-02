@@ -10,5 +10,5 @@ import CoreData
 
 @objc(ConditionSetting)
 final class ConditionSetting: NSManagedObject {
-    @NSManaged public var didRead: Bool
+    @NSManaged var didRead: Bool
 }

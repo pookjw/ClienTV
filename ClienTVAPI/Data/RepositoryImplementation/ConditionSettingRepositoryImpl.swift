@@ -12,7 +12,7 @@ final class ConditionSettingRepositoryImpl: ConditionSettingRepository {
     private let coreDataStack: CoreDataStack = LocalDataStackImpl(modelName: "ConditionSetting")
     
     func saveChanges() throws {
-        return try coreDataStack.saveChanges()
+        try coreDataStack.saveChanges()
     }
     
     func getConditionSetting() throws -> ConditionSetting {
