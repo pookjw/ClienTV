@@ -64,6 +64,7 @@ struct SettingsCellItem: Equatable, Hashable {
         case developerEmail(data: DeveloperEmailData)
         case developerGitHub(data: DeveloperGitHubData)
         case presentCondition(data: PresentConditionData)
+        case presentFilterSetting(data: PresentFilterSetting)
         
         static func == (lhs: DataType, rhs: DataType) -> Bool {
             switch (lhs, rhs) {
@@ -74,6 +75,8 @@ struct SettingsCellItem: Equatable, Hashable {
             case (.developerGitHub(let lhsData), .developerGitHub(let rhsData)):
                 return lhsData == rhsData
             case (.presentCondition(let lhsData), .presentCondition(let rhsData)):
+                return lhsData == rhsData
+            case (.presentFilterSetting(let lhsData), .presentFilterSetting(let rhsData)):
                 return lhsData == rhsData
             default:
                 return false
@@ -178,6 +181,24 @@ extension SettingsCellItem {
             return .init(systemName: "doc.plaintext")
         }
         
-        let id: UUID = .init()
+        private let id: UUID = .init()
+    }
+}
+
+extension SettingsCellItem {
+    struct PresentFilterSetting: Equatable, Hashable {
+        static func == (lhs: PresentFilterSetting, rhs: PresentFilterSetting) -> Bool {
+            return lhs.id == rhs.id
+        }
+        
+        var title: String {
+            return "차단단어 설정"
+        }
+        
+        var image: UIImage? {
+            return .init(systemName: "line.horizontal.3")
+        }
+        
+        private let id: UUID = .init()
     }
 }

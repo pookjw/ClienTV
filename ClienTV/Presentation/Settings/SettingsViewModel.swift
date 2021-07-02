@@ -68,10 +68,13 @@ final class SettingsViewModel {
             
             snapshot.appendSections([miscHeaderItem])
             
-            let presentConditionData: SettingsCellItem.PresentConditionData = . init()
+            let presentFilterSettingData: SettingsCellItem.PresentFilterSetting = .init()
+            let presentFilterSettingCellItem: SettingsCellItem = .init(dataType: .presentFilterSetting(data: presentFilterSettingData))
+            
+            let presentConditionData: SettingsCellItem.PresentConditionData = .init()
             let presentConditionCellItem: SettingsCellItem = .init(dataType: .presentCondition(data: presentConditionData))
             
-            snapshot.appendItems([presentConditionCellItem], toSection: miscHeaderItem)
+            snapshot.appendItems([presentFilterSettingCellItem, presentConditionCellItem], toSection: miscHeaderItem)
             
             //
             

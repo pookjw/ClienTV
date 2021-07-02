@@ -97,6 +97,13 @@ final class SettingsViewController: UIViewController {
                 configuration.imageToTextPadding = 30
                 cell.contentConfiguration = configuration
                 cell.accessories = [.disclosureIndicator()]
+            case .presentFilterSetting(let data):
+                var configuration: UIListContentConfiguration = cell.defaultContentConfiguration()
+                configuration.text = data.title
+                configuration.image = data.image
+                configuration.imageToTextPadding = 30
+                cell.contentConfiguration = configuration
+                cell.accessories = [.disclosureIndicator()]
             }
             
             return cell
@@ -123,9 +130,16 @@ final class SettingsViewController: UIViewController {
     }
     
     private func presentConditionViewController() {
-        let conditionViewController: ConditionViewController = .init()
+        let conditionViewController: ConditionViewController = .loadFromNib()
+        conditionViewController.canDismissViaMenuButton = true
         conditionViewController.loadViewIfNeeded()
         present(conditionViewController, animated: true, completion: nil)
+    }
+    
+    private func presentFilterSettingViewController() {
+        let filterSettingViewController: FilterSettingViewController = .loadFromNib()
+        filterSettingViewController.loadViewIfNeeded()
+        present(filterSettingViewController, animated: true, completion: nil)
     }
 }
 
@@ -145,6 +159,8 @@ extension SettingsViewController: UICollectionViewDelegate {
             viewModel.toggleBoardPathVisibility()
         case .presentCondition:
             presentConditionViewController()
+        case .presentFilterSetting:
+            presentFilterSettingViewController()
         default:
             break
         }

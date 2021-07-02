@@ -14,6 +14,7 @@ final class ConditionViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var confirmButton: UIButton!
     
+    var canDismissViaMenuButton: Bool = false
     private var viewModel: ConditionViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
@@ -31,7 +32,9 @@ final class ConditionViewController: UIViewController {
     }
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        
+        if canDismissViaMenuButton {
+            super.dismiss(animated: flag, completion: completion)
+        }
     }
 
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
