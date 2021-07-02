@@ -113,6 +113,10 @@
 		A43050FEE2953D6F28C4F9BD /* Pods_ClienTVAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3BCDDCCE1DCB4AF6C4E41 /* Pods_ClienTVAPI.framework */; };
 		F3096DB32669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */; };
 		F3096DB52669E4B60006E093 /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */; };
+		F34A86E3268EE82A00315005 /* CoreDataStackImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E2268EE82A00315005 /* CoreDataStackImpl.swift */; };
+		F34A86E5268EED9E00315005 /* LocalDataStackImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E4268EED9E00315005 /* LocalDataStackImpl.swift */; };
+		F34A86E8268EEEA900315005 /* ConditionSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E7268EEEA900315005 /* ConditionSetting.swift */; };
+		F34A86EB268EEEB800315005 /* ConditionSetting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F34A86E9268EEEB800315005 /* ConditionSetting.xcdatamodeld */; };
 		F37E93CD26733804005AA37E /* ImageTopShelfConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */; };
 		F37E93D0267346BB005AA37E /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93CF267346BB005AA37E /* Logger+shared.swift */; };
 		F37E93D326734704005AA37E /* Logger+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E93D226734704005AA37E /* Logger+shared.swift */; };
@@ -328,6 +332,10 @@
 		E5A8A0B3752122A1B3738CE9 /* Pods-ClienTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClienTV.release.xcconfig"; path = "Target Support Files/Pods-ClienTV/Pods-ClienTV.release.xcconfig"; sourceTree = "<group>"; };
 		F3096DB22669CDF60006E093 /* NSDiffableDataSourceSnapshot+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+Item.swift"; sourceTree = "<group>"; };
 		F3096DB42669E4B60006E093 /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
+		F34A86E2268EE82A00315005 /* CoreDataStackImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackImpl.swift; sourceTree = "<group>"; };
+		F34A86E4268EED9E00315005 /* LocalDataStackImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataStackImpl.swift; sourceTree = "<group>"; };
+		F34A86E7268EEEA900315005 /* ConditionSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSetting.swift; sourceTree = "<group>"; };
+		F34A86EA268EEEB800315005 /* ConditionSetting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConditionSetting.xcdatamodel; sourceTree = "<group>"; };
 		F37E93CB26733804005AA37E /* ImageTopShelfConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageTopShelfConstant.swift; path = ClienTV/Application/Util/Service/ImageTopShelf/ImageTopShelfConstant.swift; sourceTree = SOURCE_ROOT; };
 		F37E93CF267346BB005AA37E /* Logger+shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Logger+shared.swift"; path = "ClienTVAPI/Util/Extension/Logger/Logger+shared.swift"; sourceTree = SOURCE_ROOT; };
 		F37E93D226734704005AA37E /* Logger+shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Logger+shared.swift"; path = "ClienTVAPI/Util/Extension/Logger/Logger+shared.swift"; sourceTree = SOURCE_ROOT; };
@@ -690,9 +698,7 @@
 		4FF70F352667C9C300FDC680 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				F3EE931E268DE331006365A3 /* CoreDataStack.swift */,
-				F3EE931D268DE2D3006365A3 /* Local */,
-				F3EE931C268DE2CC006365A3 /* Cloud */,
+				F34A86E6268EEE6700315005 /* CoreData */,
 				4FF70F362667C9EF00FDC680 /* Network */,
 				4FF70F6E2669083600FDC680 /* RepositoryImplementation */,
 			);
@@ -933,6 +939,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F34A86E6268EEE6700315005 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F3EE931E268DE331006365A3 /* CoreDataStack.swift */,
+				F34A86E2268EE82A00315005 /* CoreDataStackImpl.swift */,
+				F3EE931D268DE2D3006365A3 /* Local */,
+				F3EE931C268DE2CC006365A3 /* Cloud */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		F37E93D1267346FC005AA37E /* Logger */ = {
 			isa = PBXGroup;
 			children = (
@@ -984,6 +1001,8 @@
 			children = (
 				F3EE9309268CCC26006365A3 /* BoardSetting.swift */,
 				F3EE9326268E1650006365A3 /* BoardSetting.xcdatamodeld */,
+				F34A86E7268EEEA900315005 /* ConditionSetting.swift */,
+				F34A86E9268EEEB800315005 /* ConditionSetting.xcdatamodeld */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1015,6 +1034,7 @@
 		F3EE931D268DE2D3006365A3 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				F34A86E4268EED9E00315005 /* LocalDataStackImpl.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -1432,14 +1452,18 @@
 				4F55A1DD266A9D0100429B3E /* ArticleAPI.swift in Sources */,
 				4FD5986C2670ACDB00BB6BC6 /* ImageArticleBaseListAPIImpl.swift in Sources */,
 				4FF70F382667CA1000FDC680 /* BoardListAPI.swift in Sources */,
+				F34A86E3268EE82A00315005 /* CoreDataStackImpl.swift in Sources */,
 				4FF70F7826692B2200FDC680 /* BoardListUseCase.swift in Sources */,
 				F3EE932D268E1F74006365A3 /* BoardSetting.xcdatamodeld in Sources */,
+				F34A86EB268EEEB800315005 /* ConditionSetting.xcdatamodeld in Sources */,
 				4F9A6610267B32B30091E61F /* ConditionAPIImpl.swift in Sources */,
 				F3EE9319268DDE5E006365A3 /* BoardSettingRepository.swift in Sources */,
 				F3EE932C268E1F5E006365A3 /* BoardSetting.swift in Sources */,
+				F34A86E5268EED9E00315005 /* LocalDataStackImpl.swift in Sources */,
 				4F015A0E266DE93C003A7E52 /* CommentListAPIImpl.swift in Sources */,
 				4FF70F76266928A900FDC680 /* ArticleBaseListRepositoryImpl.swift in Sources */,
 				4F1C88C1266CBEDE004AC01C /* ArticleRepositoryImpl.swift in Sources */,
+				F34A86E8268EEEA900315005 /* ConditionSetting.swift in Sources */,
 				F3EE9316268CCFF9006365A3 /* NSObject+className.swift in Sources */,
 				4F9A660E267B322A0091E61F /* APIError.swift in Sources */,
 				4F1C88BF266CBEBC004AC01C /* ArticleRepository.swift in Sources */,
@@ -1993,6 +2017,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		F34A86E9268EEEB800315005 /* ConditionSetting.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F34A86EA268EEEB800315005 /* ConditionSetting.xcdatamodel */,
+			);
+			currentVersion = F34A86EA268EEEB800315005 /* ConditionSetting.xcdatamodel */;
+			path = ConditionSetting.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		F3EE9326268E1650006365A3 /* BoardSetting.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
