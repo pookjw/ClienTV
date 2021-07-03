@@ -7,6 +7,8 @@
 
 import UIKit
 import Combine
+import OSLog
+import SortSnapshot
 import ClienTVAPI
 
 final class FilterSettingListViewModel {
@@ -14,18 +16,37 @@ final class FilterSettingListViewModel {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<FilterSettingHeaderItem, FilterSettingCellItem>
     
     private let dataSource: DataSource
-    private let useCase: FilterSettingListUseCase
+    private let filterSettingUseCase: FilterSettingListUseCase = FilterSettingListUseCaseImpl()
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(dataSource: DataSource,
-         useCase: FilterSettingListUseCase = FilterSettingListUseCaseImpl()) {
+    init(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.useCase = useCase
         
         configureQueue()
         bind()
         configureInitialDataSource()
+    }
+    
+    func getCellItem(from indexPath: IndexPath) -> FilterSettingCellItem? {
+        let snapshot: Snapshot = dataSource.snapshot()
+        return snapshot.getCellItem(from: indexPath)
+    }
+    
+    func createFilterSetting(text: String) {
+        do {
+            try filterSettingUseCase.createFilterSetting(text: text)
+        } catch {
+            Logger.error(error.localizedDescription)
+        }
+    }
+    
+    func removeFilterSetting(text: String) {
+        do {
+            try filterSettingUseCase.removeFilterSetting(toRemove: text)
+        } catch {
+            Logger.error(error.localizedDescription)
+        }
     }
     
     private func configureQueue() {
@@ -33,12 +54,12 @@ final class FilterSettingListViewModel {
     }
     
     private func configureInitialDataSource() {
-        let filterSettings: [String: Date] = try! useCase.getFilterSettingList()
+        let filterSettings: [String: Date] = try! filterSettingUseCase.getFilterSettingList()
         updateFilterSetting(filterSettings)
     }
     
     private func bind() {
-        useCase
+        filterSettingUseCase
             .observeFilterSettingList()
             .receive(on: queue)
             .sink { [weak self] filterSettings in
@@ -57,6 +78,8 @@ final class FilterSettingListViewModel {
         
         let filterSettingCellItems: [FilterSettingCellItem] = createCellItems(from: filterSettings)
         snapshot.appendItems(filterSettingCellItems, toSection: filterSettingsHeaderItem)
+        
+        snapshot.ssSortItems([filterSettingsHeaderItem], by: >)
         
         dataSource.apply(snapshot)
     }

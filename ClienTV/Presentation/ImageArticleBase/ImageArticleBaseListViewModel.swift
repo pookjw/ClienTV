@@ -14,15 +14,13 @@ final class ImageArticleBaseListViewModel {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<ImageArticleBaseListHeaderItem, ImageArticleBaseListCellItem>
 
     private let dataSource: DataSource
-    private let useCase: ImageArticleBaseListUseCase
+    private let imageArticleBaseListUseCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()
     private var currentBoardPage: Int = 0
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(dataSource: DataSource,
-         useCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()) {
+    init(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.useCase = useCase
         configureQueue()
     }
     
@@ -49,7 +47,7 @@ final class ImageArticleBaseListViewModel {
     
     private func configurePromise(_ promise: @escaping ((Result<Bool, Error>) -> Void),
                                   shouldResetSnapshot: Bool) {
-        useCase
+        imageArticleBaseListUseCase
             .getImageArticleBaseList(page: currentBoardPage)
             .receive(on: queue)
             .sink { completion in

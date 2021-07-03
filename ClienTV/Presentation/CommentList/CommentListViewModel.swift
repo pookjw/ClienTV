@@ -17,13 +17,11 @@ final class CommentListViewModel {
     private(set) var boardPath: String?
     private(set) var articlePath: String?
     private let dataSource: DataSource
-    private let useCase: CommentListUseCase
+    private let commentListUseCase: CommentListUseCase = CommentListUseCaseImpl()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(dataSource: DataSource,
-         useCase: CommentListUseCase = CommentListUseCaseImpl()) {
+    init(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.useCase = useCase
     }
     
     func getHeaderItem(from indexPath: IndexPath) -> CommentListHeaderItem? {
@@ -42,7 +40,7 @@ final class CommentListViewModel {
             
             let path: String = "\(boardPath)/\(articlePath)"
             
-            self.useCase
+            self.commentListUseCase
                 .getCommentList(path: path)
                 .sink { completion in
                     switch completion {

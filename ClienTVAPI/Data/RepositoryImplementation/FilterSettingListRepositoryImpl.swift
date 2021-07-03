@@ -35,6 +35,15 @@ final class FilterSettingListRepositoryImpl: FilterSettingListRepository {
         return results.first
     }
     
+    func getCountOfFilterSetting(text: String) throws -> Int {
+        let mainContext: NSManagedObjectContext = coreDataStack.mainContext
+        let fetchRequest: NSFetchRequest<FilterSetting> = FilterSetting._fetchRequest()
+        let predicate: NSPredicate = .init(format: "%K = %@", #keyPath(FilterSetting.text), text)
+        fetchRequest.predicate = predicate
+        let count: Int = try mainContext.count(for: fetchRequest)
+        return count
+    }
+    
     func observeFilterSetting() -> AnyPublisher<[FilterSetting], Never> {
         return NotificationCenter
             .default

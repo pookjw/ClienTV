@@ -10,13 +10,12 @@ import Combine
 import ClienTVAPI
 
 final class ConditionViewModel {
-    private let useCase: ConditionUseCase
+    private let conditionUseCase: ConditionUseCase = ConditionUseCaseImpl()
     private let conditionSettingUseCase: ConditionSettingUseCase = ConditionSettingUseCaseImpl()
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(useCase: ConditionUseCase = ConditionUseCaseImpl()) {
-        self.useCase = useCase
+    init() {
         configureQueue()
     }
     
@@ -31,7 +30,7 @@ final class ConditionViewModel {
     }
     
     private func configurePromise(_ promise: @escaping ((Result<Condition, Error>) -> Void)) {
-        useCase
+        conditionUseCase
             .getCondition()
             .receive(on: queue)
             .sink { completion in

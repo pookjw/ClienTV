@@ -20,7 +20,7 @@ final class BoardListViewModel {
     let shouldReloadCollectionViewData: PassthroughSubject<Void, Never> = .init()
     
     private let dataSource: DataSource
-    private let useCase: BoardListUseCase
+    private let boardListUseCase: BoardListUseCase = BoardListUseCaseImpl()
     private var isBoardListEmpty: Bool {
         let snapshot: Snapshot = dataSource.snapshot()
         let isBoardListEmpty: Bool = snapshot.numberOfItems == 0
@@ -30,10 +30,8 @@ final class BoardListViewModel {
     private let boardSettingUseCase: BoardSettingUseCase = BoardSettingUseCaseImpl()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(dataSource: DataSource,
-        useCase: BoardListUseCase = BoardListUseCaseImpl()) {
+    init(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.useCase = useCase
         configureQueue()
         bind()
     }
@@ -68,7 +66,7 @@ final class BoardListViewModel {
             return
         }
         
-        useCase
+        boardListUseCase
             .getAllBoardList()
             .receive(on: queue)
             .sink { completion in

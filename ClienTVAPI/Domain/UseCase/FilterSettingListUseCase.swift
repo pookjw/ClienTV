@@ -13,7 +13,11 @@ public protocol FilterSettingListUseCase {
     func getFilterSettingList() throws -> [String: Date]
     func observeFilterSettingList() -> AnyPublisher<[String: Date], Never>
     func removeFilterSetting(toRemove filterText: String) throws
-    func createFilterSetting(_ text: String) throws
+    func createFilterSetting(text: String) throws
+}
+
+enum FilterSettingListUseCaseError: Error {
+    case alreadyExists
 }
 
 public final class FilterSettingListUseCaseImpl: FilterSettingListUseCase {
@@ -53,7 +57,11 @@ public final class FilterSettingListUseCaseImpl: FilterSettingListUseCase {
         try filterSettingRepository.saveChanges()
     }
     
-    public func createFilterSetting(_ text: String) throws {
+    public func createFilterSetting(text: String) throws {
+        guard (try filterSettingRepository.getCountOfFilterSetting(text: text)) == 0 else {
+            throw FilterSettingListUseCaseError.alreadyExists
+        }
+        
         let filterSetting: FilterSetting = try filterSettingRepository.createFilterSetting()
         filterSetting.text = text
         filterSetting.timestamp = .init()

@@ -13,12 +13,11 @@ import ClienTVAPI
 final class ArticleViewModel {
     private(set) var boardPath: String?
     private(set) var articlePath: String?
-    private let useCase: ArticleUseCase
+    private let articleUseCase: ArticleUseCase = ArticleUseCaseImpl()
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(useCase: ArticleUseCase = ArticleUseCaseImpl()) {
-        self.useCase = useCase
+    init() {
         configureQueue()
     }
     
@@ -36,7 +35,7 @@ final class ArticleViewModel {
                                   articlePath: String) {
         let path: String = "\(boardPath)/\(articlePath)"
         
-        useCase
+        articleUseCase
             .getArticle(path: path)
             .receive(on: queue)
             .sink { completion in

@@ -18,15 +18,14 @@ final class ArticleBaseListViewModel {
     var cacheIndexPath: IndexPath? = nil
     private(set) var boardPath: String?
     private let dataSource: DataSource
-    private let useCase: ArticleBaseListUseCase
+    private let articleBaseListUseCase: ArticleBaseListUseCase = ArticleBaseListUseCaseImpl()
+    private let filterSettingListUseCase: FilterSettingListUseCase = FilterSettingListUseCaseImpl()
     private var currentBoardPage: Int = 0
     private let queue: OperationQueue = .init()
     private var cancellableBag: Set<AnyCancellable> = .init()
     
-    init(dataSource: DataSource,
-        useCase: ArticleBaseListUseCase = ArticleBaseListUseCaseImpl()) {
+    init(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.useCase = useCase
         configureQueue()
     }
     
@@ -59,7 +58,7 @@ final class ArticleBaseListViewModel {
             return
         }
         
-        useCase
+        articleBaseListUseCase
             .getArticleBaseList(path: boardPath, page: currentBoardPage)
             .receive(on: queue)
             .sink { completion in
@@ -113,8 +112,22 @@ final class ArticleBaseListViewModel {
     
     // MARK: - Helper
     private func createCellItems(from articleBaseList: [ArticleBase], oldCellItems: [ArticleBaseListCellItem]) -> [ArticleBaseListCellItem] {
+        let filterTexts: [String] = (try? filterSettingListUseCase
+            .getFilterSettingList()
+            .keys
+            .map { $0 }) ?? []
+        
         let cellItems: [ArticleBaseListCellItem] = articleBaseList
             .compactMap { articleBase -> ArticleBaseListCellItem? in
+                
+                // 필터링
+                for filterText in filterTexts {
+                    guard !((articleBase.title.localizedCaseInsensitiveContains(filterText)) ||
+                        (articleBase.nickname.localizedCaseInsensitiveContains(filterText))) else {
+                        return nil
+                    }
+                }
+                
                 let articleBaseData: ArticleBaseListCellItem.ArticleBaseData = .init(likeCount: articleBase.likeCount,
                                                                                      category: articleBase.category,
                                                                                      title: articleBase.title,

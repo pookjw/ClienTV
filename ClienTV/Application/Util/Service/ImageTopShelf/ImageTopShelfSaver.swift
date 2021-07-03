@@ -13,7 +13,8 @@ import ClienTVAPI
 final class ImageTopShelfSaver {
     static let shared: ImageTopShelfSaver = .init()
     
-    private let useCase: ImageArticleBaseListUseCase
+    private let imageArticleBaseListUseCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()
+    private let filterSettingListUseCase: FilterSettingListUseCase = FilterSettingListUseCaseImpl()
     private let userDefaults: UserDefaults = .init(suiteName: ImageTopShelfConstant.suitName) ?? .standard
     private let queue: OperationQueue = .init()
     private let encoder: JSONEncoder = .init()
@@ -52,13 +53,12 @@ final class ImageTopShelfSaver {
         }
     }
     
-    private init(useCase: ImageArticleBaseListUseCase = ImageArticleBaseListUseCaseImpl()) {
-        self.useCase = useCase
+    private init() {
         configureQueue()
     }
     
     private func fetchImageArticleBaseList(completion: @escaping ([ImageArticleBase]?, Error?) -> Void) {
-        useCase
+        imageArticleBaseListUseCase
             .getImageArticleBaseList(page: 0)
             .receive(on: queue)
             .sink { result in
@@ -99,6 +99,19 @@ final class ImageTopShelfSaver {
     // MARK: - Helper
     
     private func convertData(from imageArticleBase: ImageArticleBase) -> ImageTopShelfData? {
+        // 필터링
+        let filterTexts: [String] = (try? filterSettingListUseCase
+            .getFilterSettingList()
+            .keys
+            .map { $0 }) ?? []
+        
+        for filterText in filterTexts {
+            guard !((imageArticleBase.title.localizedCaseInsensitiveContains(filterText)) ||
+                (imageArticleBase.nickname.localizedCaseInsensitiveContains(filterText))) else {
+                return nil
+            }
+        }
+        
         guard let previewImageURL: URL = imageArticleBase.previewImageURL else {
             return nil
         }
