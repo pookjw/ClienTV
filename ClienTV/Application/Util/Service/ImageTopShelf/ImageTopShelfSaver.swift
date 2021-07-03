@@ -36,6 +36,15 @@ final class ImageTopShelfSaver {
             return
         }
         
+        save()
+    }
+    
+    private init() {
+        configureQueue()
+        bind()
+    }
+    
+    private func save() {
         fetchImageArticleBaseList { [weak self] (imageArticleBaseList, error) in
             if let error: Error = error {
                 Logger.error(error.localizedDescription)
@@ -51,10 +60,6 @@ final class ImageTopShelfSaver {
             self?.saveTimestamp()
             Logger.info("사진게시판 캐시 저장 완료!")
         }
-    }
-    
-    private init() {
-        configureQueue()
     }
     
     private func fetchImageArticleBaseList(completion: @escaping ([ImageArticleBase]?, Error?) -> Void) {
@@ -94,6 +99,16 @@ final class ImageTopShelfSaver {
     
     private func configureQueue() {
         queue.qualityOfService = .background
+    }
+    
+    private func bind() {
+        filterSettingListUseCase
+            .observeFilterSettingList()
+            .receive(on: queue)
+            .sink { [weak self] _ in
+                self?.save()
+            }
+            .store(in: &cancellableBag)
     }
     
     // MARK: - Helper
