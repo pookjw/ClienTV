@@ -15,6 +15,7 @@ final class ConditionViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     
     var canDismissViaMenuButton: Bool = false
+    private var enableConfirmButtonTimer: Timer?
     private var viewModel: ConditionViewModel!
     private var cancellableBag: Set<AnyCancellable> = .init()
     
@@ -31,26 +32,14 @@ final class ConditionViewController: UIViewController {
         requestCondition()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        startEnableConfirmButtonTimer()
+    }
+    
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         if canDismissViaMenuButton {
             super.dismiss(animated: flag, completion: completion)
-        }
-    }
-
-    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-        defer {
-            super.pressesEnded(presses, with: event)
-        }
-        
-        guard let press: UIPress = presses.first else {
-            return
-        }
-
-        if press.type == .menu {
-            if isRecheadToBottom {
-//                confirmButton.isEnabled = true
-//                preferredFocusEnvironments = [confirmButton]
-            }
         }
     }
     
@@ -66,8 +55,7 @@ final class ConditionViewController: UIViewController {
     
     private func clearContents() {
         bodyTextView.text = nil
-        confirmButton.isEnabled = false
-        confirmButton.setTitle("끝까지 읽어 주세요!", for: .normal)
+        disableConfirmButton()
     }
     
     private func configureViewModel() {
@@ -106,9 +94,24 @@ final class ConditionViewController: UIViewController {
     
     private func makeConfirmButtonEnabledIfNeeded() {
         if isRecheadToBottom {
-            confirmButton.isEnabled = true
-            confirmButton.setTitle("이용약관에 동의합니다.", for: .normal)
+            enableConfirmButton()
         }
+    }
+    
+    private func enableConfirmButton() {
+        confirmButton.isEnabled = true
+        confirmButton.setTitle("이용약관에 동의합니다.", for: .normal)
+    }
+    
+    private func disableConfirmButton() {
+        confirmButton.isEnabled = false
+        confirmButton.setTitle("끝까지 읽어 주세요!", for: .normal)
+    }
+    
+    private func startEnableConfirmButtonTimer() {
+        enableConfirmButtonTimer = .scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self] _ in
+            self?.enableConfirmButton()
+        })
     }
     
     @IBAction func pressedConfirmButton(_ sender: UIButton) {
