@@ -161,15 +161,6 @@ final class BoardListViewController: UIViewController {
     }
     
     private func bind() {
-//        SettingsService
-//            .shared
-//            .changedEvent
-//            .receive(on: OperationQueue.main)
-//            .sink(receiveValue: { [weak self] _ in
-//                self?.collectionView?.reloadData()
-//            })
-//            .store(in: &cancellableBag)
-        
         viewModel
             .shouldReloadCollectionViewData
             .receive(on: OperationQueue.main)
