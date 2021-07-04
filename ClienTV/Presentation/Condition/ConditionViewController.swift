@@ -109,6 +109,7 @@ final class ConditionViewController: UIViewController {
     }
     
     private func startEnableConfirmButtonTimer() {
+        enableConfirmButtonTimer?.invalidate()
         enableConfirmButtonTimer = .scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self] _ in
             self?.enableConfirmButton()
         })
@@ -124,6 +125,7 @@ final class ConditionViewController: UIViewController {
 
 extension ConditionViewController: UITextViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        startEnableConfirmButtonTimer()
         makeConfirmButtonEnabledIfNeeded()
     }
 }
