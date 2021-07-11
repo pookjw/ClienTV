@@ -43,6 +43,14 @@ class CoreDataStackImpl<T: NSPersistentContainer>: CoreDataStack {
         }
     }()
     
+    private(set) lazy var changesPublisher: AnyPublisher<Notification, Never> = {
+        return NotificationCenter
+            .default
+            .publisher(for: .NSManagedObjectContextDidSave, object: mainContext)
+            .share()
+            .eraseToAnyPublisher()
+    }()
+    
     required init(modelName: String) {
         self.modelName = modelName
     }

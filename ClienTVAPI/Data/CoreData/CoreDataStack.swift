@@ -12,6 +12,7 @@ import CoreData
 protocol CoreDataStack {
     var mainContext: NSManagedObjectContext { get }
     var storeContainer: NSPersistentContainer { get }
+    var changesPublisher: AnyPublisher<Notification, Never> { get }
     init(modelName: String)
     func saveChanges() throws
 }

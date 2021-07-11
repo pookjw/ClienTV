@@ -45,9 +45,8 @@ final class FilterSettingListRepositoryImpl: FilterSettingListRepository {
     }
     
     func observeFilterSetting() -> AnyPublisher<[FilterSetting], Never> {
-        return NotificationCenter
-            .default
-            .publisher(for: .NSManagedObjectContextDidSave, object: coreDataStack.mainContext)
+        return coreDataStack
+            .changesPublisher
             .tryMap { [weak self] _ -> [FilterSetting]? in
                 guard let self = self else {
                     return nil
