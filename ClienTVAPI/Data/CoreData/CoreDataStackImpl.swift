@@ -44,9 +44,17 @@ class CoreDataStackImpl<T: NSPersistentContainer>: CoreDataStack {
     }()
     
     private(set) lazy var changesPublisher: AnyPublisher<Notification, Never> = {
-        return NotificationCenter
+        let contextEvent: AnyPublisher<Notification, Never> = NotificationCenter
             .default
             .publisher(for: .NSManagedObjectContextDidSave, object: mainContext)
+            .eraseToAnyPublisher()
+        let cloudKitEvent: AnyPublisher<Notification, Never> = NotificationCenter
+            .default
+            .publisher(for: NSPersistentCloudKitContainer.eventChangedNotification, object: storeContainer)
+            .eraseToAnyPublisher()
+        
+        return contextEvent
+            .merge(with: cloudKitEvent)
             .share()
             .eraseToAnyPublisher()
     }()
