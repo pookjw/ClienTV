@@ -110,7 +110,7 @@ final class BoardListViewController: UIViewController {
             
             switch headerItem.dataType {
             case .category(let data):
-                var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
+                var configuration: UIListContentConfiguration = .groupedHeader()
                 configuration.text = data.title
                 headerView.contentConfiguration = configuration
             }

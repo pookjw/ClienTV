@@ -31,9 +31,8 @@ final class BoardSettingRepositoryImpl: BoardSettingRepository {
     }
     
     func observeBoardSetting() -> AnyPublisher<BoardSetting, Never> {
-        return NotificationCenter
-            .default
-            .publisher(for: .NSManagedObjectContextDidSave, object: coreDataStack.mainContext)
+        return coreDataStack
+            .changesPublisher
             .compactMap { notification -> BoardSetting? in
                 guard let userInfo: [AnyHashable: Any] = notification.userInfo else {
                     return nil

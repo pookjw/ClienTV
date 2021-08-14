@@ -108,7 +108,7 @@ final class CommentListViewController: UIViewController {
             
             switch headerItem.dataType {
             case .commentCount(let data):
-                var configuration: UIListContentConfiguration = headerView.defaultContentConfiguration()
+                var configuration: UIListContentConfiguration = .groupedHeader()
                 configuration.text = data.title
                 configuration.textProperties.font = .preferredFont(forTextStyle: .headline)
                 headerView.contentConfiguration = configuration
